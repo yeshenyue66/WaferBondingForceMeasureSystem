@@ -71,6 +71,18 @@
     <Compile Include="Models\ComProtocol\ComFormat.cs" />
     <Compile Include="Models\ComProtocol\TDKA\ComFormat.cs" />
     <Compile Include="Models\ComProtocol\TDKA\ComFormatTDKA.cs" />
+    <Compile Include="SettingForms\Correction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\Correction.Designer.cs">
+      <DependentUpon>Correction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RoundPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\RoundPanel.Designer.cs">
+      <DependentUpon>RoundPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Util\Config\ConfigElement.cs" />
     <Compile Include="Util\Config\ConfigElementCollection.cs" />
     <Compile Include="Util\Config\ConfigSection.cs" />
@@ -164,6 +176,9 @@
     <EmbeddedResource Include="SettingForms\CalibrationSetting.resx">
       <DependentUpon>CalibrationSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\Correction.resx">
+      <DependentUpon>Correction.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingForms\DataManage.resx">
       <DependentUpon>DataManage.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PlanSite.resx">
       <DependentUpon>PlanSite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RoundPanel.resx">
+      <DependentUpon>RoundPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WBFMSystem.resx">
       <DependentUpon>WBFMSystem.cs</DependentUpon>

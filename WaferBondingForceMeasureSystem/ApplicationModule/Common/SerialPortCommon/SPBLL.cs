@@ -39,7 +39,7 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortComm
                         }
                         catch
                         { 
-                            SerialPortsList.Add(new StringBuilder(_port + "（已占用）"));
+                            SerialPortsList.Add(new StringBuilder(_port + "（已连接）"));
                         }
                         serialPort.Close();
                     }
