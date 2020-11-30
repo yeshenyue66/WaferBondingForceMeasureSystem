@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{22750E73-2014-466D-BE75-12DEA91A82FE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WaferBondingForceMeasureSystem</RootNamespace>
+    <AssemblyName>WaferBondingForceMeasureSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationModule\Common\FormCommon\UIBLL.cs" />
+    <Compile Include="ApplicationModule\Common\FormCommon\IUIBLL.cs" />
+    <Compile Include="ApplicationModule\ComProtocol\ComFixedEnum.cs" />
+    <Compile Include="ApplicationModule\ComProtocol\ComFormatEntity.cs" />
+    <Compile Include="ApplicationModule\ComProtocol\ComFormatPackage.cs" />
+    <Compile Include="ApplicationModule\ComProtocol\ComNameEntity.cs" />
+    <Compile Include="ApplicationModule\ComProtocol\ComTypeEntity.cs" />
+    <Compile Include="ApplicationModule\NumCalculator\NumCalcuService.cs" />
+    <Compile Include="ApplicationModule\Common\PlanConmmon\IPlanBLL.cs" />
+    <Compile Include="ApplicationModule\Common\PlanConmmon\PlanBLL.cs" />
+    <Compile Include="ApplicationModule\Common\SerialPortCommon\ISPBLL.cs" />
+    <Compile Include="ApplicationModule\Common\SerialPortCommon\SPBLL.cs" />
+    <Compile Include="CommonHelpers\ControlHelper.cs" />
+    <Compile Include="CommonHelpers\LogHelper.cs" />
+    <Compile Include="CommonHelpers\TextHelper.cs" />
+    <Compile Include="Extensions\Models\PlanModelExtension.cs" />
+    <Compile Include="Extensions\SerialPortExtension.cs" />
+    <Compile Include="Models\ComProtocol\ComFormat.cs" />
+    <Compile Include="Models\ComProtocol\TDKA\ComFormat.cs" />
+    <Compile Include="Models\ComProtocol\TDKA\ComFormatTDKA.cs" />
+    <Compile Include="Util\Config\ConfigElement.cs" />
+    <Compile Include="Util\Config\ConfigElementCollection.cs" />
+    <Compile Include="Util\Config\ConfigSection.cs" />
+    <Compile Include="Models\Algorithms\BondingForceModel.cs" />
+    <Compile Include="Models\Controls\ControlModel.cs" />
+    <Compile Include="Models\Machines\LoadPortModel.cs" />
+    <Compile Include="Models\Machines\ManipulatorModel.cs" />
+    <Compile Include="Models\Machines\SlottingKnifeModel.cs" />
+    <Compile Include="Models\Plan\PlanModel.cs" />
+    <Compile Include="Models\SerialPorts\SerialPortModel.cs" />
+    <Compile Include="SettingForms\AlgorithmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\AlgorithmSetting.Designer.cs">
+      <DependentUpon>AlgorithmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\CalibrationSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\CalibrationSetting.Designer.cs">
+      <DependentUpon>CalibrationSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\DataManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\DataManage.Designer.cs">
+      <DependentUpon>DataManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\PlanAppend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\PlanAppend.Designer.cs">
+      <DependentUpon>PlanAppend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\PlanManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\PlanManage.Designer.cs">
+      <DependentUpon>PlanManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForms\SystemSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\SystemSetting.Designer.cs">
+      <DependentUpon>SystemSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\AnalysisPic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AnalysisPic.Designer.cs">
+      <DependentUpon>AnalysisPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ControlPanel.Designer.cs">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomizeTextbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CustomizeTextbox.Designer.cs">
+      <DependentUpon>CustomizeTextbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ErrorLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ErrorLog.Designer.cs">
+      <DependentUpon>ErrorLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlanSite.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PlanSite.Designer.cs">
+      <DependentUpon>PlanSite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\DataType\TypeTranslate.cs" />
+    <Compile Include="Util\Enum\EnumAttribute.cs" />
+    <Compile Include="Util\String\Str.cs" />
+    <Compile Include="WBFMSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WBFMSystem.Designer.cs">
+      <DependentUpon>WBFMSystem.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SettingForms\AlgorithmSetting.resx">
+      <DependentUpon>AlgorithmSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\CalibrationSetting.resx">
+      <DependentUpon>CalibrationSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\DataManage.resx">
+      <DependentUpon>DataManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\PlanAppend.resx">
+      <DependentUpon>PlanAppend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\PlanManage.resx">
+      <DependentUpon>PlanManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\SystemSetting.resx">
+      <DependentUpon>SystemSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UserControls\AnalysisPic.resx">
+      <DependentUpon>AnalysisPic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ControlPanel.resx">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CustomizeTextbox.resx">
+      <DependentUpon>CustomizeTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ErrorLog.resx">
+      <DependentUpon>ErrorLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PlanSite.resx">
+      <DependentUpon>PlanSite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WBFMSystem.resx">
+      <DependentUpon>WBFMSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="SerialPort.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\ComProtocol\TDKB\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaferBondingForceMeasureSystem", "WaferBondingForceMeasureSystem\WaferBondingForceMeasureSystem.csproj", "{22750E73-2014-466D-BE75-12DEA91A82FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22750E73-2014-466D-BE75-12DEA91A82FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22750E73-2014-466D-BE75-12DEA91A82FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22750E73-2014-466D-BE75-12DEA91A82FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22750E73-2014-466D-BE75-12DEA91A82FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5645E0D-9873-44FD-9565-61FF70C9C3E1}
+	EndGlobalSection
+EndGlobal
