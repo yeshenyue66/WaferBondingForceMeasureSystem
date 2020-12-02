@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO.Ports;
 using System.Configuration;
+using System.Drawing;
+using System.IO.Ports;
+using System.Windows.Forms;
 using System.Xml;
-
-using WaferBondingForceMeasureSystem.UserControls;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
+using WaferBondingForceMeasureSystem.UserControls;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
@@ -101,7 +94,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             doc.Load("SerialPort.config");
             XmlNode node = doc.SelectSingleNode(@"//add[@key='LoadPortSerialPort']");
             XmlElement ele = (XmlElement)node;
-            ele.SetAttribute("value", this.ComboBoxLoadPort.Text.ToString().Substring(0, 4));
+            ele.SetAttribute("value", this.ComboBoxLoadPort.Text.ToString());
             doc.Save("SerialPort.config");
 
             MyEvent?.Invoke(sender, e);

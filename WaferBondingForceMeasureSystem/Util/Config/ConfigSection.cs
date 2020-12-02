@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace WaferBondingForceMeasureSystem.Util.Config
 {
@@ -14,19 +9,18 @@ namespace WaferBondingForceMeasureSystem.Util.Config
     /// </summary>
     class ConfigSection : ConfigurationSection
     {
-        //[ConfigurationProperty("log4net", IsRequired = true)]
-        //public string Log4net
-        //{
-        //    get
-        //    {
-        //        return (string)base["log4net"];
-        //    }
-        //    set
-        //    {
-        //        base["log4net"] = value;
-        //    }
-        //}
-
+        [ConfigurationProperty("value", IsRequired = true)]
+        public string Value
+        {
+            get
+            {
+                return (string)base["value"];
+            }
+            set
+            {
+                base["value"] = value;
+            }
+        }
         [ConfigurationProperty("", IsDefaultCollection = true)]
         public ConfigElementCollection ChildSections
         {

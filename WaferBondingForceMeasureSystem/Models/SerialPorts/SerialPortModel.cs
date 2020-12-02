@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WaferBondingForceMeasureSystem.Models.SerialPorts
+﻿namespace WaferBondingForceMeasureSystem.Models.SerialPorts
 {
     /// <summary>
     /// 功能描述    ：SerialPortModel
@@ -13,6 +7,6 @@ namespace WaferBondingForceMeasureSystem.Models.SerialPorts
     /// </summary>
     class SerialPortModel
     {
-        private int baudRate;
+
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WaferBondingForceMeasureSystem.Models.Machines
+﻿namespace WaferBondingForceMeasureSystem.Models.Machines
 {
     /// <summary>
     /// 功能描述    ：Class1  

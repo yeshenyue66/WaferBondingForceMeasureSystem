@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WaferBondingForceMeasureSystem.Models.ComProtocol
+﻿namespace WaferBondingForceMeasureSystem.Models.ComProtocol
 {
     /// <summary>
     /// 功能描述    ：ComFormat

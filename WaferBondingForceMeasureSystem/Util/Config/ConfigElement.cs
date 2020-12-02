@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace WaferBondingForceMeasureSystem.Util.Config
 {
@@ -14,7 +9,6 @@ namespace WaferBondingForceMeasureSystem.Util.Config
     /// </summary>
     class ConfigElement : ConfigurationElement
     {
-        string RequiredElement;
         [ConfigurationProperty("value", IsDefaultCollection = true)]
         public string Value
         {

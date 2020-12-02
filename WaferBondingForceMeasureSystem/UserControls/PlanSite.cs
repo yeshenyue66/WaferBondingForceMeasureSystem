@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using WaferBondingForceMeasureSystem.Models.Plan;
@@ -15,7 +8,7 @@ namespace WaferBondingForceMeasureSystem.UserControls
 {
     public partial class PlanSite : UserControl
     {
-        PlanAppend planAppend = null;
+        //PlanAppend planAppend = null;
         public PlanSite()
         {
             InitializeComponent();
@@ -58,6 +51,7 @@ namespace WaferBondingForceMeasureSystem.UserControls
         static PlanModel planModel1;
         public PlanModel Receive(bool site1, bool site2, bool site3, bool site4, bool site5, bool site6, bool site7)
         {
+            planModel1 = new PlanModel();
             planModel1.IsSetSite1 = site1;
             planModel1.IsSetSite2 = site2;
             planModel1.IsSetSite3 = site3;

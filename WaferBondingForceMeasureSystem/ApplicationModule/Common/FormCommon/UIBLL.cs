@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WaferBondingForceMeasureSystem.Models;
 using WaferBondingForceMeasureSystem.Models.Control;
 
 namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
@@ -87,11 +83,14 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
         }
         #endregion
 
-        static ControlModel controlModel = null;
-        static bool IsMove;
-        public void CustomizeMove<T>(T obj) where T : Form
+        private ControlModel controlModel = null;
+        private bool isMouseDown;
+        private Point mouseOffset;
+        private Form mainForm;
+        public void CustomizeMove<T>(T obj, Form form) where T : Control
         {
             controlModel = new ControlModel((float)obj.Location.X, (float)obj.Location.Y);
+            mainForm = form;
 
             obj.MouseDown += Obj_MouseDown;
             obj.MouseUp += Obj_MouseUp;
@@ -100,32 +99,31 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
 
         private void Obj_MouseMove(object sender, EventArgs e)
         {
-            if(IsMove)
+            if (isMouseDown)
             {
-            //    controlModel.Locationx = controlModel.Locationx - e.X;
-            //    controlModel.Locationy = controlModel.Locationy - e.Y;
+                Point p = Control.MousePosition;
+                p.Offset(mouseOffset.X, mouseOffset.Y);
+                mainForm.Location = p;
             }
         }
 
         private void Obj_MouseUp(object sender, MouseEventArgs e)
         {
-            IsMove = false;
+            if (e.Button == MouseButtons.Left)
+            {
+                isMouseDown = false;
+            }
         }
 
-        public static void Obj_MouseDown(object sender, MouseEventArgs e)
+        public void Obj_MouseDown(object sender, MouseEventArgs e)
         {
-            try
+            int yOffset, xOffset;
+            if (e.Button == MouseButtons.Left)
             {
-                if (e.Button == MouseButtons.Left)
-                {
-                    controlModel.Locationx = e.X;
-                    controlModel.Locationy = e.Y;
-                    IsMove = true;
-                }
-            }
-            catch
-            {
-                throw new NotImplementedException();
+                xOffset = -e.X - SystemInformation.FrameBorderSize.Width;
+                yOffset = -e.Y - SystemInformation.FrameBorderSize.Height;
+                mouseOffset = new Point(xOffset, yOffset);
+                isMouseDown = true;
             }
         }
     }

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using WaferBondingForceMeasureSystem.Util.DataType;
 using WaferBondingForceMeasureSystem.Util.Enum;
 using WaferBondingForceMeasureSystem.Util.String;
-using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
 
 namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
 {

@@ -91,6 +91,9 @@ namespace WaferBondingForceMeasureSystem
             this.PanelTopic.Name = "PanelTopic";
             this.PanelTopic.Size = new System.Drawing.Size(796, 35);
             this.PanelTopic.TabIndex = 1;
+            this.PanelTopic.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTopic_MouseDown);
+            this.PanelTopic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTopic_MouseMove);
+            this.PanelTopic.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelTopic_MouseUp);
             // 
             // PicBoxClose
             // 
@@ -401,11 +404,10 @@ namespace WaferBondingForceMeasureSystem
             this.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WBFMSystem";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.WBFMSystem_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseUp);
+            //this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseDown);
+            //this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseMove);
+            //this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseUp);
             this.Move += new System.EventHandler(this.WBFMSystem_Move);
             this.Resize += new System.EventHandler(this.WBFMSystem_Resize);
             this.PanelTopic.ResumeLayout(false);

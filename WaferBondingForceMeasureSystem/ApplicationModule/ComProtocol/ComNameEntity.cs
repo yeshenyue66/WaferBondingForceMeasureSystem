@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
 {
@@ -439,5 +434,7 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
     {
         [Description("INF:PODON;")]
         PODON = 1,
+        [Description("INF:PODOF;")]
+        PODOF = 2,
     }
 }

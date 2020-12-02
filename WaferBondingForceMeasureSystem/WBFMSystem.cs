@@ -1,18 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO.Ports;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using System.IO.Ports;
-
-using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
+using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
 using WaferBondingForceMeasureSystem.Models.Control;
 using WaferBondingForceMeasureSystem.SettingForms;
 using WaferBondingForceMeasureSystem.UserControls;
-using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
-using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace WaferBondingForceMeasureSystem
 {
@@ -43,6 +41,8 @@ namespace WaferBondingForceMeasureSystem
         {
             InitializeComponent();
 
+            //new UIBLL().CustomizeMove<Panel>(this.PanelMenu, this);
+
             systemSetting = SystemSetting.Singleton();
             systemSetting.MyEvent += WBFMSystem_Load;
            
@@ -57,6 +57,8 @@ namespace WaferBondingForceMeasureSystem
         delegate SerialPort LPSerialPortTran(SerialPort serialPort);
         private void WBFMSystem_Load(object sender, EventArgs e)
         {
+            //new UIBLL().CustomizeMove(this.PanelMenu, this);
+
             this.PanelLog.Controls.Add(new ErrorLog {Dock = DockStyle.Fill });
             this.PanelAnalysisPic.Controls.Add(new AnalysisPic { Dock = DockStyle.Fill });
             this.PanelControl.Controls.Add(new ControlPanel { Dock = DockStyle.Fill });
@@ -64,11 +66,12 @@ namespace WaferBondingForceMeasureSystem
             try
             {
                 lPSerialPort = new SerialPort();
-                lPSerialPort.PortName = SPBLL.LPSerialPortName();
+                //lPSerialPort.PortName = SPBLL.LPSerialPortName();
+                lPSerialPort.PortName = "COM2";
                 lPSerialPort.Open();
 
 
-                ComFormatEntity comFormatEntity = new ComFormatEntity(EVTCommandNames.PODON);
+                ComFormatEntity comFormatEntity = new ComFormatEntity(EVTCommandNames.PODOF);
                 List<byte> bbb = new List<byte>();
                 bbb.Add(comFormatEntity.SOH("TDKA"));
                 bbb.Add(comFormatEntity.LEN()[0]);
@@ -82,7 +85,9 @@ namespace WaferBondingForceMeasureSystem
                 bbb.Add(0x03);
                 byte[] ddd = bbb.ToArray();
 
-                lPSerialPort.Write(ddd, 0, ddd.Length);
+                byte[] da = Encoding.ASCII.GetBytes("$1CR");
+
+                lPSerialPort.Write(da, 0, da.Length);
 
                 LPSerialPortTran lPSerialPortTran = new LPSerialPortTran(SystemSetting.GetLPSerialPort);
                 lPSerialPortTran(lPSerialPort);
@@ -260,15 +265,45 @@ namespace WaferBondingForceMeasureSystem
 
         private Point mouseOffset;
         private bool isMouseDown = false;
-        private void WBFMSystem_MouseUp(object sender, MouseEventArgs e)
+        //private void WBFMSystem_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Left)
+        //    {
+        //        isMouseDown = false;
+        //    }
+        //}
+
+        //private void WBFMSystem_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if (isMouseDown)
+        //    {
+        //        Point p = MousePosition;
+        //        p.Offset(mouseOffset.X, mouseOffset.Y);
+        //        this.Location = p;
+        //    }
+        //}
+
+        //private void WBFMSystem_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    int yOffset, xOffset;
+        //    if (e.Button == MouseButtons.Left)
+        //    {
+        //        xOffset = -e.X - SystemInformation.FrameBorderSize.Width;
+        //        yOffset = -e.Y - SystemInformation.FrameBorderSize.Height;
+        //        mouseOffset = new Point(xOffset, yOffset);
+        //        isMouseDown = true;
+        //    }
+        //}
+
+        private void PanelTopic_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 isMouseDown = false;
             }
         }
-        
-        private void WBFMSystem_MouseMove(object sender, MouseEventArgs e)
+
+        private void PanelTopic_MouseMove(object sender, MouseEventArgs e)
         {
             if (isMouseDown)
             {
@@ -278,7 +313,7 @@ namespace WaferBondingForceMeasureSystem
             }
         }
 
-        private void WBFMSystem_MouseDown(object sender, MouseEventArgs e)
+        private void PanelTopic_MouseDown(object sender, MouseEventArgs e)
         {
             int yOffset, xOffset;
             if (e.Button == MouseButtons.Left)

@@ -6,6 +6,8 @@ using System.Text;
 using System.Configuration;
 
 using WaferBondingForceMeasureSystem.Models.SerialPorts;
+using WaferBondingForceMeasureSystem.Util.Config;
+using System.Xml;
 
 namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon
 {
@@ -36,10 +38,11 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortComm
                         {
                             serialPort.Open();
                             SerialPortsList.Add(new StringBuilder(_port));
+                            //SerialPortsList.Add(new StringBuilder(_port + "(未连接)"));
                         }
                         catch
                         { 
-                            SerialPortsList.Add(new StringBuilder(_port + "（已连接）"));
+                            SerialPortsList.Add(new StringBuilder(_port));
                         }
                         serialPort.Close();
                     }
@@ -58,7 +61,14 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortComm
         }
         public static string LPSerialPortName()
         {
-            return ConfigurationManager.AppSettings["LoadPortSerialPort"];
+            //ConfigSection configSection = (ConfigSection)ConfigurationManager.GetSection("LoadPort");
+            //return configSection.Value;
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load("SerialPort.config");
+            XmlNode node = doc.SelectSingleNode(@"//add[@key='LoadPortSerialPort']");
+            XmlElement ele = (XmlElement)node;
+            return ele.GetAttribute("value");
         }
     }
 }
