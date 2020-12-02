@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using WaferBondingForceMeasureSystem.Models.ComProtocol;
@@ -13,10 +15,48 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
     /// </summary>
     class ComFormatPackage
     {
-        public static byte[] Construct()
+        public static Protocol protocol = Protocol.TDKA;
+        public static MessageDel del = MessageDel.ETX;
+
+        /// <summary>
+        /// Message打包
+        /// </summary>
+        /// <param name="cmd">传输命令</param>
+        /// <returns></returns>
+        public static byte[] ConstructCommandInfo(Enum cmd)
         {
-            return default;
+            ComFormatEntity comFormatEntity = new ComFormatEntity(cmd);
+            List<byte> entity = new List<byte>();
+            switch (protocol)
+            {
+                case Protocol.TDKA:
+                    entity.Add(comFormatEntity.SOH(protocol));
+                    entity.AddRange(comFormatEntity.LEN());
+                    entity.AddRange(comFormatEntity.ADR());
+                    entity.AddRange(comFormatEntity.CMD());
+                    entity.Add(comFormatEntity.CSh());
+                    entity.Add(comFormatEntity.CSl());
+                    entity.Add(comFormatEntity.DEL(del)[0]);
+                    break;
+                case Protocol.TDKB:
+                    entity.Add(comFormatEntity.SOH(protocol));
+                    entity.AddRange(comFormatEntity.LEN());
+                    entity.AddRange(comFormatEntity.ADR());
+                    entity.AddRange(comFormatEntity.CMD());
+                    entity.Add(comFormatEntity.CSh());
+                    entity.Add(comFormatEntity.CSl());
+                    entity.Add(comFormatEntity.DEL(del)[0]);
+                    break;
+            }
+
+            return entity.ToArray();
         }
+
+        /// <summary>
+        /// Message解码
+        /// </summary>
+        /// <param name="buffer">获取报文</param>
+        /// <returns></returns>
         public static ComFormat ParseCommandInfo(byte[] buffer)
         {
             int ComStr_length;

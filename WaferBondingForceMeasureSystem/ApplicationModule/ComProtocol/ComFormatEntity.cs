@@ -17,13 +17,7 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
     {
         Enum value;
         private byte soh;
-        private byte[] len;
-        private byte[] adr;
-        private byte[] cmd;
         public byte Soh { get => soh; set => soh = value; }
-        public byte[] Len { get => len; set => len = new byte[2] { 0x00, (byte)(4 + CMDstr().Length) }; }
-        public byte[] Adr { get => adr; set => adr = new byte[] { 0x30, 0x30 }; }
-        public byte[] Cmd { get => cmd; set => cmd = Encoding.ASCII.GetBytes(CMDstr()); }
 
         public ComFormatEntity(Enum Value)
         {
@@ -35,52 +29,70 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
         /// </summary>
         /// <param name="ProtocolSelected">选择协议类型</param>
         /// <returns></returns>
-        public byte SOH(string ProtocolSelected)
+        public byte SOH(Protocol protocol)
         {
-            byte bt = 0x01;
-            switch (ProtocolSelected)
+            byte soh = 0x01;
+            switch (protocol)
             {
-                case "TDKA":
+                case Protocol.TDKA:
                     break;
-                case "TDKB":
-                    bt = TypeTranslate.StringToHexByte(EnumAttribute.GetDescription(SOHvalue.TDKB))[0];
+                case Protocol.TDKB:
+                    soh = TypeTranslate.StringToHexByte(EnumAttribute.GetDescription(SOHvalue.TDKB))[0];
                     break;
             }
-            return bt;
+            return soh;
         }
 
+        /// <summary>
+        /// 返回LEN
+        /// </summary>
+        /// <returns></returns>
         public byte[] LEN()
         {
             int len = 4 + CMDstr().Length;
             return new byte[2] { 0x00, (byte)len };
         }
 
+        /// <summary>
+        /// 返回默认串口连接的ADR字符串
+        /// </summary>
+        /// <returns></returns>
         public string ADRstr()
         {
             return "00";
         }
 
+        /// <summary>
+        /// 返回默认串口连接的ADR
+        /// </summary>
+        /// <returns></returns>
         public byte[] ADR()
         {
             return new byte[] { 0x30, 0x30 };
         }
-        
+
         /// <summary>
-        /// 获取整个cmd
+        /// 返回cmd字符串
         /// </summary>
-        /// <param name="cmd"></param>
         /// <returns></returns>
         public string CMDstr()
         {
             return EnumAttribute.GetDescription(value);
-            
         }
 
+        /// <summary>
+        /// 返回cmd
+        /// </summary>
+        /// <returns></returns>
         public byte[] CMD()
         {
             return Encoding.ASCII.GetBytes(CMDstr());
         }
 
+        /// <summary>
+        /// 返回CSh
+        /// </summary>
+        /// <returns></returns>
         public byte CSh()
         {
             int Checksum;
@@ -88,10 +100,13 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
             string csh = Convert.ToString((byte)Checksum, 16);
             int length = csh.Length;
             char value = csh.ToCharArray()[length - 2];
-
             return (byte)value;
         }
 
+        /// <summary>
+        /// 返回CSl
+        /// </summary>
+        /// <returns></returns>
         public byte CSl()
         {
             int Checksum;
@@ -99,9 +114,30 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
             string csh = Convert.ToString((byte)Checksum, 16);
             int length = csh.Length;
             char value = csh.ToCharArray()[length - 1];
-
             return (byte)value;
         }
 
+        /// <summary>
+        /// 返回DEL
+        /// </summary>
+        /// <param name="messageDel">DEL类型</param>
+        /// <returns></returns>
+        public byte[] DEL(MessageDel messageDel)
+        {
+            byte[] del = new byte[2];
+            switch(messageDel)
+            {
+                case MessageDel.ETX:
+                    del[0] = 0x03;
+                    break;
+                case MessageDel.CR:
+                    del[0] = 0x0D;
+                    break;
+                case MessageDel.CRLF:
+                    del = new byte[] { 0x0D, 0x0A };
+                    break;
+            }
+            return del;
+        }
     }
 }

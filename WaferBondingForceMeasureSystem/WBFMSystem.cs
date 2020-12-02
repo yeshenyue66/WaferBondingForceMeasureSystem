@@ -70,24 +70,23 @@ namespace WaferBondingForceMeasureSystem
                 lPSerialPort.PortName = "COM2";
                 lPSerialPort.Open();
 
+                //ComFormatEntity comFormatEntity = new ComFormatEntity(EVTCommandNames.PODOF);
+                //List<byte> bbb = new List<byte>();
+                //bbb.Add(comFormatEntity.SOH("TDKA"));
+                //bbb.Add(comFormatEntity.LEN()[0]);
+                //bbb.Add(comFormatEntity.LEN()[1]);
+                //bbb.Add(0x30);
+                //bbb.Add(0x30);
+                //List<byte> ccc = comFormatEntity.CMD().ToList();
+                //bbb.AddRange(ccc);
+                //bbb.Add(comFormatEntity.CSh());
+                //bbb.Add(comFormatEntity.CSl());
+                //bbb.Add(0x03);
+                //byte[] ddd = bbb.ToArray();
 
-                ComFormatEntity comFormatEntity = new ComFormatEntity(EVTCommandNames.PODOF);
-                List<byte> bbb = new List<byte>();
-                bbb.Add(comFormatEntity.SOH("TDKA"));
-                bbb.Add(comFormatEntity.LEN()[0]);
-                bbb.Add(comFormatEntity.LEN()[1]);
-                bbb.Add(0x30);
-                bbb.Add(0x30);
-                List<byte> ccc = comFormatEntity.CMD().ToList();
-                bbb.AddRange(ccc);
-                bbb.Add(comFormatEntity.CSh());
-                bbb.Add(comFormatEntity.CSl());
-                bbb.Add(0x03);
-                byte[] ddd = bbb.ToArray();
-
-                byte[] da = Encoding.ASCII.GetBytes("$1CR");
-
-                lPSerialPort.Write(da, 0, da.Length);
+                //byte[] da = Encoding.ASCII.GetBytes("$1CR");
+                byte[] Message = ComFormatPackage.ConstructCommandInfo(SETCommandNames.INITL);
+                lPSerialPort.Write(Message, 0, Message.Length);
 
                 LPSerialPortTran lPSerialPortTran = new LPSerialPortTran(SystemSetting.GetLPSerialPort);
                 lPSerialPortTran(lPSerialPort);
