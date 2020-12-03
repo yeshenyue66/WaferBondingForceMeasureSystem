@@ -61,14 +61,16 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortComm
         }
         public static string LPSerialPortName()
         {
-            //ConfigSection configSection = (ConfigSection)ConfigurationManager.GetSection("LoadPort");
-            //return configSection.Value;
+            return ConfigSection.GetValue(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "SerialPort.config", "LoadPort");
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load("SerialPort.config");
-            XmlNode node = doc.SelectSingleNode(@"//add[@key='LoadPortSerialPort']");
-            XmlElement ele = (XmlElement)node;
-            return ele.GetAttribute("value");
+            //return ConfigurationManager.AppSettings["LoadPort"];
+            //var fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = "C:/Users/Admin/source/repos/WaferBondingForceMeasureSystem/WaferBondingForceMeasureSystem/SerialPort.config" };
+            //var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+
+            //Configuration config = ConfigurationManager.OpenExeConfiguration("C:/Users/Admin/source/repos/WaferBondingForceMeasureSystem/WaferBondingForceMeasureSystem/bin/Debug/App.Config");
+            //ConfigSection configSection = config.Sections["LoadPort"] as ConfigSection;
+            //ConfigSection configSection = (ConfigSection)config.GetSection("LoadPort");
+            //return configSection.Value;
         }
     }
 }

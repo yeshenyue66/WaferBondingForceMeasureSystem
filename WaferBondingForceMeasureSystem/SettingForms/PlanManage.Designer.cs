@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlanManage));
             this.PanelTopic = new System.Windows.Forms.Panel();
             this.PicBoxClose = new System.Windows.Forms.PictureBox();
-            this.PicBoxScaling = new System.Windows.Forms.PictureBox();
-            this.PicBoxMin = new System.Windows.Forms.PictureBox();
             this.LabelTopic = new System.Windows.Forms.Label();
             this.PanelMenu = new System.Windows.Forms.Panel();
             this.PanelMenuSetPlan = new System.Windows.Forms.Panel();
@@ -74,8 +72,6 @@
             this.LabelPlanDescription = new System.Windows.Forms.Label();
             this.PanelTopic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxScaling)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxMin)).BeginInit();
             this.PanelMenu.SuspendLayout();
             this.PanelMenuSetPlan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -96,8 +92,6 @@
             // 
             this.PanelTopic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(62)))), ((int)(((byte)(77)))));
             this.PanelTopic.Controls.Add(this.PicBoxClose);
-            this.PanelTopic.Controls.Add(this.PicBoxScaling);
-            this.PanelTopic.Controls.Add(this.PicBoxMin);
             this.PanelTopic.Controls.Add(this.LabelTopic);
             this.PanelTopic.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTopic.Location = new System.Drawing.Point(0, 0);
@@ -115,22 +109,6 @@
             this.PicBoxClose.TabIndex = 0;
             this.PicBoxClose.TabStop = false;
             this.PicBoxClose.Click += new System.EventHandler(this.PicBoxClose_Click);
-            // 
-            // PicBoxScaling
-            // 
-            this.PicBoxScaling.Location = new System.Drawing.Point(712, 0);
-            this.PicBoxScaling.Name = "PicBoxScaling";
-            this.PicBoxScaling.Size = new System.Drawing.Size(33, 32);
-            this.PicBoxScaling.TabIndex = 0;
-            this.PicBoxScaling.TabStop = false;
-            // 
-            // PicBoxMin
-            // 
-            this.PicBoxMin.Location = new System.Drawing.Point(673, 3);
-            this.PicBoxMin.Name = "PicBoxMin";
-            this.PicBoxMin.Size = new System.Drawing.Size(33, 32);
-            this.PicBoxMin.TabIndex = 0;
-            this.PicBoxMin.TabStop = false;
             // 
             // LabelTopic
             // 
@@ -603,8 +581,6 @@
             this.PanelTopic.ResumeLayout(false);
             this.PanelTopic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxScaling)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxMin)).EndInit();
             this.PanelMenu.ResumeLayout(false);
             this.PanelMenuSetPlan.ResumeLayout(false);
             this.PanelMenuSetPlan.PerformLayout();
@@ -634,8 +610,6 @@
 
         private System.Windows.Forms.Panel PanelTopic;
         private System.Windows.Forms.PictureBox PicBoxClose;
-        private System.Windows.Forms.PictureBox PicBoxScaling;
-        private System.Windows.Forms.PictureBox PicBoxMin;
         private System.Windows.Forms.Label LabelTopic;
         private System.Windows.Forms.Panel PanelMenu;
         private System.Windows.Forms.Panel PanelMenuSetPlan;

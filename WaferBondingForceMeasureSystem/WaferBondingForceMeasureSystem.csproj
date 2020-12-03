@@ -59,6 +59,9 @@
     <Compile Include="ApplicationModule\ComProtocol\ComFormatPackage.cs" />
     <Compile Include="ApplicationModule\ComProtocol\ComNameEntity.cs" />
     <Compile Include="ApplicationModule\ComProtocol\ComTypeEntity.cs" />
+    <Compile Include="ApplicationModule\ComProtocol\FIFOBuffer.cs" />
+    <Compile Include="ApplicationModule\Log\LogFormat.cs" />
+    <Compile Include="ApplicationModule\Log\LogMessage.cs" />
     <Compile Include="ApplicationModule\NumCalculator\NumCalcuService.cs" />
     <Compile Include="ApplicationModule\Common\PlanConmmon\IPlanBLL.cs" />
     <Compile Include="ApplicationModule\Common\PlanConmmon\PlanBLL.cs" />
@@ -246,6 +249,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\ComProtocol\TDKB\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\TurnNormal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\TurnMax.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

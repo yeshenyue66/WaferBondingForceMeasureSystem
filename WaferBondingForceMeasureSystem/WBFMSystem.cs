@@ -10,14 +10,13 @@ using System.Windows.Forms;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
+using WaferBondingForceMeasureSystem.ApplicationModule.Log;
 using WaferBondingForceMeasureSystem.Models.Control;
-using WaferBondingForceMeasureSystem.Models.Plan;
 using WaferBondingForceMeasureSystem.SettingForms;
 using WaferBondingForceMeasureSystem.UserControls;
 
 namespace WaferBondingForceMeasureSystem
 {
-
     public partial class WBFMSystem : Form
     {
 
@@ -45,21 +44,36 @@ namespace WaferBondingForceMeasureSystem
         public WBFMSystem()
         {
             InitializeComponent();
-
             UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
             try
             {
                 systemSetting = SystemSetting.Singleton();
-                systemSetting.MyEvent += WBFMSystem_Load;
+                systemSetting.MyEvent += SerialPortInfo_Update;
 
                 planManage = new PlanManage();
-                planManage.MyEvent += new PlanManage.MyDelegate(WBFMSystem_Load);
-
+                planManage.MyEvent += new PlanManage.MyDelegate(LabelPlan_Add);
             }
             catch
             {
 
             }
+        }
+
+        private void SerialPortInfo_Update(object sender, EventArgs e)
+        {
+            lPSerialPort.Close();
+            //lPSerialPort = new SerialPort();
+            lPSerialPort.PortName = SPBLL.LPSerialPortName();
+            lPSerialPort.Open();
+            if(lPSerialPort.CtsHolding)
+            {
+                this.LabelCurrentOperation.Text = "就绪";
+            }
+        }
+
+        private void LabelPlan_Add(object sender, EventArgs e)
+        {
+            this.LabelKnifePlanSelected.Text = planModel;
         }
 
         //public static WBFMSystem Singelton()
@@ -88,38 +102,54 @@ namespace WaferBondingForceMeasureSystem
 
         private void WBFMSystem_Load(object sender, EventArgs e)
         {
-            //this.PanelLog.Controls.Add(new ErrorLog {Dock = DockStyle.Fill });
-            //this.PanelAnalysisPic.Controls.Add(new AnalysisPic { Dock = DockStyle.Fill });
-            //this.PanelControl.Controls.Add(new ControlPanel { Dock = DockStyle.Fill });
-            this.LabelKnifePlanSelected.Text = planModel;
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
+
             try
             {
                 lPSerialPort = new SerialPort();
-                //lPSerialPort.PortName = SPBLL.LPSerialPortName();
-                lPSerialPort.PortName = "COM2";
+                lPSerialPort.PortName = SPBLL.LPSerialPortName();
                 lPSerialPort.Open();
 
-                //Thread.Sleep(6000);
-                //byte[] da = Encoding.ASCII.GetBytes("$1CR");
-                byte[] Message = ComFormatPackage.ConstructCommandInfo(SETCommandNames.INITL);
-                lPSerialPort.Write(Message, 0, Message.Length);
+                if (lPSerialPort.CtsHolding)
+                {
+                    byte[] Message = ComFormatPackage.ConstructCommandInfo(SETCommandNames.INITL);
+                    lPSerialPort.Write(Message, 0, Message.Length);
 
-                //byte[] qew = new byte[2048];
-                //lPSerialPort.Read(qew, 0, qew.Length);
+                    byte[] qew = new byte[lPSerialPort.BytesToRead];
+                    lPSerialPort.Read(qew, 0, qew.Length);
+                    //this.TextBoxErrorLog.Text = Encoding.ASCII.GetString(qew);
 
-                LPSerialPortTran lPSerialPortTran = new LPSerialPortTran(SystemSetting.GetLPSerialPort);
-                lPSerialPortTran(lPSerialPort);
-
+                    LPSerialPortTran lPSerialPortTran = new LPSerialPortTran(SystemSetting.GetLPSerialPort);
+                    lPSerialPortTran(lPSerialPort);
+                }
+                else
+                {
+                    this.LabelCurrentOperation.Text = "初始化失败！";
+                    LogMessage logInfo = new LogMessage();
+                    logInfo.OperationTime = DateTime.Now;
+                    logInfo.ExceptionInfo = "初始化失败";
+                    this.TextBoxErrorLog.Text += new LogFormat().ErrorFormat(logInfo);
+                    MessageBox.Show("默认串口号错误！");
+                }
             }
             catch
             {
-
+                
             }
         }
    
         private void PicBoxScaling_Click(object sender, EventArgs e)
         {
-
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.PicBoxScaling.Image = Image.FromFile(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "Images/TurnMax.png");
+            }
+            else if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.PicBoxScaling.Image = Image.FromFile(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "Images/TurnNormal.png");
+            }
         }
 
         #region WndProc
@@ -233,17 +263,11 @@ namespace WaferBondingForceMeasureSystem
 
         private void PanelAlgorithmSetting_Click(object sender, EventArgs e)
         {
-            //byte[] buf = new byte[lPSerialPort.BytesToRead];
-            //lPSerialPort.Read(buf, 0, buf.Length);
-            //ComFormatPackage.ParseCommandInfo(buf);
             AlgorithmSetting.Singleton().ShowDialog();
         }
 
         private void PicBoxAlgorithmSetting_Click(object sender, EventArgs e)
         {
-            //byte[] buf = new byte[lPSerialPort.BytesToRead];
-            //lPSerialPort.Read(buf, 0, buf.Length);
-            //ComFormatPackage.ParseCommandInfo(buf);
             AlgorithmSetting.Singleton().ShowDialog();
         }
 
@@ -261,14 +285,12 @@ namespace WaferBondingForceMeasureSystem
 
         private void PicBoxPlanManage_Click(object sender, EventArgs e)
         {
-            
-            planManage.ShowDialog();
+            planManage.Show();
         }
 
         private void LabelPlanManage_Click(object sender, EventArgs e)
         {
-
-            planManage.ShowDialog();
+            planManage.Show();
         }
 
         private void LabelCalibrationSetting_Click(object sender, EventArgs e)
@@ -281,39 +303,6 @@ namespace WaferBondingForceMeasureSystem
             CalibrationSetting.Singleton().ShowDialog();
         }
 
-        private Point mouseOffset;
-        private bool isMouseDown = false;
-    
-        private void PanelTopic_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                isMouseDown = false;
-            }
-        }
-
-        private void PanelTopic_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (isMouseDown)
-            {
-                Point p = MousePosition;
-                p.Offset(mouseOffset.X, mouseOffset.Y);
-                this.Location = p;
-            }
-        }
-
-        private void PanelTopic_MouseDown(object sender, MouseEventArgs e)
-        {
-            int yOffset, xOffset;
-            if (e.Button == MouseButtons.Left)
-            {
-                xOffset = -e.X - SystemInformation.FrameBorderSize.Width;
-                yOffset = -e.Y - SystemInformation.FrameBorderSize.Height;
-                mouseOffset = new Point(xOffset, yOffset);
-                isMouseDown = true;
-            }
-        }
-
         private void BtnCorrection_Click(object sender, EventArgs e)
         {
             new Correction().ShowDialog();
@@ -321,7 +310,8 @@ namespace WaferBondingForceMeasureSystem
 
         private void BtnBoxOpen_Click(object sender, EventArgs e)
         {
-
+            byte[] Message = ComFormatPackage.ConstructCommandInfo(EVTCommandNames.PODOF);
+            lPSerialPort.Write(Message, 0, Message.Length);
         }
     }
 }

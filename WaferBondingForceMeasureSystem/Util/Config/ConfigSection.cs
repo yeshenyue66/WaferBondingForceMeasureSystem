@@ -9,16 +9,16 @@ namespace WaferBondingForceMeasureSystem.Util.Config
     /// </summary>
     class ConfigSection : ConfigurationSection
     {
-        [ConfigurationProperty("value", IsRequired = true)]
+        [ConfigurationProperty("value")]
         public string Value
         {
             get
             {
-                return (string)base["value"];
+                return (string)this["value"];
             }
             set
             {
-                base["value"] = value;
+                this["value"] = value;
             }
         }
         [ConfigurationProperty("", IsDefaultCollection = true)]
@@ -27,6 +27,55 @@ namespace WaferBondingForceMeasureSystem.Util.Config
             get
             {
                 return (ConfigElementCollection)base[""];
+            }
+        }
+
+        public static string GetValue(string configPath, string key)
+        {
+            Configuration ConfigurationInstance = ConfigurationManager.OpenMappedExeConfiguration(new ExeConfigurationFileMap()
+            {
+                ExeConfigFilename = configPath
+            }, ConfigurationUserLevel.None);
+
+            //ConfigurationInstance.GetSection("appsetting");
+            //ConfigurationSectionCollection configurationSectionCollection = ConfigurationInstance.Sections;
+
+            //ConfigSection configSection = ConfigurationInstance.GetSection("LoadPort") as ConfigSection;
+            //string b = configSection.Value;
+
+            if (ConfigurationInstance.AppSettings.Settings[key] != null)
+            {
+                return ConfigurationInstance.AppSettings.Settings[key].Value;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public static void SetValue(string configPath, string key, string value)
+        {
+            try
+            {
+                Configuration ConfigurationInstance = ConfigurationManager.OpenMappedExeConfiguration(new ExeConfigurationFileMap()
+                {
+                    ExeConfigFilename = configPath
+                }, ConfigurationUserLevel.None);
+
+                if (ConfigurationInstance.AppSettings.Settings[key] != null)
+                {
+                    ConfigurationInstance.AppSettings.Settings[key].Value = value;
+                }
+                else
+                {
+                    ConfigurationInstance.AppSettings.Settings.Add(key, value);
+                }
+                ConfigurationInstance.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+            }
+            catch
+            {
+
             }
         }
     }

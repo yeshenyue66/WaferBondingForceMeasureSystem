@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using System.Xml;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
+using WaferBondingForceMeasureSystem.Util.Config;
+
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
     public partial class SystemSetting : Form
@@ -14,7 +16,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private SystemSetting()
         {
             InitializeComponent();
-            
         }
 
         public static SystemSetting Singleton()
@@ -87,16 +88,9 @@ namespace WaferBondingForceMeasureSystem.SettingForms
 
         private void BtnLPConnection_Click(object sender, EventArgs e)
         {
-            ConfigurationManager.AppSettings["LoadPortSerialPort"] = this.ComboBoxLoadPort.Text.ToString();
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load("SerialPort.config");
-            XmlNode node = doc.SelectSingleNode(@"//add[@key='LoadPortSerialPort']");
-            XmlElement ele = (XmlElement)node;
-            ele.SetAttribute("value", this.ComboBoxLoadPort.Text.ToString());
-            doc.Save("SerialPort.config");
-
+            ConfigSection.SetValue(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "SerialPort.config", "LoadPort", this.ComboBoxLoadPort.Text);
             MyEvent?.Invoke(sender, e);
+            //ConfigurationManager.AppSettings["LoadPortSerialPort"] = this.ComboBoxLoadPort.Text.ToString();
         }
 
         static bool IsChanged;
