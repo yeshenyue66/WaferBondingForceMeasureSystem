@@ -12,7 +12,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         {
             InitializeComponent();
             
-            UIBLL.CustomizeMove<Panel>(this.PanelAlgorSettingTopic, this);
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelAlgorSettingTopic, this.LabelAlgorSettingTopic, this);
         }
 
         public static AlgorithmSetting Singleton()
@@ -38,8 +38,15 @@ namespace WaferBondingForceMeasureSystem.SettingForms
 
         private void AlgorithmSetting_Load(object sender, EventArgs e)
         {
+            //UIBLL.CustomizeMove<Panel>(this.PanelAlgorSettingTopic, this);
             //this.Height = 553 * _controlModel.Height / 1080;
             //this.Width = 440 * _controlModel.Width / 1902;
+        }
+
+        private void PicBoxSysSettingClose_Click(object sender, EventArgs e)
+        {
+
+            this.Close();
         }
     }
 }

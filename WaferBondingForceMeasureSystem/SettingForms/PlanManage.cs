@@ -10,7 +10,10 @@ namespace WaferBondingForceMeasureSystem.SettingForms
 {
     public partial class PlanManage : Form
     {
+        delegate string PlanDescription(string planModel);
         PlanAppend planAppend = null;
+        public delegate void MyDelegate(object sender, EventArgs e);
+        public event MyDelegate MyEvent;
         public PlanManage()
         {
             InitializeComponent();
@@ -22,6 +25,9 @@ namespace WaferBondingForceMeasureSystem.SettingForms
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
+            PlanDescription planDescription = new PlanDescription(WBFMSystem.GetPlanModel);
+            planDescription(this.TextBoxPlanDescription.Text);
+            MyEvent?.Invoke(sender, e);
             this.Close();
         }
 

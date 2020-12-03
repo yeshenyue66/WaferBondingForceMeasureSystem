@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ApplicationModule\Common\FormCommon\UIBLL.cs" />
     <Compile Include="ApplicationModule\Common\FormCommon\IUIBLL.cs" />
+    <Compile Include="ApplicationModule\Common\PlanConmmon\PlanEntity.cs" />
     <Compile Include="ApplicationModule\ComProtocol\ComFixedEnum.cs" />
     <Compile Include="ApplicationModule\ComProtocol\ComFormatEntity.cs" />
     <Compile Include="ApplicationModule\ComProtocol\ComFormatPackage.cs" />

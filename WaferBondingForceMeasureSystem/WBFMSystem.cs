@@ -8,8 +8,10 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
 using WaferBondingForceMeasureSystem.Models.Control;
+using WaferBondingForceMeasureSystem.Models.Plan;
 using WaferBondingForceMeasureSystem.SettingForms;
 using WaferBondingForceMeasureSystem.UserControls;
 
@@ -38,21 +40,36 @@ namespace WaferBondingForceMeasureSystem
             }
         }
         SystemSetting systemSetting = null;
+        PlanManage planManage = null;
+        //private static WBFMSystem wbfmSystem;
         public WBFMSystem()
         {
             InitializeComponent();
 
-            //new UIBLL().CustomizeMove<Panel>(this.PanelMenu, this);
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
             try
             {
                 systemSetting = SystemSetting.Singleton();
                 systemSetting.MyEvent += WBFMSystem_Load;
+
+                planManage = new PlanManage();
+                planManage.MyEvent += new PlanManage.MyDelegate(WBFMSystem_Load);
+
             }
             catch
             {
 
             }
         }
+
+        //public static WBFMSystem Singelton()
+        //{
+        //    if(wbfmSystem == null)
+        //    {
+        //        wbfmSystem = new WBFMSystem();
+        //    }
+        //    return wbfmSystem;
+        //}
 
         private void PicBoxClose_Click(object sender, EventArgs e)
         {
@@ -61,14 +78,20 @@ namespace WaferBondingForceMeasureSystem
 
         public static SerialPort lPSerialPort;
         delegate SerialPort LPSerialPortTran(SerialPort serialPort);
+
+        static string planModel;
+        public static string GetPlanModel(string _planModel)
+        {
+            planModel = _planModel;
+            return planModel;
+        }
+
         private void WBFMSystem_Load(object sender, EventArgs e)
         {
-            //new UIBLL().CustomizeMove(this.PanelMenu, this);
-
             //this.PanelLog.Controls.Add(new ErrorLog {Dock = DockStyle.Fill });
             //this.PanelAnalysisPic.Controls.Add(new AnalysisPic { Dock = DockStyle.Fill });
             //this.PanelControl.Controls.Add(new ControlPanel { Dock = DockStyle.Fill });
-
+            this.LabelKnifePlanSelected.Text = planModel;
             try
             {
                 lPSerialPort = new SerialPort();
@@ -210,17 +233,17 @@ namespace WaferBondingForceMeasureSystem
 
         private void PanelAlgorithmSetting_Click(object sender, EventArgs e)
         {
-            byte[] buf = new byte[lPSerialPort.BytesToRead];
-            lPSerialPort.Read(buf, 0, buf.Length);
-            ComFormatPackage.ParseCommandInfo(buf);
+            //byte[] buf = new byte[lPSerialPort.BytesToRead];
+            //lPSerialPort.Read(buf, 0, buf.Length);
+            //ComFormatPackage.ParseCommandInfo(buf);
             AlgorithmSetting.Singleton().ShowDialog();
         }
 
         private void PicBoxAlgorithmSetting_Click(object sender, EventArgs e)
         {
-            byte[] buf = new byte[lPSerialPort.BytesToRead];
-            lPSerialPort.Read(buf, 0, buf.Length);
-            ComFormatPackage.ParseCommandInfo(buf);
+            //byte[] buf = new byte[lPSerialPort.BytesToRead];
+            //lPSerialPort.Read(buf, 0, buf.Length);
+            //ComFormatPackage.ParseCommandInfo(buf);
             AlgorithmSetting.Singleton().ShowDialog();
         }
 
@@ -238,13 +261,13 @@ namespace WaferBondingForceMeasureSystem
 
         private void PicBoxPlanManage_Click(object sender, EventArgs e)
         {
-            PlanManage planManage = new PlanManage();
+            
             planManage.ShowDialog();
         }
 
         private void LabelPlanManage_Click(object sender, EventArgs e)
         {
-            PlanManage planManage = new PlanManage();
+
             planManage.ShowDialog();
         }
 
@@ -260,36 +283,7 @@ namespace WaferBondingForceMeasureSystem
 
         private Point mouseOffset;
         private bool isMouseDown = false;
-        //private void WBFMSystem_MouseUp(object sender, MouseEventArgs e)
-        //{
-        //    if (e.Button == MouseButtons.Left)
-        //    {
-        //        isMouseDown = false;
-        //    }
-        //}
-
-        //private void WBFMSystem_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if (isMouseDown)
-        //    {
-        //        Point p = MousePosition;
-        //        p.Offset(mouseOffset.X, mouseOffset.Y);
-        //        this.Location = p;
-        //    }
-        //}
-
-        //private void WBFMSystem_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    int yOffset, xOffset;
-        //    if (e.Button == MouseButtons.Left)
-        //    {
-        //        xOffset = -e.X - SystemInformation.FrameBorderSize.Width;
-        //        yOffset = -e.Y - SystemInformation.FrameBorderSize.Height;
-        //        mouseOffset = new Point(xOffset, yOffset);
-        //        isMouseDown = true;
-        //    }
-        //}
-
+    
         private void PanelTopic_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -323,6 +317,11 @@ namespace WaferBondingForceMeasureSystem
         private void BtnCorrection_Click(object sender, EventArgs e)
         {
             new Correction().ShowDialog();
+        }
+
+        private void BtnBoxOpen_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

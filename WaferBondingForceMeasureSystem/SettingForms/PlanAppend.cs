@@ -4,12 +4,12 @@ using System.Windows.Forms;
 using WaferBondingForceMeasureSystem.Extensions.Models;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon;
 using WaferBondingForceMeasureSystem.Models.Plan;
+using System.Text;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
     public partial class PlanAppend : Form
     {
-        
         public PlanAppend()
         {
             InitializeComponent();
@@ -42,7 +42,11 @@ namespace WaferBondingForceMeasureSystem.SettingForms
                 IsSetSite7 = this.CheckBoxSite7.Checked
             };
 
-            new PlanBLL().SavePlanData(new PlanBLL().PlanAddress() + this.TextBoxPlanName.Text.ToString() + ".txt", planModel);
+            StringBuilder sb = new StringBuilder();
+            sb.Append(new PlanBLL().PlanAddress());
+            sb.Append(this.TextBoxPlanName.Text.ToString());
+            sb.Append(".txt");
+            new PlanBLL().SavePlanData(sb.ToString(), planModel);
 
             MyEvent?.Invoke(sender, e);
             this.Close();

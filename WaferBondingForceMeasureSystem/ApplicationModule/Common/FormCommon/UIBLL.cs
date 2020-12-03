@@ -84,14 +84,18 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
         private static bool isMouseDown;
         private static Point mouseOffset;
         private static Form mainForm;
-        public static void CustomizeMove<T>(T obj, Form form) where T : Control
+        public static void CustomizeMove<T, U>(T objT, U objU, Form form) where T : Control where U : Control
         {
-            controlModel = new ControlModel((float)obj.Location.X, (float)obj.Location.Y);
+            controlModel = new ControlModel((float)objT.Location.X, (float)objT.Location.Y);
             mainForm = form;
 
-            obj.MouseDown += Obj_MouseDown;
-            obj.MouseUp += Obj_MouseUp;
-            obj.MouseMove += Obj_MouseMove;
+            objT.MouseDown += Obj_MouseDown;
+            objT.MouseUp += Obj_MouseUp;
+            objT.MouseMove += Obj_MouseMove;
+
+            objU.MouseDown += Obj_MouseDown;
+            objU.MouseUp += Obj_MouseUp;
+            objU.MouseMove += Obj_MouseMove;
         }
 
         private static void Obj_MouseMove(object sender, EventArgs e)

@@ -38,9 +38,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             this.BtnAppend = new System.Windows.Forms.Button();
             this.BtnClose = new System.Windows.Forms.Button();
             this.PanelPlanSite = new System.Windows.Forms.Panel();
-            this.PanelPlanName = new System.Windows.Forms.Panel();
-            this.TextBoxPlanName = new System.Windows.Forms.TextBox();
-            this.LabelName = new System.Windows.Forms.Label();
             this.PanelAll = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -57,14 +54,17 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             this.CheckBoxSite2 = new System.Windows.Forms.CheckBox();
             this.CheckBoxSite1 = new System.Windows.Forms.CheckBox();
             this.PicBoxSites = new System.Windows.Forms.PictureBox();
+            this.PanelPlanName = new System.Windows.Forms.Panel();
+            this.TextBoxPlanName = new System.Windows.Forms.TextBox();
+            this.LabelName = new System.Windows.Forms.Label();
             this.PanelTopic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).BeginInit();
             this.PanelMain.SuspendLayout();
             this.PanelClose.SuspendLayout();
             this.PanelPlanSite.SuspendLayout();
-            this.PanelPlanName.SuspendLayout();
             this.PanelAll.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxSites)).BeginInit();
+            this.PanelPlanName.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelTopic
@@ -150,35 +150,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             this.PanelPlanSite.Name = "PanelPlanSite";
             this.PanelPlanSite.Size = new System.Drawing.Size(285, 285);
             this.PanelPlanSite.TabIndex = 1;
-            // 
-            // PanelPlanName
-            // 
-            this.PanelPlanName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(73)))), ((int)(((byte)(88)))));
-            this.PanelPlanName.Controls.Add(this.TextBoxPlanName);
-            this.PanelPlanName.Controls.Add(this.LabelName);
-            this.PanelPlanName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelPlanName.Location = new System.Drawing.Point(0, 0);
-            this.PanelPlanName.Name = "PanelPlanName";
-            this.PanelPlanName.Size = new System.Drawing.Size(285, 38);
-            this.PanelPlanName.TabIndex = 0;
-            // 
-            // TextBoxPlanName
-            // 
-            this.TextBoxPlanName.Location = new System.Drawing.Point(60, 6);
-            this.TextBoxPlanName.Multiline = true;
-            this.TextBoxPlanName.Name = "TextBoxPlanName";
-            this.TextBoxPlanName.Size = new System.Drawing.Size(213, 26);
-            this.TextBoxPlanName.TabIndex = 1;
-            // 
-            // LabelName
-            // 
-            this.LabelName.AutoSize = true;
-            this.LabelName.ForeColor = System.Drawing.Color.White;
-            this.LabelName.Location = new System.Drawing.Point(13, 14);
-            this.LabelName.Name = "LabelName";
-            this.LabelName.Size = new System.Drawing.Size(41, 12);
-            this.LabelName.TabIndex = 0;
-            this.LabelName.Text = "名称：";
             // 
             // PanelAll
             // 
@@ -390,6 +361,35 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             this.PicBoxSites.TabIndex = 0;
             this.PicBoxSites.TabStop = false;
             // 
+            // PanelPlanName
+            // 
+            this.PanelPlanName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(73)))), ((int)(((byte)(88)))));
+            this.PanelPlanName.Controls.Add(this.TextBoxPlanName);
+            this.PanelPlanName.Controls.Add(this.LabelName);
+            this.PanelPlanName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelPlanName.Location = new System.Drawing.Point(0, 0);
+            this.PanelPlanName.Name = "PanelPlanName";
+            this.PanelPlanName.Size = new System.Drawing.Size(285, 38);
+            this.PanelPlanName.TabIndex = 0;
+            // 
+            // TextBoxPlanName
+            // 
+            this.TextBoxPlanName.Location = new System.Drawing.Point(60, 6);
+            this.TextBoxPlanName.Multiline = true;
+            this.TextBoxPlanName.Name = "TextBoxPlanName";
+            this.TextBoxPlanName.Size = new System.Drawing.Size(213, 26);
+            this.TextBoxPlanName.TabIndex = 1;
+            // 
+            // LabelName
+            // 
+            this.LabelName.AutoSize = true;
+            this.LabelName.ForeColor = System.Drawing.Color.White;
+            this.LabelName.Location = new System.Drawing.Point(13, 14);
+            this.LabelName.Name = "LabelName";
+            this.LabelName.Size = new System.Drawing.Size(41, 12);
+            this.LabelName.TabIndex = 0;
+            this.LabelName.Text = "名称：";
+            // 
             // PlanAppend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -408,11 +408,11 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             this.PanelMain.ResumeLayout(false);
             this.PanelClose.ResumeLayout(false);
             this.PanelPlanSite.ResumeLayout(false);
-            this.PanelPlanName.ResumeLayout(false);
-            this.PanelPlanName.PerformLayout();
             this.PanelAll.ResumeLayout(false);
             this.PanelAll.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxSites)).EndInit();
+            this.PanelPlanName.ResumeLayout(false);
+            this.PanelPlanName.PerformLayout();
             this.ResumeLayout(false);
 
         }

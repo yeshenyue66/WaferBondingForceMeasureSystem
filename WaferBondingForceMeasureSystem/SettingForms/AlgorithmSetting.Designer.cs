@@ -28,63 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlgorithmSetting));
             this.PanelAlgorSettingTopic = new System.Windows.Forms.Panel();
             this.PicBoxSysSettingClose = new System.Windows.Forms.PictureBox();
-            this.LabelSysSettingTopic = new System.Windows.Forms.Label();
+            this.LabelAlgorSettingTopic = new System.Windows.Forms.Label();
             this.PanelSysSettingBody = new System.Windows.Forms.Panel();
             this.PanelSysSetting = new System.Windows.Forms.Panel();
             this.Panel10 = new System.Windows.Forms.Panel();
             this.PanelTBox10 = new System.Windows.Forms.Panel();
-            this.customizeTextbox10 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.Panel9 = new System.Windows.Forms.Panel();
             this.PanelTBox9 = new System.Windows.Forms.Panel();
-            this.customizeTextbox9 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label18 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.Panel8 = new System.Windows.Forms.Panel();
             this.PanelTBox8 = new System.Windows.Forms.Panel();
-            this.customizeTextbox8 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label17 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Panel7 = new System.Windows.Forms.Panel();
             this.PanelTBox7 = new System.Windows.Forms.Panel();
-            this.customizeTextbox7 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.Panel6 = new System.Windows.Forms.Panel();
             this.PanelTBox6 = new System.Windows.Forms.Panel();
-            this.customizeTextbox6 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label15 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.Panel5 = new System.Windows.Forms.Panel();
             this.PanelTBox5 = new System.Windows.Forms.Panel();
-            this.customizeTextbox5 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label14 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.Panel4 = new System.Windows.Forms.Panel();
             this.PanelTBox4 = new System.Windows.Forms.Panel();
-            this.customizeTextbox4 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.LabelKnifeUnit = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Panel3 = new System.Windows.Forms.Panel();
             this.PanelTBox3 = new System.Windows.Forms.Panel();
-            this.customizeTextbox3 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Panel2 = new System.Windows.Forms.Panel();
             this.PanelTBox2 = new System.Windows.Forms.Panel();
-            this.customizeTextbox2 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label12 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.PanelTBox1 = new System.Windows.Forms.Panel();
-            this.customizeTextbox1 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.PanelClose = new System.Windows.Forms.Panel();
             this.BtnClose = new System.Windows.Forms.Button();
+            this.customizeTextbox10 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox9 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox8 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox7 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox6 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox5 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox4 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox3 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox2 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
+            this.customizeTextbox1 = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.PanelAlgorSettingTopic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxSysSettingClose)).BeginInit();
             this.PanelSysSettingBody.SuspendLayout();
@@ -117,7 +118,7 @@
             this.PanelAlgorSettingTopic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(62)))), ((int)(((byte)(77)))));
             this.PanelAlgorSettingTopic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelAlgorSettingTopic.Controls.Add(this.PicBoxSysSettingClose);
-            this.PanelAlgorSettingTopic.Controls.Add(this.LabelSysSettingTopic);
+            this.PanelAlgorSettingTopic.Controls.Add(this.LabelAlgorSettingTopic);
             this.PanelAlgorSettingTopic.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelAlgorSettingTopic.Location = new System.Drawing.Point(0, 0);
             this.PanelAlgorSettingTopic.Name = "PanelAlgorSettingTopic";
@@ -126,22 +127,25 @@
             // 
             // PicBoxSysSettingClose
             // 
-            this.PicBoxSysSettingClose.Location = new System.Drawing.Point(381, 4);
+            this.PicBoxSysSettingClose.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxSysSettingClose.Image")));
+            this.PicBoxSysSettingClose.Location = new System.Drawing.Point(390, 5);
             this.PicBoxSysSettingClose.Name = "PicBoxSysSettingClose";
-            this.PicBoxSysSettingClose.Size = new System.Drawing.Size(48, 44);
+            this.PicBoxSysSettingClose.Size = new System.Drawing.Size(45, 44);
+            this.PicBoxSysSettingClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicBoxSysSettingClose.TabIndex = 1;
             this.PicBoxSysSettingClose.TabStop = false;
+            this.PicBoxSysSettingClose.Click += new System.EventHandler(this.PicBoxSysSettingClose_Click);
             // 
-            // LabelSysSettingTopic
+            // LabelAlgorSettingTopic
             // 
-            this.LabelSysSettingTopic.AutoSize = true;
-            this.LabelSysSettingTopic.Font = new System.Drawing.Font("宋体", 15F);
-            this.LabelSysSettingTopic.ForeColor = System.Drawing.Color.White;
-            this.LabelSysSettingTopic.Location = new System.Drawing.Point(3, 19);
-            this.LabelSysSettingTopic.Name = "LabelSysSettingTopic";
-            this.LabelSysSettingTopic.Size = new System.Drawing.Size(129, 20);
-            this.LabelSysSettingTopic.TabIndex = 0;
-            this.LabelSysSettingTopic.Text = "算法参数设置";
+            this.LabelAlgorSettingTopic.AutoSize = true;
+            this.LabelAlgorSettingTopic.Font = new System.Drawing.Font("宋体", 15F);
+            this.LabelAlgorSettingTopic.ForeColor = System.Drawing.Color.White;
+            this.LabelAlgorSettingTopic.Location = new System.Drawing.Point(3, 19);
+            this.LabelAlgorSettingTopic.Name = "LabelAlgorSettingTopic";
+            this.LabelAlgorSettingTopic.Size = new System.Drawing.Size(129, 20);
+            this.LabelAlgorSettingTopic.TabIndex = 0;
+            this.LabelAlgorSettingTopic.Text = "算法参数设置";
             // 
             // PanelSysSettingBody
             // 
@@ -193,14 +197,6 @@
             this.PanelTBox10.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox10.TabIndex = 3;
             // 
-            // customizeTextbox10
-            // 
-            this.customizeTextbox10.Location = new System.Drawing.Point(0, 0);
-            this.customizeTextbox10.Name = "customizeTextbox10";
-            this.customizeTextbox10.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox10.TabIndex = 0;
-            this.customizeTextbox10.TBoxContent = 0;
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -241,14 +237,6 @@
             this.PanelTBox9.Name = "PanelTBox9";
             this.PanelTBox9.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox9.TabIndex = 3;
-            // 
-            // customizeTextbox9
-            // 
-            this.customizeTextbox9.Location = new System.Drawing.Point(0, 0);
-            this.customizeTextbox9.Name = "customizeTextbox9";
-            this.customizeTextbox9.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox9.TabIndex = 0;
-            this.customizeTextbox9.TBoxContent = 0;
             // 
             // label18
             // 
@@ -291,14 +279,6 @@
             this.PanelTBox8.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox8.TabIndex = 3;
             // 
-            // customizeTextbox8
-            // 
-            this.customizeTextbox8.Location = new System.Drawing.Point(0, 0);
-            this.customizeTextbox8.Name = "customizeTextbox8";
-            this.customizeTextbox8.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox8.TabIndex = 0;
-            this.customizeTextbox8.TBoxContent = 0;
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -339,14 +319,6 @@
             this.PanelTBox7.Name = "PanelTBox7";
             this.PanelTBox7.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox7.TabIndex = 3;
-            // 
-            // customizeTextbox7
-            // 
-            this.customizeTextbox7.Location = new System.Drawing.Point(0, 1);
-            this.customizeTextbox7.Name = "customizeTextbox7";
-            this.customizeTextbox7.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox7.TabIndex = 0;
-            this.customizeTextbox7.TBoxContent = 0;
             // 
             // label16
             // 
@@ -389,14 +361,6 @@
             this.PanelTBox6.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox6.TabIndex = 3;
             // 
-            // customizeTextbox6
-            // 
-            this.customizeTextbox6.Location = new System.Drawing.Point(0, 0);
-            this.customizeTextbox6.Name = "customizeTextbox6";
-            this.customizeTextbox6.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox6.TabIndex = 0;
-            this.customizeTextbox6.TBoxContent = 0;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -437,14 +401,6 @@
             this.PanelTBox5.Name = "PanelTBox5";
             this.PanelTBox5.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox5.TabIndex = 3;
-            // 
-            // customizeTextbox5
-            // 
-            this.customizeTextbox5.Location = new System.Drawing.Point(0, 0);
-            this.customizeTextbox5.Name = "customizeTextbox5";
-            this.customizeTextbox5.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox5.TabIndex = 0;
-            this.customizeTextbox5.TBoxContent = 0;
             // 
             // label14
             // 
@@ -487,14 +443,6 @@
             this.PanelTBox4.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox4.TabIndex = 3;
             // 
-            // customizeTextbox4
-            // 
-            this.customizeTextbox4.Location = new System.Drawing.Point(0, 0);
-            this.customizeTextbox4.Name = "customizeTextbox4";
-            this.customizeTextbox4.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox4.TabIndex = 0;
-            this.customizeTextbox4.TBoxContent = 0;
-            // 
             // LabelKnifeUnit
             // 
             this.LabelKnifeUnit.AutoSize = true;
@@ -535,14 +483,6 @@
             this.PanelTBox3.Name = "PanelTBox3";
             this.PanelTBox3.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox3.TabIndex = 3;
-            // 
-            // customizeTextbox3
-            // 
-            this.customizeTextbox3.Location = new System.Drawing.Point(0, 0);
-            this.customizeTextbox3.Name = "customizeTextbox3";
-            this.customizeTextbox3.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox3.TabIndex = 0;
-            this.customizeTextbox3.TBoxContent = 0;
             // 
             // label13
             // 
@@ -585,14 +525,6 @@
             this.PanelTBox2.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox2.TabIndex = 3;
             // 
-            // customizeTextbox2
-            // 
-            this.customizeTextbox2.Location = new System.Drawing.Point(0, -1);
-            this.customizeTextbox2.Name = "customizeTextbox2";
-            this.customizeTextbox2.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox2.TabIndex = 0;
-            this.customizeTextbox2.TBoxContent = 0;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -633,14 +565,6 @@
             this.PanelTBox1.Name = "PanelTBox1";
             this.PanelTBox1.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox1.TabIndex = 3;
-            // 
-            // customizeTextbox1
-            // 
-            this.customizeTextbox1.Location = new System.Drawing.Point(0, 0);
-            this.customizeTextbox1.Name = "customizeTextbox1";
-            this.customizeTextbox1.Size = new System.Drawing.Size(167, 33);
-            this.customizeTextbox1.TabIndex = 0;
-            this.customizeTextbox1.TBoxContent = 0;
             // 
             // label11
             // 
@@ -692,6 +616,86 @@
             this.BtnClose.Text = "关闭";
             this.BtnClose.UseVisualStyleBackColor = true;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
+            // customizeTextbox10
+            // 
+            this.customizeTextbox10.Location = new System.Drawing.Point(0, 0);
+            this.customizeTextbox10.Name = "customizeTextbox10";
+            this.customizeTextbox10.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox10.TabIndex = 0;
+            this.customizeTextbox10.TBoxContent = 0;
+            // 
+            // customizeTextbox9
+            // 
+            this.customizeTextbox9.Location = new System.Drawing.Point(0, 0);
+            this.customizeTextbox9.Name = "customizeTextbox9";
+            this.customizeTextbox9.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox9.TabIndex = 0;
+            this.customizeTextbox9.TBoxContent = 0;
+            // 
+            // customizeTextbox8
+            // 
+            this.customizeTextbox8.Location = new System.Drawing.Point(0, 0);
+            this.customizeTextbox8.Name = "customizeTextbox8";
+            this.customizeTextbox8.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox8.TabIndex = 0;
+            this.customizeTextbox8.TBoxContent = 0;
+            // 
+            // customizeTextbox7
+            // 
+            this.customizeTextbox7.Location = new System.Drawing.Point(0, 1);
+            this.customizeTextbox7.Name = "customizeTextbox7";
+            this.customizeTextbox7.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox7.TabIndex = 0;
+            this.customizeTextbox7.TBoxContent = 0;
+            // 
+            // customizeTextbox6
+            // 
+            this.customizeTextbox6.Location = new System.Drawing.Point(0, 0);
+            this.customizeTextbox6.Name = "customizeTextbox6";
+            this.customizeTextbox6.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox6.TabIndex = 0;
+            this.customizeTextbox6.TBoxContent = 0;
+            // 
+            // customizeTextbox5
+            // 
+            this.customizeTextbox5.Location = new System.Drawing.Point(0, 0);
+            this.customizeTextbox5.Name = "customizeTextbox5";
+            this.customizeTextbox5.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox5.TabIndex = 0;
+            this.customizeTextbox5.TBoxContent = 0;
+            // 
+            // customizeTextbox4
+            // 
+            this.customizeTextbox4.Location = new System.Drawing.Point(0, 0);
+            this.customizeTextbox4.Name = "customizeTextbox4";
+            this.customizeTextbox4.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox4.TabIndex = 0;
+            this.customizeTextbox4.TBoxContent = 0;
+            // 
+            // customizeTextbox3
+            // 
+            this.customizeTextbox3.Location = new System.Drawing.Point(0, 0);
+            this.customizeTextbox3.Name = "customizeTextbox3";
+            this.customizeTextbox3.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox3.TabIndex = 0;
+            this.customizeTextbox3.TBoxContent = 0;
+            // 
+            // customizeTextbox2
+            // 
+            this.customizeTextbox2.Location = new System.Drawing.Point(0, -1);
+            this.customizeTextbox2.Name = "customizeTextbox2";
+            this.customizeTextbox2.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox2.TabIndex = 0;
+            this.customizeTextbox2.TBoxContent = 0;
+            // 
+            // customizeTextbox1
+            // 
+            this.customizeTextbox1.Location = new System.Drawing.Point(0, 0);
+            this.customizeTextbox1.Name = "customizeTextbox1";
+            this.customizeTextbox1.Size = new System.Drawing.Size(167, 33);
+            this.customizeTextbox1.TabIndex = 0;
+            this.customizeTextbox1.TBoxContent = 0;
             // 
             // AlgorithmSetting
             // 
@@ -749,7 +753,7 @@
 
         private System.Windows.Forms.Panel PanelAlgorSettingTopic;
         private System.Windows.Forms.PictureBox PicBoxSysSettingClose;
-        private System.Windows.Forms.Label LabelSysSettingTopic;
+        private System.Windows.Forms.Label LabelAlgorSettingTopic;
         private System.Windows.Forms.Panel PanelSysSettingBody;
         private System.Windows.Forms.Panel PanelSysSetting;
         private System.Windows.Forms.Panel Panel10;

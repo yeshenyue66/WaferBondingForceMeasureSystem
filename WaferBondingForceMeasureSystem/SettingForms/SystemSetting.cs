@@ -40,7 +40,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
 
         private void SystemSetting_Load(object sender, EventArgs e)
         {
-            UIBLL.CustomizeMove<Panel>(this.PanelSysSettingTopic, this);
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelSysSettingTopic, this.LabelSysSettingTopic, this);
             if (!IsChanged)
             {
                 //this.PanelTBox1.Controls.Add(new CustomizeTextbox() { Dock = DockStyle.Fill, TBoxContent = 6500 });
