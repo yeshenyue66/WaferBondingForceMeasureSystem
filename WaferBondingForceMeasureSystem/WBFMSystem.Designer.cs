@@ -41,7 +41,20 @@ namespace WaferBondingForceMeasureSystem
             this.PanelWork = new System.Windows.Forms.Panel();
             this.PanelAnalysisPic = new System.Windows.Forms.Panel();
             this.PanelControl = new System.Windows.Forms.Panel();
+            this.PanelProcedure = new System.Windows.Forms.Panel();
+            this.PanelSetting = new System.Windows.Forms.Panel();
+            this.CheckBoxAutoPhoto = new System.Windows.Forms.CheckBox();
+            this.LabelSerial = new System.Windows.Forms.Label();
+            this.LabelPlan = new System.Windows.Forms.Label();
+            this.LabelNum = new System.Windows.Forms.Label();
+            this.LabelHandle = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.PanelLog = new System.Windows.Forms.Panel();
+            this.TextBoxErrorLog = new System.Windows.Forms.TextBox();
+            this.BtnCorrection = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.LabelErrorLog = new System.Windows.Forms.Label();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.PanelMenu = new System.Windows.Forms.Panel();
             this.PanelCalibrationSetting = new System.Windows.Forms.Panel();
@@ -66,6 +79,11 @@ namespace WaferBondingForceMeasureSystem
             this.PanelMain.SuspendLayout();
             this.PanelBody.SuspendLayout();
             this.PanelWork.SuspendLayout();
+            this.PanelControl.SuspendLayout();
+            this.PanelSetting.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.PanelLog.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.PanelMenu.SuspendLayout();
             this.PanelCalibrationSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxCalibration)).BeginInit();
@@ -89,7 +107,7 @@ namespace WaferBondingForceMeasureSystem
             this.PanelTopic.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTopic.Location = new System.Drawing.Point(2, 0);
             this.PanelTopic.Name = "PanelTopic";
-            this.PanelTopic.Size = new System.Drawing.Size(796, 35);
+            this.PanelTopic.Size = new System.Drawing.Size(896, 35);
             this.PanelTopic.TabIndex = 1;
             this.PanelTopic.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTopic_MouseDown);
             this.PanelTopic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTopic_MouseMove);
@@ -99,7 +117,7 @@ namespace WaferBondingForceMeasureSystem
             // 
             this.PicBoxClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.PicBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxClose.Image")));
-            this.PicBoxClose.Location = new System.Drawing.Point(763, 0);
+            this.PicBoxClose.Location = new System.Drawing.Point(863, 0);
             this.PicBoxClose.Name = "PicBoxClose";
             this.PicBoxClose.Size = new System.Drawing.Size(33, 35);
             this.PicBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -114,7 +132,7 @@ namespace WaferBondingForceMeasureSystem
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PicBoxScaling.Location = new System.Drawing.Point(712, 0);
             this.PicBoxScaling.Name = "PicBoxScaling";
-            this.PicBoxScaling.Size = new System.Drawing.Size(29, 32);
+            this.PicBoxScaling.Size = new System.Drawing.Size(129, 32);
             this.PicBoxScaling.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicBoxScaling.TabIndex = 0;
             this.PicBoxScaling.TabStop = false;
@@ -146,7 +164,7 @@ namespace WaferBondingForceMeasureSystem
             this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMain.Location = new System.Drawing.Point(2, 35);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(796, 413);
+            this.PanelMain.Size = new System.Drawing.Size(896, 483);
             this.PanelMain.TabIndex = 2;
             // 
             // PanelBody
@@ -156,7 +174,7 @@ namespace WaferBondingForceMeasureSystem
             this.PanelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelBody.Location = new System.Drawing.Point(0, 32);
             this.PanelBody.Name = "PanelBody";
-            this.PanelBody.Size = new System.Drawing.Size(796, 381);
+            this.PanelBody.Size = new System.Drawing.Size(896, 451);
             this.PanelBody.TabIndex = 2;
             // 
             // PanelWork
@@ -167,7 +185,7 @@ namespace WaferBondingForceMeasureSystem
             this.PanelWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelWork.Location = new System.Drawing.Point(0, 0);
             this.PanelWork.Name = "PanelWork";
-            this.PanelWork.Size = new System.Drawing.Size(796, 362);
+            this.PanelWork.Size = new System.Drawing.Size(896, 432);
             this.PanelWork.TabIndex = 4;
             // 
             // PanelAnalysisPic
@@ -177,34 +195,174 @@ namespace WaferBondingForceMeasureSystem
             this.PanelAnalysisPic.ForeColor = System.Drawing.SystemColors.Control;
             this.PanelAnalysisPic.Location = new System.Drawing.Point(239, 0);
             this.PanelAnalysisPic.Name = "PanelAnalysisPic";
-            this.PanelAnalysisPic.Size = new System.Drawing.Size(316, 362);
+            this.PanelAnalysisPic.Size = new System.Drawing.Size(360, 432);
             this.PanelAnalysisPic.TabIndex = 3;
-            this.PanelAnalysisPic.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelAnalysisPic_Paint);
             // 
             // PanelControl
             // 
             this.PanelControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelControl.Controls.Add(this.PanelProcedure);
+            this.PanelControl.Controls.Add(this.PanelSetting);
+            this.PanelControl.Controls.Add(this.panel1);
             this.PanelControl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelControl.Location = new System.Drawing.Point(555, 0);
+            this.PanelControl.Location = new System.Drawing.Point(599, 0);
             this.PanelControl.Name = "PanelControl";
-            this.PanelControl.Size = new System.Drawing.Size(241, 362);
+            this.PanelControl.Size = new System.Drawing.Size(297, 432);
             this.PanelControl.TabIndex = 2;
+            // 
+            // PanelProcedure
+            // 
+            this.PanelProcedure.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelProcedure.Location = new System.Drawing.Point(0, 148);
+            this.PanelProcedure.Name = "PanelProcedure";
+            this.PanelProcedure.Size = new System.Drawing.Size(293, 280);
+            this.PanelProcedure.TabIndex = 5;
+            // 
+            // PanelSetting
+            // 
+            this.PanelSetting.Controls.Add(this.CheckBoxAutoPhoto);
+            this.PanelSetting.Controls.Add(this.LabelSerial);
+            this.PanelSetting.Controls.Add(this.LabelPlan);
+            this.PanelSetting.Controls.Add(this.LabelNum);
+            this.PanelSetting.Controls.Add(this.LabelHandle);
+            this.PanelSetting.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelSetting.Location = new System.Drawing.Point(0, 29);
+            this.PanelSetting.Name = "PanelSetting";
+            this.PanelSetting.Size = new System.Drawing.Size(293, 119);
+            this.PanelSetting.TabIndex = 4;
+            // 
+            // CheckBoxAutoPhoto
+            // 
+            this.CheckBoxAutoPhoto.AutoSize = true;
+            this.CheckBoxAutoPhoto.Font = new System.Drawing.Font("宋体", 13F);
+            this.CheckBoxAutoPhoto.Location = new System.Drawing.Point(13, 84);
+            this.CheckBoxAutoPhoto.Name = "CheckBoxAutoPhoto";
+            this.CheckBoxAutoPhoto.Size = new System.Drawing.Size(135, 22);
+            this.CheckBoxAutoPhoto.TabIndex = 5;
+            this.CheckBoxAutoPhoto.Text = "自动插刀拍照";
+            this.CheckBoxAutoPhoto.UseVisualStyleBackColor = true;
+            // 
+            // LabelSerial
+            // 
+            this.LabelSerial.AutoEllipsis = true;
+            this.LabelSerial.AutoSize = true;
+            this.LabelSerial.Font = new System.Drawing.Font("宋体", 13F);
+            this.LabelSerial.Location = new System.Drawing.Point(154, 84);
+            this.LabelSerial.Name = "LabelSerial";
+            this.LabelSerial.Size = new System.Drawing.Size(98, 18);
+            this.LabelSerial.TabIndex = 4;
+            this.LabelSerial.Text = "晶圆序号：";
+            // 
+            // LabelPlan
+            // 
+            this.LabelPlan.AutoSize = true;
+            this.LabelPlan.Font = new System.Drawing.Font("宋体", 13F);
+            this.LabelPlan.Location = new System.Drawing.Point(9, 57);
+            this.LabelPlan.Name = "LabelPlan";
+            this.LabelPlan.Size = new System.Drawing.Size(98, 18);
+            this.LabelPlan.TabIndex = 2;
+            this.LabelPlan.Text = "插刀编号：";
+            // 
+            // LabelNum
+            // 
+            this.LabelNum.Font = new System.Drawing.Font("宋体", 13F);
+            this.LabelNum.Location = new System.Drawing.Point(9, 30);
+            this.LabelNum.Name = "LabelNum";
+            this.LabelNum.Size = new System.Drawing.Size(109, 20);
+            this.LabelNum.TabIndex = 1;
+            this.LabelNum.Text = "物料编号：";
+            // 
+            // LabelHandle
+            // 
+            this.LabelHandle.AutoSize = true;
+            this.LabelHandle.Font = new System.Drawing.Font("宋体", 13F);
+            this.LabelHandle.Location = new System.Drawing.Point(9, 3);
+            this.LabelHandle.Name = "LabelHandle";
+            this.LabelHandle.Size = new System.Drawing.Size(98, 18);
+            this.LabelHandle.TabIndex = 0;
+            this.LabelHandle.Text = "当前操作：";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(192)))), ((int)(((byte)(207)))));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(293, 29);
+            this.panel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoEllipsis = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "控制面板";
             // 
             // PanelLog
             // 
             this.PanelLog.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelLog.Controls.Add(this.TextBoxErrorLog);
+            this.PanelLog.Controls.Add(this.BtnCorrection);
+            this.PanelLog.Controls.Add(this.panel2);
             this.PanelLog.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelLog.Location = new System.Drawing.Point(0, 0);
             this.PanelLog.Name = "PanelLog";
-            this.PanelLog.Size = new System.Drawing.Size(239, 362);
+            this.PanelLog.Size = new System.Drawing.Size(239, 432);
             this.PanelLog.TabIndex = 0;
+            // 
+            // TextBoxErrorLog
+            // 
+            this.TextBoxErrorLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TextBoxErrorLog.Location = new System.Drawing.Point(0, 29);
+            this.TextBoxErrorLog.Multiline = true;
+            this.TextBoxErrorLog.Name = "TextBoxErrorLog";
+            this.TextBoxErrorLog.ReadOnly = true;
+            this.TextBoxErrorLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TextBoxErrorLog.Size = new System.Drawing.Size(235, 357);
+            this.TextBoxErrorLog.TabIndex = 3;
+            // 
+            // BtnCorrection
+            // 
+            this.BtnCorrection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(62)))), ((int)(((byte)(77)))));
+            this.BtnCorrection.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BtnCorrection.ForeColor = System.Drawing.Color.White;
+            this.BtnCorrection.Location = new System.Drawing.Point(0, 386);
+            this.BtnCorrection.Name = "BtnCorrection";
+            this.BtnCorrection.Size = new System.Drawing.Size(235, 42);
+            this.BtnCorrection.TabIndex = 2;
+            this.BtnCorrection.Text = "清错";
+            this.BtnCorrection.UseVisualStyleBackColor = false;
+            this.BtnCorrection.Click += new System.EventHandler(this.BtnCorrection_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(192)))), ((int)(((byte)(207)))));
+            this.panel2.Controls.Add(this.LabelErrorLog);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(235, 29);
+            this.panel2.TabIndex = 1;
+            // 
+            // LabelErrorLog
+            // 
+            this.LabelErrorLog.AutoSize = true;
+            this.LabelErrorLog.Location = new System.Drawing.Point(11, 10);
+            this.LabelErrorLog.Name = "LabelErrorLog";
+            this.LabelErrorLog.Size = new System.Drawing.Size(53, 12);
+            this.LabelErrorLog.TabIndex = 0;
+            this.LabelErrorLog.Text = "错误日志";
             // 
             // PanelBottom
             // 
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelBottom.Location = new System.Drawing.Point(0, 362);
+            this.PanelBottom.Location = new System.Drawing.Point(0, 432);
             this.PanelBottom.Name = "PanelBottom";
-            this.PanelBottom.Size = new System.Drawing.Size(796, 19);
+            this.PanelBottom.Size = new System.Drawing.Size(896, 19);
             this.PanelBottom.TabIndex = 3;
             // 
             // PanelMenu
@@ -217,7 +375,7 @@ namespace WaferBondingForceMeasureSystem
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(796, 32);
+            this.PanelMenu.Size = new System.Drawing.Size(896, 32);
             this.PanelMenu.TabIndex = 1;
             // 
             // PanelCalibrationSetting
@@ -366,7 +524,6 @@ namespace WaferBondingForceMeasureSystem
             this.PanelAlgorithmSetting.Size = new System.Drawing.Size(149, 32);
             this.PanelAlgorithmSetting.TabIndex = 0;
             this.PanelAlgorithmSetting.Click += new System.EventHandler(this.PanelAlgorithmSetting_Click);
-            this.PanelAlgorithmSetting.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelAlgorithmSetting_Paint);
             // 
             // LabelAlgorithmSetting
             // 
@@ -396,7 +553,7 @@ namespace WaferBondingForceMeasureSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(900, 520);
             this.Controls.Add(this.PanelMain);
             this.Controls.Add(this.PanelTopic);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -405,9 +562,6 @@ namespace WaferBondingForceMeasureSystem
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WBFMSystem";
             this.Load += new System.EventHandler(this.WBFMSystem_Load);
-            //this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseDown);
-            //this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseMove);
-            //this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseUp);
             this.Move += new System.EventHandler(this.WBFMSystem_Move);
             this.Resize += new System.EventHandler(this.WBFMSystem_Resize);
             this.PanelTopic.ResumeLayout(false);
@@ -418,6 +572,15 @@ namespace WaferBondingForceMeasureSystem
             this.PanelMain.ResumeLayout(false);
             this.PanelBody.ResumeLayout(false);
             this.PanelWork.ResumeLayout(false);
+            this.PanelControl.ResumeLayout(false);
+            this.PanelSetting.ResumeLayout(false);
+            this.PanelSetting.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.PanelLog.ResumeLayout(false);
+            this.PanelLog.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.PanelMenu.ResumeLayout(false);
             this.PanelCalibrationSetting.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxCalibration)).EndInit();
@@ -463,5 +626,18 @@ namespace WaferBondingForceMeasureSystem
         private System.Windows.Forms.Label LabelSystemSetting;
         private System.Windows.Forms.PictureBox PicBoxSystemSetting;
         private System.Windows.Forms.Label LabelAlgorithmSetting;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel PanelSetting;
+        private System.Windows.Forms.CheckBox CheckBoxAutoPhoto;
+        private System.Windows.Forms.Label LabelSerial;
+        private System.Windows.Forms.Label LabelPlan;
+        private System.Windows.Forms.Label LabelNum;
+        private System.Windows.Forms.Label LabelHandle;
+        private System.Windows.Forms.Panel PanelProcedure;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label LabelErrorLog;
+        private System.Windows.Forms.Button BtnCorrection;
+        private System.Windows.Forms.TextBox TextBoxErrorLog;
     }
 }

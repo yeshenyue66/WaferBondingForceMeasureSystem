@@ -4,7 +4,13 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
 {
     enum Protocol
     {
+        /// <summary>
+        /// Protocol:TDKA
+        /// </summary>
         TDKA = 0,
+        /// <summary>
+        /// Protocol:TDKB
+        /// </summary>
         TDKB = 1,
     }
 
@@ -49,8 +55,17 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
 
     enum MessageDel
     {
+        /// <summary>
+        /// DEL:ETX
+        /// </summary>
         ETX = 0,
+        /// <summary>
+        /// DEL:CR
+        /// </summary>
         CR = 1,
+        /// <summary>
+        /// DEL:CRLF
+        /// </summary>
         CRLF = 2,
     }
 }

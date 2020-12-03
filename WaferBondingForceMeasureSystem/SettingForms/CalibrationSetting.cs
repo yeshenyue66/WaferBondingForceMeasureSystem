@@ -5,9 +5,23 @@ namespace WaferBondingForceMeasureSystem.SettingForms
 {
     public partial class CalibrationSetting : Form
     {
-        public CalibrationSetting()
+        private static CalibrationSetting calibrationSetting = null;
+        private CalibrationSetting()
         {
             InitializeComponent();
+        }
+
+        public static CalibrationSetting Singleton()
+        {
+            if(calibrationSetting == null)
+            {
+                calibrationSetting = new CalibrationSetting();
+                return calibrationSetting;
+            }
+            else
+            {
+                return calibrationSetting;
+            }
         }
 
         private void PicBoxClose_Click(object sender, EventArgs e)

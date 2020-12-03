@@ -94,6 +94,7 @@
             this.PanelSetting.Name = "PanelSetting";
             this.PanelSetting.Size = new System.Drawing.Size(306, 154);
             this.PanelSetting.TabIndex = 0;
+            this.PanelSetting.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelSetting_Paint);
             // 
             // CheckBoxAutoPhoto
             // 

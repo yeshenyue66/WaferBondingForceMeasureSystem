@@ -31,5 +31,10 @@ namespace WaferBondingForceMeasureSystem.UserControls
             //LabelSerial.Font = new Font(LabelSerial.Font.Name, Convert.ToSingle(10) * this.PanelSetting.Width / 306);
             //this.Width = 200 * this.PanelSetting.Width / 306;
         }
+
+        private void PanelSetting_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

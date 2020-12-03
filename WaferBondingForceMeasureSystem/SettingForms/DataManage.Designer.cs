@@ -37,19 +37,19 @@
             this.PanelMain = new System.Windows.Forms.Panel();
             this.PanelMenu = new System.Windows.Forms.Panel();
             this.PanelMenuOpenFile = new System.Windows.Forms.Panel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.PicBoxOpenFile = new System.Windows.Forms.PictureBox();
             this.LabelOpenFile = new System.Windows.Forms.Label();
             this.PanelMenuCleanUp = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.PicBoxCleanUp = new System.Windows.Forms.PictureBox();
             this.LabelCleanUp = new System.Windows.Forms.Label();
             this.PanelMenuDeleteGoods = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.PicBoxDeleteGoods = new System.Windows.Forms.PictureBox();
             this.LabelDeleteGoods = new System.Windows.Forms.Label();
             this.PanelMenuDeleteRow = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.PicBoxDeleteRow = new System.Windows.Forms.PictureBox();
             this.LabelDeleteRow = new System.Windows.Forms.Label();
             this.PanelMenuOutput = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PicBoxOutput = new System.Windows.Forms.PictureBox();
             this.LabelOutput = new System.Windows.Forms.Label();
             this.PanelTopic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).BeginInit();
@@ -58,15 +58,15 @@
             this.PanelMain.SuspendLayout();
             this.PanelMenu.SuspendLayout();
             this.PanelMenuOpenFile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxOpenFile)).BeginInit();
             this.PanelMenuCleanUp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxCleanUp)).BeginInit();
             this.PanelMenuDeleteGoods.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxDeleteGoods)).BeginInit();
             this.PanelMenuDeleteRow.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxDeleteRow)).BeginInit();
             this.PanelMenuOutput.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxOutput)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelTopic
@@ -145,7 +145,7 @@
             // 
             // PanelMenuOpenFile
             // 
-            this.PanelMenuOpenFile.Controls.Add(this.pictureBox5);
+            this.PanelMenuOpenFile.Controls.Add(this.PicBoxOpenFile);
             this.PanelMenuOpenFile.Controls.Add(this.LabelOpenFile);
             this.PanelMenuOpenFile.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuOpenFile.Location = new System.Drawing.Point(362, 0);
@@ -153,16 +153,16 @@
             this.PanelMenuOpenFile.Size = new System.Drawing.Size(141, 52);
             this.PanelMenuOpenFile.TabIndex = 4;
             // 
-            // pictureBox5
+            // PicBoxOpenFile
             // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(3, 8);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(33, 32);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 1;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.PicBoxOpenFile.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxOpenFile.Image")));
+            this.PicBoxOpenFile.Location = new System.Drawing.Point(3, 8);
+            this.PicBoxOpenFile.Name = "PicBoxOpenFile";
+            this.PicBoxOpenFile.Size = new System.Drawing.Size(33, 32);
+            this.PicBoxOpenFile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxOpenFile.TabIndex = 1;
+            this.PicBoxOpenFile.TabStop = false;
+            this.PicBoxOpenFile.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // LabelOpenFile
             // 
@@ -175,7 +175,7 @@
             // 
             // PanelMenuCleanUp
             // 
-            this.PanelMenuCleanUp.Controls.Add(this.pictureBox4);
+            this.PanelMenuCleanUp.Controls.Add(this.PicBoxCleanUp);
             this.PanelMenuCleanUp.Controls.Add(this.LabelCleanUp);
             this.PanelMenuCleanUp.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuCleanUp.Location = new System.Drawing.Point(284, 0);
@@ -183,16 +183,16 @@
             this.PanelMenuCleanUp.Size = new System.Drawing.Size(78, 52);
             this.PanelMenuCleanUp.TabIndex = 3;
             // 
-            // pictureBox4
+            // PicBoxCleanUp
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(6, 8);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(33, 32);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 1;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.PicBoxCleanUp.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxCleanUp.Image")));
+            this.PicBoxCleanUp.Location = new System.Drawing.Point(6, 8);
+            this.PicBoxCleanUp.Name = "PicBoxCleanUp";
+            this.PicBoxCleanUp.Size = new System.Drawing.Size(33, 32);
+            this.PicBoxCleanUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxCleanUp.TabIndex = 1;
+            this.PicBoxCleanUp.TabStop = false;
+            this.PicBoxCleanUp.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // LabelCleanUp
             // 
@@ -205,7 +205,7 @@
             // 
             // PanelMenuDeleteGoods
             // 
-            this.PanelMenuDeleteGoods.Controls.Add(this.pictureBox3);
+            this.PanelMenuDeleteGoods.Controls.Add(this.PicBoxDeleteGoods);
             this.PanelMenuDeleteGoods.Controls.Add(this.LabelDeleteGoods);
             this.PanelMenuDeleteGoods.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuDeleteGoods.Location = new System.Drawing.Point(184, 0);
@@ -213,16 +213,16 @@
             this.PanelMenuDeleteGoods.Size = new System.Drawing.Size(100, 52);
             this.PanelMenuDeleteGoods.TabIndex = 2;
             // 
-            // pictureBox3
+            // PicBoxDeleteGoods
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(6, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(33, 32);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.PicBoxDeleteGoods.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxDeleteGoods.Image")));
+            this.PicBoxDeleteGoods.Location = new System.Drawing.Point(6, 8);
+            this.PicBoxDeleteGoods.Name = "PicBoxDeleteGoods";
+            this.PicBoxDeleteGoods.Size = new System.Drawing.Size(33, 32);
+            this.PicBoxDeleteGoods.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxDeleteGoods.TabIndex = 1;
+            this.PicBoxDeleteGoods.TabStop = false;
+            this.PicBoxDeleteGoods.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // LabelDeleteGoods
             // 
@@ -235,7 +235,7 @@
             // 
             // PanelMenuDeleteRow
             // 
-            this.PanelMenuDeleteRow.Controls.Add(this.pictureBox2);
+            this.PanelMenuDeleteRow.Controls.Add(this.PicBoxDeleteRow);
             this.PanelMenuDeleteRow.Controls.Add(this.LabelDeleteRow);
             this.PanelMenuDeleteRow.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuDeleteRow.Location = new System.Drawing.Point(78, 0);
@@ -243,16 +243,16 @@
             this.PanelMenuDeleteRow.Size = new System.Drawing.Size(106, 52);
             this.PanelMenuDeleteRow.TabIndex = 1;
             // 
-            // pictureBox2
+            // PicBoxDeleteRow
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 6);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(33, 32);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.PicBoxDeleteRow.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxDeleteRow.Image")));
+            this.PicBoxDeleteRow.Location = new System.Drawing.Point(0, 6);
+            this.PicBoxDeleteRow.Name = "PicBoxDeleteRow";
+            this.PicBoxDeleteRow.Size = new System.Drawing.Size(33, 32);
+            this.PicBoxDeleteRow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxDeleteRow.TabIndex = 1;
+            this.PicBoxDeleteRow.TabStop = false;
+            this.PicBoxDeleteRow.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // LabelDeleteRow
             // 
@@ -265,7 +265,7 @@
             // 
             // PanelMenuOutput
             // 
-            this.PanelMenuOutput.Controls.Add(this.pictureBox1);
+            this.PanelMenuOutput.Controls.Add(this.PicBoxOutput);
             this.PanelMenuOutput.Controls.Add(this.LabelOutput);
             this.PanelMenuOutput.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuOutput.Location = new System.Drawing.Point(0, 0);
@@ -274,16 +274,16 @@
             this.PanelMenuOutput.TabIndex = 0;
             this.PanelMenuOutput.Click += new System.EventHandler(this.PanelMenuOutput_Click);
             // 
-            // pictureBox1
+            // PicBoxOutput
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.PicBoxOutput.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxOutput.Image")));
+            this.PicBoxOutput.Location = new System.Drawing.Point(3, 8);
+            this.PicBoxOutput.Name = "PicBoxOutput";
+            this.PicBoxOutput.Size = new System.Drawing.Size(33, 32);
+            this.PicBoxOutput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxOutput.TabIndex = 1;
+            this.PicBoxOutput.TabStop = false;
+            this.PicBoxOutput.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // LabelOutput
             // 
@@ -317,19 +317,19 @@
             this.PanelMenu.ResumeLayout(false);
             this.PanelMenuOpenFile.ResumeLayout(false);
             this.PanelMenuOpenFile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxOpenFile)).EndInit();
             this.PanelMenuCleanUp.ResumeLayout(false);
             this.PanelMenuCleanUp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxCleanUp)).EndInit();
             this.PanelMenuDeleteGoods.ResumeLayout(false);
             this.PanelMenuDeleteGoods.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxDeleteGoods)).EndInit();
             this.PanelMenuDeleteRow.ResumeLayout(false);
             this.PanelMenuDeleteRow.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxDeleteRow)).EndInit();
             this.PanelMenuOutput.ResumeLayout(false);
             this.PanelMenuOutput.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxOutput)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -353,10 +353,10 @@
         private System.Windows.Forms.Label LabelCleanUp;
         private System.Windows.Forms.Label LabelDeleteGoods;
         private System.Windows.Forms.Label LabelDeleteRow;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox PicBoxOutput;
+        private System.Windows.Forms.PictureBox PicBoxOpenFile;
+        private System.Windows.Forms.PictureBox PicBoxCleanUp;
+        private System.Windows.Forms.PictureBox PicBoxDeleteGoods;
+        private System.Windows.Forms.PictureBox PicBoxDeleteRow;
     }
 }

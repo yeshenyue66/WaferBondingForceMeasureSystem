@@ -7,10 +7,24 @@ namespace WaferBondingForceMeasureSystem.UserControls
 {
     public partial class CustomizeTextbox : UserControl
     {
-        public int TBoxContent;
+        private static CustomizeTextbox customizeTextbox;
+        public int TBoxContent
+        {
+            get;
+            set;
+        }
         public CustomizeTextbox()
         {
             InitializeComponent();
+        }
+        public static CustomizeTextbox Singleton()
+        {
+            if(customizeTextbox == null)
+            {
+                customizeTextbox = new CustomizeTextbox();
+
+            }
+            return customizeTextbox;
         }
 
         private void PicBoxUp_Click(object sender, EventArgs e)
@@ -44,10 +58,8 @@ namespace WaferBondingForceMeasureSystem.UserControls
 
         private void CustomizeTextbox_Load(object sender, EventArgs e)
         {
-
             this.TBox.Text = TBoxContent.ToString();
             TextHelper.InputNumOnly<TextBox>(this.TBox);
-            
         }
     }
 }

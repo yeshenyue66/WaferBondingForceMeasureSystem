@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SystemSetting));
             this.PanelSysSettingTopic = new System.Windows.Forms.Panel();
             this.PicBoxSysSettingClose = new System.Windows.Forms.PictureBox();
             this.LabelSysSettingTopic = new System.Windows.Forms.Label();
@@ -37,6 +38,8 @@
             this.BtnCameraConnection = new System.Windows.Forms.Button();
             this.Panel9 = new System.Windows.Forms.Panel();
             this.PanelTBox2 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.CTBCamera = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.LabelTimeUnit = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.Panel8 = new System.Windows.Forms.Panel();
@@ -45,6 +48,8 @@
             this.BtnKnifeConnection = new System.Windows.Forms.Button();
             this.Panel6 = new System.Windows.Forms.Panel();
             this.PanelTBox1 = new System.Windows.Forms.Panel();
+            this.PanelMain = new System.Windows.Forms.Panel();
+            this.CTBKnife = new WaferBondingForceMeasureSystem.UserControls.CustomizeTextbox();
             this.LabelKnifeUnit = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.Panel5 = new System.Windows.Forms.Panel();
@@ -69,9 +74,13 @@
             this.PanelSysSetting.SuspendLayout();
             this.Panel10.SuspendLayout();
             this.Panel9.SuspendLayout();
+            this.PanelTBox2.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.Panel8.SuspendLayout();
             this.Panel7.SuspendLayout();
             this.Panel6.SuspendLayout();
+            this.PanelTBox1.SuspendLayout();
+            this.PanelMain.SuspendLayout();
             this.Panel5.SuspendLayout();
             this.Panel4.SuspendLayout();
             this.Panel3.SuspendLayout();
@@ -90,16 +99,19 @@
             this.PanelSysSettingTopic.ForeColor = System.Drawing.Color.White;
             this.PanelSysSettingTopic.Location = new System.Drawing.Point(0, 0);
             this.PanelSysSettingTopic.Name = "PanelSysSettingTopic";
-            this.PanelSysSettingTopic.Size = new System.Drawing.Size(441, 54);
+            this.PanelSysSettingTopic.Size = new System.Drawing.Size(438, 54);
             this.PanelSysSettingTopic.TabIndex = 3;
             // 
             // PicBoxSysSettingClose
             // 
-            this.PicBoxSysSettingClose.Location = new System.Drawing.Point(381, 4);
+            this.PicBoxSysSettingClose.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxSysSettingClose.Image")));
+            this.PicBoxSysSettingClose.Location = new System.Drawing.Point(387, 4);
             this.PicBoxSysSettingClose.Name = "PicBoxSysSettingClose";
-            this.PicBoxSysSettingClose.Size = new System.Drawing.Size(48, 44);
+            this.PicBoxSysSettingClose.Size = new System.Drawing.Size(42, 44);
+            this.PicBoxSysSettingClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicBoxSysSettingClose.TabIndex = 1;
             this.PicBoxSysSettingClose.TabStop = false;
+            this.PicBoxSysSettingClose.Click += new System.EventHandler(this.PicBoxSysSettingClose_Click);
             // 
             // LabelSysSettingTopic
             // 
@@ -120,7 +132,7 @@
             this.PanelSysSettingBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelSysSettingBody.Location = new System.Drawing.Point(0, 54);
             this.PanelSysSettingBody.Name = "PanelSysSettingBody";
-            this.PanelSysSettingBody.Size = new System.Drawing.Size(441, 491);
+            this.PanelSysSettingBody.Size = new System.Drawing.Size(438, 491);
             this.PanelSysSettingBody.TabIndex = 4;
             // 
             // PanelSysSetting
@@ -138,7 +150,7 @@
             this.PanelSysSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelSysSetting.Location = new System.Drawing.Point(0, 0);
             this.PanelSysSetting.Name = "PanelSysSetting";
-            this.PanelSysSetting.Size = new System.Drawing.Size(439, 437);
+            this.PanelSysSetting.Size = new System.Drawing.Size(436, 437);
             this.PanelSysSetting.TabIndex = 2;
             // 
             // Panel10
@@ -148,7 +160,7 @@
             this.Panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel10.Location = new System.Drawing.Point(0, 396);
             this.Panel10.Name = "Panel10";
-            this.Panel10.Size = new System.Drawing.Size(439, 41);
+            this.Panel10.Size = new System.Drawing.Size(436, 41);
             this.Panel10.TabIndex = 9;
             // 
             // BtnCameraConnection
@@ -157,7 +169,7 @@
             this.BtnCameraConnection.Font = new System.Drawing.Font("宋体", 15F);
             this.BtnCameraConnection.Location = new System.Drawing.Point(0, 0);
             this.BtnCameraConnection.Name = "BtnCameraConnection";
-            this.BtnCameraConnection.Size = new System.Drawing.Size(435, 37);
+            this.BtnCameraConnection.Size = new System.Drawing.Size(432, 37);
             this.BtnCameraConnection.TabIndex = 0;
             this.BtnCameraConnection.Text = "连接";
             this.BtnCameraConnection.UseVisualStyleBackColor = true;
@@ -171,15 +183,33 @@
             this.Panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel9.Location = new System.Drawing.Point(0, 352);
             this.Panel9.Name = "Panel9";
-            this.Panel9.Size = new System.Drawing.Size(439, 44);
+            this.Panel9.Size = new System.Drawing.Size(436, 44);
             this.Panel9.TabIndex = 8;
             // 
             // PanelTBox2
             // 
+            this.PanelTBox2.Controls.Add(this.panel11);
             this.PanelTBox2.Location = new System.Drawing.Point(138, 5);
             this.PanelTBox2.Name = "PanelTBox2";
             this.PanelTBox2.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox2.TabIndex = 4;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.CTBCamera);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(167, 33);
+            this.panel11.TabIndex = 1;
+            // 
+            // CTBCamera
+            // 
+            this.CTBCamera.Location = new System.Drawing.Point(0, 0);
+            this.CTBCamera.Name = "CTBCamera";
+            this.CTBCamera.Size = new System.Drawing.Size(167, 33);
+            this.CTBCamera.TabIndex = 0;
+            this.CTBCamera.TBoxContent = 60;
             // 
             // LabelTimeUnit
             // 
@@ -208,7 +238,7 @@
             this.Panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel8.Location = new System.Drawing.Point(0, 308);
             this.Panel8.Name = "Panel8";
-            this.Panel8.Size = new System.Drawing.Size(439, 44);
+            this.Panel8.Size = new System.Drawing.Size(436, 44);
             this.Panel8.TabIndex = 7;
             // 
             // label7
@@ -228,7 +258,7 @@
             this.Panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel7.Location = new System.Drawing.Point(0, 264);
             this.Panel7.Name = "Panel7";
-            this.Panel7.Size = new System.Drawing.Size(439, 44);
+            this.Panel7.Size = new System.Drawing.Size(436, 44);
             this.Panel7.TabIndex = 6;
             // 
             // BtnKnifeConnection
@@ -237,7 +267,7 @@
             this.BtnKnifeConnection.Font = new System.Drawing.Font("宋体", 15F);
             this.BtnKnifeConnection.Location = new System.Drawing.Point(0, 0);
             this.BtnKnifeConnection.Name = "BtnKnifeConnection";
-            this.BtnKnifeConnection.Size = new System.Drawing.Size(435, 40);
+            this.BtnKnifeConnection.Size = new System.Drawing.Size(432, 40);
             this.BtnKnifeConnection.TabIndex = 0;
             this.BtnKnifeConnection.Text = "连接";
             this.BtnKnifeConnection.UseVisualStyleBackColor = true;
@@ -251,15 +281,33 @@
             this.Panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel6.Location = new System.Drawing.Point(0, 220);
             this.Panel6.Name = "Panel6";
-            this.Panel6.Size = new System.Drawing.Size(439, 44);
+            this.Panel6.Size = new System.Drawing.Size(436, 44);
             this.Panel6.TabIndex = 5;
             // 
             // PanelTBox1
             // 
+            this.PanelTBox1.Controls.Add(this.PanelMain);
             this.PanelTBox1.Location = new System.Drawing.Point(138, 5);
             this.PanelTBox1.Name = "PanelTBox1";
             this.PanelTBox1.Size = new System.Drawing.Size(167, 33);
             this.PanelTBox1.TabIndex = 4;
+            // 
+            // PanelMain
+            // 
+            this.PanelMain.Controls.Add(this.CTBKnife);
+            this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelMain.Location = new System.Drawing.Point(0, 0);
+            this.PanelMain.Name = "PanelMain";
+            this.PanelMain.Size = new System.Drawing.Size(167, 33);
+            this.PanelMain.TabIndex = 1;
+            // 
+            // CTBKnife
+            // 
+            this.CTBKnife.Location = new System.Drawing.Point(0, 0);
+            this.CTBKnife.Name = "CTBKnife";
+            this.CTBKnife.Size = new System.Drawing.Size(167, 33);
+            this.CTBKnife.TabIndex = 0;
+            this.CTBKnife.TBoxContent = 6500;
             // 
             // LabelKnifeUnit
             // 
@@ -288,7 +336,7 @@
             this.Panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel5.Location = new System.Drawing.Point(0, 176);
             this.Panel5.Name = "Panel5";
-            this.Panel5.Size = new System.Drawing.Size(439, 44);
+            this.Panel5.Size = new System.Drawing.Size(436, 44);
             this.Panel5.TabIndex = 4;
             // 
             // label5
@@ -310,7 +358,7 @@
             this.Panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel4.Location = new System.Drawing.Point(0, 132);
             this.Panel4.Name = "Panel4";
-            this.Panel4.Size = new System.Drawing.Size(439, 44);
+            this.Panel4.Size = new System.Drawing.Size(436, 44);
             this.Panel4.TabIndex = 3;
             // 
             // BtnManipulatorConnection
@@ -351,7 +399,7 @@
             this.Panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel3.Location = new System.Drawing.Point(0, 88);
             this.Panel3.Name = "Panel3";
-            this.Panel3.Size = new System.Drawing.Size(439, 44);
+            this.Panel3.Size = new System.Drawing.Size(436, 44);
             this.Panel3.TabIndex = 2;
             // 
             // label3
@@ -373,7 +421,7 @@
             this.Panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel2.Location = new System.Drawing.Point(0, 44);
             this.Panel2.Name = "Panel2";
-            this.Panel2.Size = new System.Drawing.Size(439, 44);
+            this.Panel2.Size = new System.Drawing.Size(436, 44);
             this.Panel2.TabIndex = 1;
             // 
             // BtnLPConnection
@@ -415,11 +463,8 @@
             this.Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel1.Location = new System.Drawing.Point(0, 0);
             this.Panel1.Name = "Panel1";
-            this.Panel1.Size = new System.Drawing.Size(439, 44);
+            this.Panel1.Size = new System.Drawing.Size(436, 44);
             this.Panel1.TabIndex = 0;
-            this.Panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseDown);
-            this.Panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseMove);
-            this.Panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WBFMSystem_MouseUp);
             // 
             // label1
             // 
@@ -437,7 +482,7 @@
             this.PanelClose.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanelClose.Location = new System.Drawing.Point(0, 437);
             this.PanelClose.Name = "PanelClose";
-            this.PanelClose.Size = new System.Drawing.Size(439, 52);
+            this.PanelClose.Size = new System.Drawing.Size(436, 52);
             this.PanelClose.TabIndex = 1;
             // 
             // BtnClose
@@ -471,11 +516,15 @@
             this.Panel10.ResumeLayout(false);
             this.Panel9.ResumeLayout(false);
             this.Panel9.PerformLayout();
+            this.PanelTBox2.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
             this.Panel8.ResumeLayout(false);
             this.Panel8.PerformLayout();
             this.Panel7.ResumeLayout(false);
             this.Panel6.ResumeLayout(false);
             this.Panel6.PerformLayout();
+            this.PanelTBox1.ResumeLayout(false);
+            this.PanelMain.ResumeLayout(false);
             this.Panel5.ResumeLayout(false);
             this.Panel5.PerformLayout();
             this.Panel4.ResumeLayout(false);
@@ -528,5 +577,9 @@
         private System.Windows.Forms.Label LabelKnifeUnit;
         private System.Windows.Forms.Panel PanelTBox2;
         private System.Windows.Forms.Panel PanelTBox1;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel PanelMain;
+        private UserControls.CustomizeTextbox CTBCamera;
+        private UserControls.CustomizeTextbox CTBKnife;
     }
 }

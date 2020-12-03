@@ -13,8 +13,7 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
     /// </summary>
     class UIBLL : IUIBLL<Control>
     {
-
-        #region 获取数据
+        #region 数据处理
         /// <summary>
         /// 获取控件长宽
         /// </summary>
@@ -57,9 +56,6 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
             return ListCons;
         }
 
-        #endregion
-
-        #region 处理数据
         public void SetControls(Control _control, int _height, int _width)
         {
             foreach (Control _childcon in _control.Controls)
@@ -83,21 +79,22 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
         }
         #endregion
 
-        private ControlModel controlModel = null;
-        private bool isMouseDown;
-        private Point mouseOffset;
-        private Form mainForm;
-        public void CustomizeMove<T>(T obj, Form form) where T : Control
+        #region 界面处理
+        private static ControlModel controlModel = null;
+        private static bool isMouseDown;
+        private static Point mouseOffset;
+        private static Form mainForm;
+        public static void CustomizeMove<T>(T obj, Form form) where T : Control
         {
             controlModel = new ControlModel((float)obj.Location.X, (float)obj.Location.Y);
             mainForm = form;
 
             obj.MouseDown += Obj_MouseDown;
             obj.MouseUp += Obj_MouseUp;
-            obj.Move += Obj_MouseMove;
+            obj.MouseMove += Obj_MouseMove;
         }
 
-        private void Obj_MouseMove(object sender, EventArgs e)
+        private static void Obj_MouseMove(object sender, EventArgs e)
         {
             if (isMouseDown)
             {
@@ -107,7 +104,7 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
             }
         }
 
-        private void Obj_MouseUp(object sender, MouseEventArgs e)
+        private static void Obj_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -115,7 +112,7 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
             }
         }
 
-        public void Obj_MouseDown(object sender, MouseEventArgs e)
+        public static void Obj_MouseDown(object sender, MouseEventArgs e)
         {
             int yOffset, xOffset;
             if (e.Button == MouseButtons.Left)
@@ -126,5 +123,6 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon
                 isMouseDown = true;
             }
         }
+        #endregion
     }
 }

@@ -5,8 +5,7 @@ using System.IO.Ports;
 using System.Windows.Forms;
 using System.Xml;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
-using WaferBondingForceMeasureSystem.UserControls;
-
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
     public partial class SystemSetting : Form
@@ -15,6 +14,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private SystemSetting()
         {
             InitializeComponent();
+            
         }
 
         public static SystemSetting Singleton()
@@ -40,21 +40,20 @@ namespace WaferBondingForceMeasureSystem.SettingForms
 
         private void SystemSetting_Load(object sender, EventArgs e)
         {
+            UIBLL.CustomizeMove<Panel>(this.PanelSysSettingTopic, this);
             if (!IsChanged)
             {
-                this.PanelTBox1.Controls.Add(new CustomizeTextbox() { Dock = DockStyle.Fill, TBoxContent = 6500 });
-                this.PanelTBox2.Controls.Add(new CustomizeTextbox() { Dock = DockStyle.Fill, TBoxContent = 60 });
+                //this.PanelTBox1.Controls.Add(new CustomizeTextbox() { Dock = DockStyle.Fill, TBoxContent = 6500 });
+                //this.PanelTBox2.Controls.Add(new CustomizeTextbox() { Dock = DockStyle.Fill, TBoxContent = 60 });
                 try
                 {
                     SPBLL sPBLL = new SPBLL();
                     if (sPBLL.GetSerialPorts().Count > 1)
                     {
-                        this.ComboBoxLoadPort.Text = sPBLL.GetSerialPorts()[0].ToString();
                         this.ComboBoxLoadPort.Items.AddRange(sPBLL.GetSerialPorts().ToArray());
-
-
-                        this.ComboBoxManipulator.Text = sPBLL.GetSerialPorts()[1].ToString();
+                        this.ComboBoxLoadPort.SelectedIndex = 0;
                         this.ComboBoxManipulator.Items.AddRange(sPBLL.GetSerialPorts().ToArray());
+                        this.ComboBoxManipulator.SelectedIndex = 1;
                     }
                     else
                     {
@@ -72,14 +71,14 @@ namespace WaferBondingForceMeasureSystem.SettingForms
                 this.ComboBoxLoadPort.Text = systemSetting.ComboBoxLoadPort.Text;
                 this.ComboBoxManipulator.Text = systemSetting.ComboBoxManipulator.Text;
             }
-
-            
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
             systemSetting.ComboBoxLoadPort.Text = this.ComboBoxLoadPort.Text;
             systemSetting.ComboBoxManipulator.Text = this.ComboBoxManipulator.Text;
+            systemSetting.CTBKnife.TBoxContent = this.CTBKnife.TBoxContent;
+            systemSetting.CTBCamera.TBoxContent = this.CTBCamera.TBoxContent;
             this.Close();
         }
 
@@ -98,32 +97,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             doc.Save("SerialPort.config");
 
             MyEvent?.Invoke(sender, e);
-
-            //SerialPort serialPort = new SerialPort();
-            //serialPort.PortName = this.ComboBoxLoadPort.Text.ToString();
-            //serialPort.BaudRate = 9600;
-            //serialPort.DataBits = 8;
-            //serialPort.StopBits = StopBits.One;
-            //serialPort.DtrEnable = true;
-            //serialPort.Parity = Parity.None;
-            //serialPort.Open();
-
-            //ComFormatEntity comFormatEntity = new ComFormatEntity(SETCommandNames.LPLODLON01);
-            //List<byte> bbb = new List<byte>();
-            //bbb.Add(comFormatEntity.SOH("TDKA")[0]);
-            //bbb.Add(comFormatEntity.LEN()[0]);
-            //bbb.Add(comFormatEntity.LEN()[1]);
-            //bbb.Add(0x30);
-            //bbb.Add(0x30);
-            //List<byte> ccc = comFormatEntity.CMD().ToList();
-            //bbb.AddRange(ccc);
-            //bbb.Add(comFormatEntity.CSh());
-            //bbb.Add(comFormatEntity.CSl());
-            //bbb.Add(0x03);
-            //byte[] ddd = bbb.ToArray();
-
-            //lpSerialPort.Write(ddd, 0, ddd.Length);
-
         }
 
         static bool IsChanged;
@@ -131,30 +104,9 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         {
             IsChanged = true;
         }
-        private Point mousepoint;
-        private Boolean leftflag = false;
-        private void WBFMSystem_MouseUp(object sender, MouseEventArgs e)
+        private void PicBoxSysSettingClose_Click(object sender, EventArgs e)
         {
-            leftflag = false;
-        }
-
-        private void WBFMSystem_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (leftflag)
-            {
-                Left = MousePosition.X - mousepoint.X;
-                Top = MousePosition.Y - mousepoint.Y;
-            }
-        }
-
-        private void WBFMSystem_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                mousepoint.X = e.X;
-                mousepoint.Y = e.Y;
-                leftflag = true;
-            }
+            this.Close();
         }
     }
 }
