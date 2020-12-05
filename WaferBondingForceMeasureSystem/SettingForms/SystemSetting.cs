@@ -7,6 +7,7 @@ using System.Xml;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 using WaferBondingForceMeasureSystem.Util.Config;
+using System.Threading;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
@@ -16,6 +17,8 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private SystemSetting()
         {
             InitializeComponent();
+            Thread thread = Thread.CurrentThread;
+            thread.Name = "1";
         }
 
         public static SystemSetting Singleton()

@@ -16,7 +16,7 @@ namespace WaferBondingForceMeasureSystem.Models.Plan
         /// <summary>
         /// 方案名称
         /// </summary>
-        private string planName = "default";
+        private string planName;
         /// <summary>
         /// 模量Site1
         /// </summary>

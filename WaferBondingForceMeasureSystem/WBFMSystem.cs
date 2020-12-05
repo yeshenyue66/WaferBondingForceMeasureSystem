@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
@@ -41,7 +42,7 @@ namespace WaferBondingForceMeasureSystem
             }
         }
         SystemSetting systemSetting = null;
-        PlanManage planManage = null;
+        PlanManage planManage = new PlanManage();
         //private static WBFMSystem wbfmSystem;
         public WBFMSystem()
         {
@@ -50,10 +51,11 @@ namespace WaferBondingForceMeasureSystem
             try
             {
                 systemSetting = SystemSetting.Singleton();
-                systemSetting.MyEvent += SerialPortInfo_Update;
+                systemSetting.MyEvent += new SystemSetting.MyDelegate(SerialPortInfo_Update);
+                //systemSetting.MyEvent += SerialPortInfo_Update;
 
-                planManage = new PlanManage();
                 planManage.MyEvent += new PlanManage.MyDelegate(LabelPlan_Add);
+                planManage = new PlanManage();
             }
             catch
             {
@@ -63,17 +65,17 @@ namespace WaferBondingForceMeasureSystem
 
         private void SerialPortInfo_Update(object sender, EventArgs e)
         {
+            string a = Thread.CurrentThread.Name;
             lPSerialPort.Close();
             //lPSerialPort = new SerialPort();
             lPSerialPort.PortName = SPBLL.LPSerialPortName();
             lPSerialPort.Open();
             //lPSerialPort.WriteBufferSize = 1024;
             //lPSerialPort.ReadBufferSize = 1024;
-
-            lPSerialPort.DataReceived += LPSerialPort_DataReceived;
+            lPSerialPort.DataReceived += new SerialDataReceivedEventHandler(LPSerialPort_DataReceived);
             lPSerialPort.PinChanged += LPSerialPort_PinChanged;
 
-            if(lPSerialPort.CtsHolding)
+            if(lPSerialPort.DsrHolding)
             {
                 this.LabelCurrentOperation.Text = "就绪";
             }
@@ -81,7 +83,12 @@ namespace WaferBondingForceMeasureSystem
 
         private void LPSerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            this.TextBoxErrorLog.Text += "收到消息";
+            //this.TextBoxErrorLog.Text = "12314";
+
+            byte[] Message = ComFormatPackage.ConstructCommandInfo(SETCommandNames.LON07);
+            lPSerialPort.Write(Message, 0, Message.Length);
+
+            
         }
 
         private void LPSerialPort_PinChanged(object sender, SerialPinChangedEventArgs e)
@@ -135,11 +142,11 @@ namespace WaferBondingForceMeasureSystem
                 lPSerialPort.PortName = SPBLL.LPSerialPortName();
                 lPSerialPort.Open();
 
-                if (lPSerialPort.IsOpen)
+                if (lPSerialPort.DsrHolding)
                 {
                     this.LabelCurrentOperation.Text = "就绪";
 
-                    byte[] ms = new byte[1024];
+                    //byte[] ms = new byte[1024];
                     byte[] Message = ComFormatPackage.ConstructCommandInfo(GETCommandNames.MAPRD);
                     lPSerialPort.Write(Message, 0, Message.Length);
                     
@@ -147,8 +154,9 @@ namespace WaferBondingForceMeasureSystem
                     //byte[] qew = new byte[1024];
                     //lPSerialPort.Read(qew, 0, qew.Length);
 
-                    byte[] qew2 = new byte[lPSerialPort.BytesToRead];
-                    lPSerialPort.Read(qew2, 0, qew2.Length);
+                    //byte[] qew2 = new byte[lPSerialPort.BytesToRead];
+                    //lPSerialPort.Read(qew2, 0, qew2.Length);
+
                     lPSerialPort.DataReceived += BtnBoxOpen_Click;
 
                     LPSerialPortTran lPSerialPortTran = new LPSerialPortTran(SystemSetting.GetLPSerialPort);
@@ -182,82 +190,82 @@ namespace WaferBondingForceMeasureSystem
                 this.PicBoxScaling.Image = Image.FromFile(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "Images/TurnNormal.png");
             }
         }
-
+        /*
         #region WndProc
 
-        //const int WM_NCHITTEST = 0x0084;
-        //const int HTLEFT = 10;
-        //const int HTRIGHT = 11;
-        //const int HTTOP = 12;
-        //const int HTTOPLEFT = 13;
-        //const int HTTOPRIGHT = 14;
-        //const int HTBOTTOM = 15;
-        //const int HTBOTTOMLEFT = 0x10;
-        //const int HTBOTTOMRIGHT = 17;
+        const int WM_NCHITTEST = 0x0084;
+        const int HTLEFT = 10;
+        const int HTRIGHT = 11;
+        const int HTTOP = 12;
+        const int HTTOPLEFT = 13;
+        const int HTTOPRIGHT = 14;
+        const int HTBOTTOM = 15;
+        const int HTBOTTOMLEFT = 0x10;
+        const int HTBOTTOMRIGHT = 17;
 
-        //protected override void WndProc(ref Message m)
-        //{
-        //    base.WndProc(ref m);
-        //    switch (m.Msg)
-        //    {
-        //        case WM_NCHITTEST:
-        //            Point vPoint = new Point((int)m.LParam & 0xFFFF,
-        //                (int)m.LParam >> 16 & 0xFFFF);
-        //            vPoint = PointToClient(vPoint);
-        //            if (vPoint.X <= 5)
-        //            {
-        //                if (vPoint.Y <= 5)
-        //                {
-        //                    m.Result = (IntPtr)HTTOPLEFT;
-        //                }
-        //                else if (vPoint.Y >= ClientSize.Height - 5)
-        //                {
-        //                    m.Result = (IntPtr)HTBOTTOMLEFT;
-        //                }
-        //                else
-        //                {
-        //                    m.Result = (IntPtr)HTLEFT;
-        //                }
-        //            }
-        //            else if (vPoint.X >= ClientSize.Width - 5)
-        //            {
-        //                if (vPoint.Y <= 5)
-        //                {
-        //                    m.Result = (IntPtr)HTTOPRIGHT;
-        //                }
-        //                else if (vPoint.Y >= ClientSize.Height - 5)
-        //                {
-        //                    m.Result = (IntPtr)HTBOTTOMRIGHT;
-        //                }
-        //                else
-        //                {
-        //                    m.Result = (IntPtr)HTRIGHT;
-        //                }
-        //            }
-        //            else if (vPoint.Y <= 5)
-        //            {
-        //                m.Result = (IntPtr)HTTOP;
-        //            }
-        //            else if (vPoint.Y >= ClientSize.Height - 5)
-        //            {
-        //                m.Result = (IntPtr)HTBOTTOM;
-        //            }
-        //            break;
-        //    }
-        //}
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+            switch (m.Msg)
+            {
+                case WM_NCHITTEST:
+                    Point vPoint = new Point((int)m.LParam & 0xFFFF,
+                        (int)m.LParam >> 16 & 0xFFFF);
+                    vPoint = PointToClient(vPoint);
+                    if (vPoint.X <= 5)
+                    {
+                        if (vPoint.Y <= 5)
+                        {
+                            m.Result = (IntPtr)HTTOPLEFT;
+                        }
+                        else if (vPoint.Y >= ClientSize.Height - 5)
+                        {
+                            m.Result = (IntPtr)HTBOTTOMLEFT;
+                        }
+                        else
+                        {
+                            m.Result = (IntPtr)HTLEFT;
+                        }
+                    }
+                    else if (vPoint.X >= ClientSize.Width - 5)
+                    {
+                        if (vPoint.Y <= 5)
+                        {
+                            m.Result = (IntPtr)HTTOPRIGHT;
+                        }
+                        else if (vPoint.Y >= ClientSize.Height - 5)
+                        {
+                            m.Result = (IntPtr)HTBOTTOMRIGHT;
+                        }
+                        else
+                        {
+                            m.Result = (IntPtr)HTRIGHT;
+                        }
+                    }
+                    else if (vPoint.Y <= 5)
+                    {
+                        m.Result = (IntPtr)HTTOP;
+                    }
+                    else if (vPoint.Y >= ClientSize.Height - 5)
+                    {
+                        m.Result = (IntPtr)HTBOTTOM;
+                    }
+                    break;
+            }
+        }
 
-        //[DllImport("user32.dll")]
-        //public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
 
-        //[DllImport("user32.dll")]
-        //public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
 
-        //public const int WM_SYSCOMMAND = 0x0112;
-        //public const int SC_MOVE = 0xF010;
-        //public const int HTCAPTION = 0x0002;
+        public const int WM_SYSCOMMAND = 0x0112;
+        public const int SC_MOVE = 0xF010;
+        public const int HTCAPTION = 0x0002;
 
         #endregion
-
+        */
         private void WBFMSystem_Move(object sender, EventArgs e)
         {
             //ReleaseCapture();
@@ -285,11 +293,13 @@ namespace WaferBondingForceMeasureSystem
         private void LabelSystemSetting_Click(object sender, EventArgs e)
         {
             SystemSetting.Singleton().ShowDialog();
+            //systemSetting.ShowDialog();
         }
 
         private void PicBoxSystemSetting_Click(object sender, EventArgs e)
         {
             SystemSetting.Singleton().ShowDialog();
+            //systemSetting.ShowDialog();
         }
 
         private void PanelAlgorithmSetting_Click(object sender, EventArgs e)

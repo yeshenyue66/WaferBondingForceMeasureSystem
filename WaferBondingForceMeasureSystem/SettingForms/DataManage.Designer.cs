@@ -233,6 +233,7 @@
             this.BtnClose.TabIndex = 1;
             this.BtnClose.Text = "关闭";
             this.BtnClose.UseVisualStyleBackColor = true;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // PanelMenu
             // 
