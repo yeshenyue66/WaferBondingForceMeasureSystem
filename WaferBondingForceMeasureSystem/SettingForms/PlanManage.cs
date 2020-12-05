@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using WaferBondingForceMeasureSystem.Util.String;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon;
 using WaferBondingForceMeasureSystem.Models.Plan;
+using System.Text;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
@@ -37,7 +38,8 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         }
 
         List<PlanModel> planModels;
-        private void PlanManage_Load(object sender, EventArgs e)
+
+        private void PlanLoad()
         {
             this.ComBoxPlan.Items.Clear();
             planModels = new PlanBLL().ReadPlanData(new PlanBLL().PlanAddress());
@@ -45,6 +47,17 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             {
                 this.ComBoxPlan.Items.Add(planModel.Name);
             }
+        }
+        
+        private void PlanManage_Load(object sender, EventArgs e)
+        {
+            PlanLoad();
+            //this.ComBoxPlan.Items.Clear();
+            //planModels = new PlanBLL().ReadPlanData(new PlanBLL().PlanAddress());
+            //foreach (PlanModel planModel in planModels)
+            //{
+            //    this.ComBoxPlan.Items.Add(planModel.Name);
+            //}
         }
 
         private void PanelMenuAdd_Click(object sender, EventArgs e)
@@ -56,7 +69,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         {
             foreach (PlanModel planModel in planModels)
             {
-                if(this.ComBoxPlan.Text == planModel.Name)
+                if (this.ComBoxPlan.Text == planModel.Name)
                 {
                     this.CheckBoxSite1.Checked = planModel.IsSetSite1;
                     this.CheckBoxSite2.Checked = planModel.IsSetSite2;
@@ -74,6 +87,59 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             new PlanAppend().ShowDialog();
+        }
+
+        private void LabelAdd_Click(object sender, EventArgs e)
+        {
+            planAppend.ShowDialog();
+        }
+
+        private void PicBoxAdd_Click(object sender, EventArgs e)
+        {
+            planAppend.ShowDialog();
+        }
+
+        private void LabelRevise_Click(object sender, EventArgs e)
+        {
+            string planName = this.ComBoxPlan.Text;
+            planAppend.planName = planName;
+            planAppend.ShowDialog();
+        }
+
+        private void PicBoxRevise_Click(object sender, EventArgs e)
+        {
+            string planName = this.ComBoxPlan.Text;
+            planAppend.planName = planName;
+            planAppend.ShowDialog();
+        }
+
+        private void PanelMenuRevise_Click(object sender, EventArgs e)
+        {
+            string planName = this.ComBoxPlan.Text;
+            planAppend.planName = planName;
+            planAppend.ShowDialog();
+        }
+
+        private void LabelDelete_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
+            sb.Append(new PlanBLL().PlanAddress());
+            new PlanBLL().DeletePlanData(sb.ToString(), this.ComBoxPlan.Text);
+            PlanLoad();
+            this.ComBoxPlan.Text = "default";
+            this.TextBoxPlanDescription.Text = string.Empty;
+            this.CheckBoxSite1.Checked = false;
+            this.CheckBoxSite2.Checked = false;
+            this.CheckBoxSite3.Checked = false;
+            this.CheckBoxSite4.Checked = false;
+            this.CheckBoxSite5.Checked = false;
+            this.CheckBoxSite6.Checked = false;
+            this.CheckBoxSite7.Checked = false;
+            //foreach(CheckBox checkBox in this.Controls)
+            //{
+            //    checkBox.Checked = false;
+            //}
         }
     }
 }

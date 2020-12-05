@@ -370,7 +370,6 @@
             this.BtnManipulatorConnection.TabIndex = 2;
             this.BtnManipulatorConnection.Text = "连接";
             this.BtnManipulatorConnection.UseVisualStyleBackColor = true;
-            this.BtnManipulatorConnection.Click += new System.EventHandler(this.BtnManipulatorConnection_Click);
             // 
             // ComboBoxManipulator
             // 

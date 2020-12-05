@@ -27,11 +27,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             return systemSetting;
         }
 
-        private void BtnManipulatorConnection_Click(object sender, EventArgs e)
-        {
-
-        }
-
         static SerialPort lpSerialPort;
         public static SerialPort GetLPSerialPort(SerialPort serialPort)
         {
@@ -44,8 +39,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             UIBLL.CustomizeMove<Panel, Label>(this.PanelSysSettingTopic, this.LabelSysSettingTopic, this);
             if (!IsChanged)
             {
-                //this.PanelTBox1.Controls.Add(new CustomizeTextbox() { Dock = DockStyle.Fill, TBoxContent = 6500 });
-                //this.PanelTBox2.Controls.Add(new CustomizeTextbox() { Dock = DockStyle.Fill, TBoxContent = 60 });
                 try
                 {
                     SPBLL sPBLL = new SPBLL();

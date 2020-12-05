@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -12,6 +13,7 @@ using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
 using WaferBondingForceMeasureSystem.ApplicationModule.Log;
 using WaferBondingForceMeasureSystem.Models.Control;
+using WaferBondingForceMeasureSystem.Models.Plan;
 using WaferBondingForceMeasureSystem.SettingForms;
 using WaferBondingForceMeasureSystem.UserControls;
 
@@ -44,7 +46,7 @@ namespace WaferBondingForceMeasureSystem
         public WBFMSystem()
         {
             InitializeComponent();
-            UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
+            UIBLL.CustomizeMove(this.PanelTopic, this.LabelTopic, this);
             try
             {
                 systemSetting = SystemSetting.Singleton();
@@ -65,10 +67,29 @@ namespace WaferBondingForceMeasureSystem
             //lPSerialPort = new SerialPort();
             lPSerialPort.PortName = SPBLL.LPSerialPortName();
             lPSerialPort.Open();
+            //lPSerialPort.WriteBufferSize = 1024;
+            //lPSerialPort.ReadBufferSize = 1024;
+
+            lPSerialPort.DataReceived += LPSerialPort_DataReceived;
+            lPSerialPort.PinChanged += LPSerialPort_PinChanged;
+
             if(lPSerialPort.CtsHolding)
             {
                 this.LabelCurrentOperation.Text = "就绪";
             }
+        }
+
+        private void LPSerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            this.TextBoxErrorLog.Text += "收到消息";
+        }
+
+        private void LPSerialPort_PinChanged(object sender, SerialPinChangedEventArgs e)
+        {
+            LogMessage logInfo = new LogMessage();
+            logInfo.OperationTime = DateTime.Now;
+            logInfo.ExceptionInfo = "串口信号异常";
+            this.TextBoxErrorLog.Text += new LogFormat().ErrorFormat(logInfo);
         }
 
         private void LabelPlan_Add(object sender, EventArgs e)
@@ -103,21 +124,32 @@ namespace WaferBondingForceMeasureSystem
         private void WBFMSystem_Load(object sender, EventArgs e)
         {
             UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
-
             try
             {
                 lPSerialPort = new SerialPort();
+
+                //Type type = lPSerialPort.GetType();
+                //FieldInfo fieldInfo = type.GetField("defaultBaudRate", BindingFlags.NonPublic | BindingFlags.Instance);
+                //int a = (int)fieldInfo.GetValue(lPSerialPort);
+
                 lPSerialPort.PortName = SPBLL.LPSerialPortName();
                 lPSerialPort.Open();
 
-                if (lPSerialPort.CtsHolding)
+                if (lPSerialPort.IsOpen)
                 {
-                    byte[] Message = ComFormatPackage.ConstructCommandInfo(SETCommandNames.INITL);
-                    lPSerialPort.Write(Message, 0, Message.Length);
+                    this.LabelCurrentOperation.Text = "就绪";
 
-                    byte[] qew = new byte[lPSerialPort.BytesToRead];
-                    lPSerialPort.Read(qew, 0, qew.Length);
-                    //this.TextBoxErrorLog.Text = Encoding.ASCII.GetString(qew);
+                    byte[] ms = new byte[1024];
+                    byte[] Message = ComFormatPackage.ConstructCommandInfo(GETCommandNames.MAPRD);
+                    lPSerialPort.Write(Message, 0, Message.Length);
+                    
+                    //lPSerialPort.ReadTimeout = 1000;
+                    //byte[] qew = new byte[1024];
+                    //lPSerialPort.Read(qew, 0, qew.Length);
+
+                    byte[] qew2 = new byte[lPSerialPort.BytesToRead];
+                    lPSerialPort.Read(qew2, 0, qew2.Length);
+                    lPSerialPort.DataReceived += BtnBoxOpen_Click;
 
                     LPSerialPortTran lPSerialPortTran = new LPSerialPortTran(SystemSetting.GetLPSerialPort);
                     lPSerialPortTran(lPSerialPort);
@@ -137,7 +169,6 @@ namespace WaferBondingForceMeasureSystem
                 
             }
         }
-   
         private void PicBoxScaling_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Maximized)

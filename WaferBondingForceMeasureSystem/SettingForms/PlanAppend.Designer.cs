@@ -87,6 +87,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             this.PicBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicBoxClose.TabIndex = 0;
             this.PicBoxClose.TabStop = false;
+            this.PicBoxClose.Click += new System.EventHandler(this.PicBoxClose_Click);
             // 
             // LabelTopic
             // 

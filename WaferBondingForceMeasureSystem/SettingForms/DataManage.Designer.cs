@@ -31,10 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataManage));
             this.PanelTopic = new System.Windows.Forms.Panel();
             this.PicBoxClose = new System.Windows.Forms.PictureBox();
-            this.PicBoxScaling = new System.Windows.Forms.PictureBox();
-            this.PicBoxMin = new System.Windows.Forms.PictureBox();
             this.LabelTopic = new System.Windows.Forms.Label();
             this.PanelMain = new System.Windows.Forms.Panel();
+            this.PanelBody = new System.Windows.Forms.Panel();
+            this.PanelPic = new System.Windows.Forms.Panel();
+            this.PanelDatagrid = new System.Windows.Forms.Panel();
+            this.DataGridView = new System.Windows.Forms.DataGridView();
+            this.DGVTextBoxGoodsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVTextBoxWaferID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVTextBoxSpec = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVTextBoxSites = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVTextBoxCheckTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVTextBoxForce = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVTextBoxResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PanelClose = new System.Windows.Forms.Panel();
+            this.BtnClose = new System.Windows.Forms.Button();
             this.PanelMenu = new System.Windows.Forms.Panel();
             this.PanelMenuOpenFile = new System.Windows.Forms.Panel();
             this.PicBoxOpenFile = new System.Windows.Forms.PictureBox();
@@ -53,9 +64,11 @@
             this.LabelOutput = new System.Windows.Forms.Label();
             this.PanelTopic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxScaling)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxMin)).BeginInit();
             this.PanelMain.SuspendLayout();
+            this.PanelBody.SuspendLayout();
+            this.PanelDatagrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
+            this.PanelClose.SuspendLayout();
             this.PanelMenu.SuspendLayout();
             this.PanelMenuOpenFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxOpenFile)).BeginInit();
@@ -73,41 +86,24 @@
             // 
             this.PanelTopic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(62)))), ((int)(((byte)(77)))));
             this.PanelTopic.Controls.Add(this.PicBoxClose);
-            this.PanelTopic.Controls.Add(this.PicBoxScaling);
-            this.PanelTopic.Controls.Add(this.PicBoxMin);
             this.PanelTopic.Controls.Add(this.LabelTopic);
             this.PanelTopic.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTopic.Location = new System.Drawing.Point(0, 0);
             this.PanelTopic.Name = "PanelTopic";
-            this.PanelTopic.Size = new System.Drawing.Size(800, 35);
+            this.PanelTopic.Size = new System.Drawing.Size(978, 35);
             this.PanelTopic.TabIndex = 2;
             // 
             // PicBoxClose
             // 
+            this.PicBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PicBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxClose.Image")));
-            this.PicBoxClose.Location = new System.Drawing.Point(751, 3);
+            this.PicBoxClose.Location = new System.Drawing.Point(933, 3);
             this.PicBoxClose.Name = "PicBoxClose";
             this.PicBoxClose.Size = new System.Drawing.Size(33, 32);
             this.PicBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicBoxClose.TabIndex = 0;
             this.PicBoxClose.TabStop = false;
             this.PicBoxClose.Click += new System.EventHandler(this.PicBoxClose_Click);
-            // 
-            // PicBoxScaling
-            // 
-            this.PicBoxScaling.Location = new System.Drawing.Point(712, 0);
-            this.PicBoxScaling.Name = "PicBoxScaling";
-            this.PicBoxScaling.Size = new System.Drawing.Size(33, 32);
-            this.PicBoxScaling.TabIndex = 0;
-            this.PicBoxScaling.TabStop = false;
-            // 
-            // PicBoxMin
-            // 
-            this.PicBoxMin.Location = new System.Drawing.Point(673, 3);
-            this.PicBoxMin.Name = "PicBoxMin";
-            this.PicBoxMin.Size = new System.Drawing.Size(33, 32);
-            this.PicBoxMin.TabIndex = 0;
-            this.PicBoxMin.TabStop = false;
             // 
             // LabelTopic
             // 
@@ -121,13 +117,122 @@
             // 
             // PanelMain
             // 
+            this.PanelMain.Controls.Add(this.PanelBody);
+            this.PanelMain.Controls.Add(this.PanelClose);
             this.PanelMain.Controls.Add(this.PanelMenu);
             this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMain.Location = new System.Drawing.Point(0, 35);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(800, 415);
+            this.PanelMain.Size = new System.Drawing.Size(978, 548);
             this.PanelMain.TabIndex = 3;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
+            // 
+            // PanelBody
+            // 
+            this.PanelBody.Controls.Add(this.PanelPic);
+            this.PanelBody.Controls.Add(this.PanelDatagrid);
+            this.PanelBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelBody.Location = new System.Drawing.Point(0, 52);
+            this.PanelBody.Name = "PanelBody";
+            this.PanelBody.Size = new System.Drawing.Size(978, 452);
+            this.PanelBody.TabIndex = 1;
+            // 
+            // PanelPic
+            // 
+            this.PanelPic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelPic.Location = new System.Drawing.Point(603, 0);
+            this.PanelPic.Name = "PanelPic";
+            this.PanelPic.Size = new System.Drawing.Size(375, 452);
+            this.PanelPic.TabIndex = 1;
+            this.PanelPic.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // PanelDatagrid
+            // 
+            this.PanelDatagrid.Controls.Add(this.DataGridView);
+            this.PanelDatagrid.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PanelDatagrid.Location = new System.Drawing.Point(0, 0);
+            this.PanelDatagrid.Name = "PanelDatagrid";
+            this.PanelDatagrid.Size = new System.Drawing.Size(603, 452);
+            this.PanelDatagrid.TabIndex = 0;
+            // 
+            // DataGridView
+            // 
+            this.DataGridView.AllowUserToDeleteRows = false;
+            this.DataGridView.AllowUserToOrderColumns = true;
+            this.DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DGVTextBoxGoodsID,
+            this.DGVTextBoxWaferID,
+            this.DGVTextBoxSpec,
+            this.DGVTextBoxSites,
+            this.DGVTextBoxCheckTime,
+            this.DGVTextBoxForce,
+            this.DGVTextBoxResult});
+            this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridView.Location = new System.Drawing.Point(0, 0);
+            this.DataGridView.Name = "DataGridView";
+            this.DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.DataGridView.RowTemplate.Height = 23;
+            this.DataGridView.Size = new System.Drawing.Size(603, 452);
+            this.DataGridView.TabIndex = 0;
+            // 
+            // DGVTextBoxGoodsID
+            // 
+            this.DGVTextBoxGoodsID.HeaderText = "物料编号";
+            this.DGVTextBoxGoodsID.Name = "DGVTextBoxGoodsID";
+            // 
+            // DGVTextBoxWaferID
+            // 
+            this.DGVTextBoxWaferID.HeaderText = "晶圆序号";
+            this.DGVTextBoxWaferID.Name = "DGVTextBoxWaferID";
+            // 
+            // DGVTextBoxSpec
+            // 
+            this.DGVTextBoxSpec.HeaderText = "规格(in)";
+            this.DGVTextBoxSpec.Name = "DGVTextBoxSpec";
+            // 
+            // DGVTextBoxSites
+            // 
+            this.DGVTextBoxSites.HeaderText = "站点";
+            this.DGVTextBoxSites.Name = "DGVTextBoxSites";
+            // 
+            // DGVTextBoxCheckTime
+            // 
+            this.DGVTextBoxCheckTime.HeaderText = "检测时间(ms)";
+            this.DGVTextBoxCheckTime.Name = "DGVTextBoxCheckTime";
+            // 
+            // DGVTextBoxForce
+            // 
+            this.DGVTextBoxForce.HeaderText = "键合力(J/m²)";
+            this.DGVTextBoxForce.Name = "DGVTextBoxForce";
+            // 
+            // DGVTextBoxResult
+            // 
+            this.DGVTextBoxResult.HeaderText = "结果";
+            this.DGVTextBoxResult.Name = "DGVTextBoxResult";
+            // 
+            // PanelClose
+            // 
+            this.PanelClose.Controls.Add(this.BtnClose);
+            this.PanelClose.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PanelClose.Location = new System.Drawing.Point(0, 504);
+            this.PanelClose.Name = "PanelClose";
+            this.PanelClose.Size = new System.Drawing.Size(978, 44);
+            this.PanelClose.TabIndex = 2;
+            // 
+            // BtnClose
+            // 
+            this.BtnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnClose.Font = new System.Drawing.Font("宋体", 15F);
+            this.BtnClose.Location = new System.Drawing.Point(883, 6);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(83, 32);
+            this.BtnClose.TabIndex = 1;
+            this.BtnClose.Text = "关闭";
+            this.BtnClose.UseVisualStyleBackColor = true;
             // 
             // PanelMenu
             // 
@@ -140,7 +245,7 @@
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(800, 52);
+            this.PanelMenu.Size = new System.Drawing.Size(978, 52);
             this.PanelMenu.TabIndex = 0;
             // 
             // PanelMenuOpenFile
@@ -300,7 +405,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(978, 583);
             this.Controls.Add(this.PanelMain);
             this.Controls.Add(this.PanelTopic);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -311,9 +416,11 @@
             this.PanelTopic.ResumeLayout(false);
             this.PanelTopic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxScaling)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxMin)).EndInit();
             this.PanelMain.ResumeLayout(false);
+            this.PanelBody.ResumeLayout(false);
+            this.PanelDatagrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
+            this.PanelClose.ResumeLayout(false);
             this.PanelMenu.ResumeLayout(false);
             this.PanelMenuOpenFile.ResumeLayout(false);
             this.PanelMenuOpenFile.PerformLayout();
@@ -338,8 +445,6 @@
 
         private System.Windows.Forms.Panel PanelTopic;
         private System.Windows.Forms.PictureBox PicBoxClose;
-        private System.Windows.Forms.PictureBox PicBoxScaling;
-        private System.Windows.Forms.PictureBox PicBoxMin;
         private System.Windows.Forms.Label LabelTopic;
         private System.Windows.Forms.Panel PanelMain;
         private System.Windows.Forms.Panel PanelMenu;
@@ -358,5 +463,25 @@
         private System.Windows.Forms.PictureBox PicBoxCleanUp;
         private System.Windows.Forms.PictureBox PicBoxDeleteGoods;
         private System.Windows.Forms.PictureBox PicBoxDeleteRow;
+        private System.Windows.Forms.Panel PanelBody;
+        private System.Windows.Forms.Panel PanelPic;
+        private System.Windows.Forms.Panel PanelDatagrid;
+        private System.Windows.Forms.Panel PanelClose;
+        private System.Windows.Forms.DataGridView DataGridView;
+        private System.Windows.Forms.Button BtnClose;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGVTextBoxGoodsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGVTextBoxWaferID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGVTextBoxSpec;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGVTextBoxSites;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGVTextBoxCheckTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGVTextBoxForce;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGVTextBoxResult;
     }
 }

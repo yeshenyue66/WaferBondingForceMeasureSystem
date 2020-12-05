@@ -15,10 +15,7 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol
     /// </summary>
     class FIFOBuffer
     {
-        static SerialPort serialPort;
-        static int gets;
-        int Min;
-
-        byte[] buffer = new byte[serialPort.BytesToRead];
+        //static SerialPort serialPort;
+        //byte[] buffer = new byte[serialPort.BytesToRead];
     }
 }

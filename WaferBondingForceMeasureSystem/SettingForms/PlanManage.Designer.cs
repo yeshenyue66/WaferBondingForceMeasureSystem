@@ -34,16 +34,16 @@
             this.LabelTopic = new System.Windows.Forms.Label();
             this.PanelMenu = new System.Windows.Forms.Panel();
             this.PanelMenuSetPlan = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.PicBoxSetPlan = new System.Windows.Forms.PictureBox();
             this.LabelSetPlan = new System.Windows.Forms.Label();
             this.PanelMenuDelete = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.PicBoxDelete = new System.Windows.Forms.PictureBox();
             this.LabelDelete = new System.Windows.Forms.Label();
             this.PanelMenuRevise = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PicBoxRevise = new System.Windows.Forms.PictureBox();
             this.LabelRevise = new System.Windows.Forms.Label();
             this.PanelMenuAdd = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.PicBoxAdd = new System.Windows.Forms.PictureBox();
             this.LabelAdd = new System.Windows.Forms.Label();
             this.PanelPlanName = new System.Windows.Forms.Panel();
             this.CheckBoxCurrentPlan = new System.Windows.Forms.CheckBox();
@@ -74,13 +74,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).BeginInit();
             this.PanelMenu.SuspendLayout();
             this.PanelMenuSetPlan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxSetPlan)).BeginInit();
             this.PanelMenuDelete.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxDelete)).BeginInit();
             this.PanelMenuRevise.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxRevise)).BeginInit();
             this.PanelMenuAdd.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxAdd)).BeginInit();
             this.PanelPlanName.SuspendLayout();
             this.PanelPlanDescription.SuspendLayout();
             this.PanelSites.SuspendLayout();
@@ -135,7 +135,7 @@
             // 
             // PanelMenuSetPlan
             // 
-            this.PanelMenuSetPlan.Controls.Add(this.pictureBox4);
+            this.PanelMenuSetPlan.Controls.Add(this.PicBoxSetPlan);
             this.PanelMenuSetPlan.Controls.Add(this.LabelSetPlan);
             this.PanelMenuSetPlan.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuSetPlan.Location = new System.Drawing.Point(245, 0);
@@ -143,16 +143,16 @@
             this.PanelMenuSetPlan.Size = new System.Drawing.Size(123, 52);
             this.PanelMenuSetPlan.TabIndex = 3;
             // 
-            // pictureBox4
+            // PicBoxSetPlan
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(37, 40);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 1;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.PicBoxSetPlan.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxSetPlan.Image")));
+            this.PicBoxSetPlan.Location = new System.Drawing.Point(6, 6);
+            this.PicBoxSetPlan.Name = "PicBoxSetPlan";
+            this.PicBoxSetPlan.Size = new System.Drawing.Size(37, 40);
+            this.PicBoxSetPlan.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxSetPlan.TabIndex = 1;
+            this.PicBoxSetPlan.TabStop = false;
+            this.PicBoxSetPlan.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // LabelSetPlan
             // 
@@ -165,7 +165,7 @@
             // 
             // PanelMenuDelete
             // 
-            this.PanelMenuDelete.Controls.Add(this.pictureBox3);
+            this.PanelMenuDelete.Controls.Add(this.PicBoxDelete);
             this.PanelMenuDelete.Controls.Add(this.LabelDelete);
             this.PanelMenuDelete.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuDelete.Location = new System.Drawing.Point(164, 0);
@@ -173,15 +173,15 @@
             this.PanelMenuDelete.Size = new System.Drawing.Size(81, 52);
             this.PanelMenuDelete.TabIndex = 2;
             // 
-            // pictureBox3
+            // PicBoxDelete
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(37, 40);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
+            this.PicBoxDelete.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxDelete.Image")));
+            this.PicBoxDelete.Location = new System.Drawing.Point(6, 6);
+            this.PicBoxDelete.Name = "PicBoxDelete";
+            this.PicBoxDelete.Size = new System.Drawing.Size(37, 40);
+            this.PicBoxDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxDelete.TabIndex = 1;
+            this.PicBoxDelete.TabStop = false;
             // 
             // LabelDelete
             // 
@@ -191,26 +191,29 @@
             this.LabelDelete.Size = new System.Drawing.Size(29, 12);
             this.LabelDelete.TabIndex = 0;
             this.LabelDelete.Text = "删除";
+            this.LabelDelete.Click += new System.EventHandler(this.LabelDelete_Click);
             // 
             // PanelMenuRevise
             // 
-            this.PanelMenuRevise.Controls.Add(this.pictureBox1);
+            this.PanelMenuRevise.Controls.Add(this.PicBoxRevise);
             this.PanelMenuRevise.Controls.Add(this.LabelRevise);
             this.PanelMenuRevise.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuRevise.Location = new System.Drawing.Point(78, 0);
             this.PanelMenuRevise.Name = "PanelMenuRevise";
             this.PanelMenuRevise.Size = new System.Drawing.Size(86, 52);
             this.PanelMenuRevise.TabIndex = 1;
+            this.PanelMenuRevise.Click += new System.EventHandler(this.PanelMenuRevise_Click);
             // 
-            // pictureBox1
+            // PicBoxRevise
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(37, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.PicBoxRevise.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxRevise.Image")));
+            this.PicBoxRevise.Location = new System.Drawing.Point(6, 6);
+            this.PicBoxRevise.Name = "PicBoxRevise";
+            this.PicBoxRevise.Size = new System.Drawing.Size(37, 40);
+            this.PicBoxRevise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxRevise.TabIndex = 1;
+            this.PicBoxRevise.TabStop = false;
+            this.PicBoxRevise.Click += new System.EventHandler(this.PicBoxRevise_Click);
             // 
             // LabelRevise
             // 
@@ -220,10 +223,11 @@
             this.LabelRevise.Size = new System.Drawing.Size(29, 12);
             this.LabelRevise.TabIndex = 0;
             this.LabelRevise.Text = "修改";
+            this.LabelRevise.Click += new System.EventHandler(this.LabelRevise_Click);
             // 
             // PanelMenuAdd
             // 
-            this.PanelMenuAdd.Controls.Add(this.pictureBox2);
+            this.PanelMenuAdd.Controls.Add(this.PicBoxAdd);
             this.PanelMenuAdd.Controls.Add(this.LabelAdd);
             this.PanelMenuAdd.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenuAdd.Location = new System.Drawing.Point(0, 0);
@@ -232,15 +236,16 @@
             this.PanelMenuAdd.TabIndex = 0;
             this.PanelMenuAdd.Click += new System.EventHandler(this.PanelMenuAdd_Click);
             // 
-            // pictureBox2
+            // PicBoxAdd
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(3, 6);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(37, 40);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.PicBoxAdd.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxAdd.Image")));
+            this.PicBoxAdd.Location = new System.Drawing.Point(3, 6);
+            this.PicBoxAdd.Name = "PicBoxAdd";
+            this.PicBoxAdd.Size = new System.Drawing.Size(37, 40);
+            this.PicBoxAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxAdd.TabIndex = 1;
+            this.PicBoxAdd.TabStop = false;
+            this.PicBoxAdd.Click += new System.EventHandler(this.PicBoxAdd_Click);
             // 
             // LabelAdd
             // 
@@ -250,6 +255,7 @@
             this.LabelAdd.Size = new System.Drawing.Size(29, 12);
             this.LabelAdd.TabIndex = 0;
             this.LabelAdd.Text = "新增";
+            this.LabelAdd.Click += new System.EventHandler(this.LabelAdd_Click);
             // 
             // PanelPlanName
             // 
@@ -584,16 +590,16 @@
             this.PanelMenu.ResumeLayout(false);
             this.PanelMenuSetPlan.ResumeLayout(false);
             this.PanelMenuSetPlan.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxSetPlan)).EndInit();
             this.PanelMenuDelete.ResumeLayout(false);
             this.PanelMenuDelete.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxDelete)).EndInit();
             this.PanelMenuRevise.ResumeLayout(false);
             this.PanelMenuRevise.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxRevise)).EndInit();
             this.PanelMenuAdd.ResumeLayout(false);
             this.PanelMenuAdd.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxAdd)).EndInit();
             this.PanelPlanName.ResumeLayout(false);
             this.PanelPlanName.PerformLayout();
             this.PanelPlanDescription.ResumeLayout(false);
@@ -645,9 +651,9 @@
         private System.Windows.Forms.CheckBox CheckBoxSite2;
         private System.Windows.Forms.CheckBox CheckBoxSite1;
         private System.Windows.Forms.PictureBox PicBoxSites;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox PicBoxSetPlan;
+        private System.Windows.Forms.PictureBox PicBoxDelete;
+        private System.Windows.Forms.PictureBox PicBoxRevise;
+        private System.Windows.Forms.PictureBox PicBoxAdd;
     }
 }

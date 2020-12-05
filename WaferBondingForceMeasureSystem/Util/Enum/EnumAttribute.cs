@@ -45,11 +45,10 @@ namespace WaferBondingForceMeasureSystem.Util.Enum
             {
                 if (field.FieldType.IsEnum)
                 {
-                    Object[] objs = field.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                    object[] objs = field.GetCustomAttributes(typeof(DescriptionAttribute), false);
                     dic.Add(field.Name, ((DescriptionAttribute)objs[0]).Description);
                 }
             }
-
             return dic;
         }
     }

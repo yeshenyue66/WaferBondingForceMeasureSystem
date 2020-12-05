@@ -8,6 +8,7 @@ using System.Configuration;
 using WaferBondingForceMeasureSystem.Models.SerialPorts;
 using WaferBondingForceMeasureSystem.Util.Config;
 using System.Xml;
+using System.Threading;
 
 namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon
 {
@@ -63,14 +64,26 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortComm
         {
             return ConfigSection.GetValue(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "SerialPort.config", "LoadPort");
 
-            //return ConfigurationManager.AppSettings["LoadPort"];
-            //var fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = "C:/Users/Admin/source/repos/WaferBondingForceMeasureSystem/WaferBondingForceMeasureSystem/SerialPort.config" };
-            //var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-
-            //Configuration config = ConfigurationManager.OpenExeConfiguration("C:/Users/Admin/source/repos/WaferBondingForceMeasureSystem/WaferBondingForceMeasureSystem/bin/Debug/App.Config");
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "SerialPort.config");
             //ConfigSection configSection = config.Sections["LoadPort"] as ConfigSection;
             //ConfigSection configSection = (ConfigSection)config.GetSection("LoadPort");
             //return configSection.Value;
+        }
+
+        public static void DataTrans(SerialPort serialPort)
+        {
+            if (serialPort.IsOpen)
+            {
+                new Thread(() =>
+                {
+                    byte[] writeMessage = new byte[1024];
+                    serialPort.Write(writeMessage, 0, writeMessage.Length);
+
+                    serialPort.ReadTimeout = 1000;
+                    byte[] sendMessage = new byte[1024];
+                    serialPort.Read(sendMessage, 0, sendMessage.Length);
+                });
+            }
         }
     }
 }

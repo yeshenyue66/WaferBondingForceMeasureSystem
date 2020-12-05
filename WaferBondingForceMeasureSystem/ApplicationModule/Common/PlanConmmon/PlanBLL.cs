@@ -54,5 +54,24 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon
             }
             return pModelList;
         }
+
+        public void DeletePlanData(string Path, string name)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(Path);
+            foreach(FileInfo file in directoryInfo.GetFiles())
+            {
+                if (file.Attributes != FileAttributes.Directory)
+                {
+                    if (name == file.Name.Substring(0, file.Name.LastIndexOf('.')))
+                    {
+                        file.Delete();
+                    }
+                }
+            }
+            foreach (var dicInfo in directoryInfo.GetDirectories())
+            {
+                DeletePlanData(dicInfo.FullName, name);
+            }
+        }
     }
 }
