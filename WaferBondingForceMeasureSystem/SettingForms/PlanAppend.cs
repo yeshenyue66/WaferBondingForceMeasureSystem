@@ -1,34 +1,30 @@
 ﻿using System;
-using System.Windows.Forms;
-
-using WaferBondingForceMeasureSystem.Extensions.Models;
-using WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon;
-using WaferBondingForceMeasureSystem.Models.Plan;
-using System.Text;
 using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon;
+using WaferBondingForceMeasureSystem.ApplicationModule.EventHandler;
+using WaferBondingForceMeasureSystem.Models.Plan;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
     public partial class PlanAppend : Form
     {
-        public string planName = string.Empty;
+        private string planName;
+
+        public string PlanName { get => planName; set => planName = value; }
         List<PlanModel> planModels;
+
         public PlanAppend()
         {
             InitializeComponent();
-
-        }
-
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void PlanAppend_Load(object sender, EventArgs e)
         {
             if(planName != string.Empty)
             {
-                this.TextBoxPlanName.Text = planName;
+                this.TextBoxPlanName.Text = PlanName;
                 planModels = new PlanBLL().ReadPlanData(new PlanBLL().PlanAddress());
                 foreach (PlanModel planModel in planModels)
                 {
@@ -45,9 +41,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
                 }
             }
         }
-
-        public delegate void MyDelegate(object sender, EventArgs e);
-        public event MyDelegate MyEvent;
 
         private void BtnAppend_Click(object sender, EventArgs e)
         {
@@ -67,14 +60,20 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             sb.Append(new PlanBLL().PlanAddress());
             sb.Append(this.TextBoxPlanName.Text.ToString());
             sb.Append(".txt");
+            //if (Array.IndexOf<string>(new PlanBLL().ReadPlanName(), this.TextBoxPlanName.Text) != -1)
+            //{
+            //    new PlanBLL().DeletePlanData(new PlanBLL().PlanAddress(), this.TextBoxPlanName.Text);
+            //    new PlanBLL().SavePlanData(sb.ToString(), planModel);
+            //}              
             new PlanBLL().SavePlanData(sb.ToString(), planModel);
 
-            MyEvent?.Invoke(sender, e);
+            PlanEventHandler planHandle = new PlanEventHandler();
+            planHandle.PlanConfirm += PlanManage.Singleton().ReadPlan;
+            planHandle.PlanShow(string.Empty);
             this.Close();
         }
 
         public static PlanModel model;
-
         public PlanModel GetSites(bool site1, bool site2, bool site3, bool site4, bool site5, bool site6, bool site7)
         {
             model.IsSetSite1 = site1;
@@ -89,6 +88,10 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         }
 
         private void PicBoxClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -16,7 +16,7 @@ namespace WaferBondingForceMeasureSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WBFMSystem());
+            Application.Run(WBFMSystem.Singleton());
         }
     }
 }

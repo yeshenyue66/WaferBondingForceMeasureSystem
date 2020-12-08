@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-
-using WaferBondingForceMeasureSystem.Util.String;
-using WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon;
-using WaferBondingForceMeasureSystem.Models.Plan;
 using System.Text;
+using System.Windows.Forms;
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon;
+using WaferBondingForceMeasureSystem.ApplicationModule.EventHandler;
+using WaferBondingForceMeasureSystem.Models.Plan;
+using WaferBondingForceMeasureSystem.Util.String;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
     public partial class PlanManage : Form
     {
-        delegate string PlanDescription(string planModel);
-        PlanAppend planAppend = null;
-        public delegate void MyDelegate(object sender, EventArgs e);
-        public event MyDelegate MyEvent;
-        public PlanManage()
+        static PlanManage planManage;
+        private PlanManage()
         {
             InitializeComponent();
+        }
 
-            planAppend = new PlanAppend();
-            planAppend.MyEvent += new PlanAppend.MyDelegate(PlanManage_Load);
-
+        public static PlanManage Singleton()
+        {
+            if(planManage == null)
+            {
+                planManage = new PlanManage();
+            }
+            return planManage;
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            PlanDescription planDescription = new PlanDescription(WBFMSystem.GetPlanModel);
-            planDescription(this.TextBoxPlanDescription.Text);
-            MyEvent?.Invoke(sender, e);
+            PlanEventHandler planEventHandler = new PlanEventHandler();
+            planEventHandler.PlanConfirm += WBFMSystem.Singleton().LabelPlan_Add;
+            planEventHandler.PlanShow(this.TextBoxPlanDescription.Text);
+
             this.Close();
         }
 
@@ -39,7 +42,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
 
         List<PlanModel> planModels;
 
-        private void PlanLoad()
+        public void ReadPlan(object sender,PlanEventHandler.PlanConfirmEventArgs e)
         {
             this.ComBoxPlan.Items.Clear();
             planModels = new PlanBLL().ReadPlanData(new PlanBLL().PlanAddress());
@@ -51,18 +54,12 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         
         private void PlanManage_Load(object sender, EventArgs e)
         {
-            PlanLoad();
-            //this.ComBoxPlan.Items.Clear();
-            //planModels = new PlanBLL().ReadPlanData(new PlanBLL().PlanAddress());
-            //foreach (PlanModel planModel in planModels)
-            //{
-            //    this.ComBoxPlan.Items.Add(planModel.Name);
-            //}
-        }
-
-        private void PanelMenuAdd_Click(object sender, EventArgs e)
-        {
-            planAppend.ShowDialog();
+            this.ComBoxPlan.Items.Clear();
+            planModels = new PlanBLL().ReadPlanData(new PlanBLL().PlanAddress());
+            foreach (PlanModel planModel in planModels)
+            {
+                this.ComBoxPlan.Items.Add(planModel.Name);
+            }
         }
 
         private void ComBoxPlan_TextChanged(object sender, EventArgs e)
@@ -84,39 +81,42 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             }
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void PanelMenuAdd_Click(object sender, EventArgs e)
         {
             new PlanAppend().ShowDialog();
         }
 
         private void LabelAdd_Click(object sender, EventArgs e)
         {
-            planAppend.ShowDialog();
+            new PlanAppend().ShowDialog();
         }
 
         private void PicBoxAdd_Click(object sender, EventArgs e)
         {
-            planAppend.ShowDialog();
+            new PlanAppend().ShowDialog();
         }
 
         private void LabelRevise_Click(object sender, EventArgs e)
         {
             string planName = this.ComBoxPlan.Text;
-            planAppend.planName = planName;
+            PlanAppend planAppend = new PlanAppend();
+            planAppend.PlanName = planName;
             planAppend.ShowDialog();
         }
 
         private void PicBoxRevise_Click(object sender, EventArgs e)
         {
             string planName = this.ComBoxPlan.Text;
-            planAppend.planName = planName;
+            PlanAppend planAppend = new PlanAppend();
+            planAppend.PlanName = planName;
             planAppend.ShowDialog();
         }
 
         private void PanelMenuRevise_Click(object sender, EventArgs e)
         {
             string planName = this.ComBoxPlan.Text;
-            planAppend.planName = planName;
+            PlanAppend planAppend = new PlanAppend();
+            planAppend.PlanName = planName;
             planAppend.ShowDialog();
         }
 
@@ -126,7 +126,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             sb.Append(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
             sb.Append(new PlanBLL().PlanAddress());
             new PlanBLL().DeletePlanData(sb.ToString(), this.ComBoxPlan.Text);
-            PlanLoad();
             this.ComBoxPlan.Text = "default";
             this.TextBoxPlanDescription.Text = string.Empty;
             this.CheckBoxSite1.Checked = false;

@@ -60,6 +60,8 @@
     <Compile Include="ApplicationModule\ComProtocol\ComNameEntity.cs" />
     <Compile Include="ApplicationModule\ComProtocol\ComTypeEntity.cs" />
     <Compile Include="ApplicationModule\ComProtocol\FIFOBuffer.cs" />
+    <Compile Include="ApplicationModule\EventHandler\PlanEventHandler.cs" />
+    <Compile Include="ApplicationModule\EventHandler\SerialEventHandler.cs" />
     <Compile Include="ApplicationModule\Log\LogFormat.cs" />
     <Compile Include="ApplicationModule\Log\LogMessage.cs" />
     <Compile Include="ApplicationModule\NumCalculator\NumCalcuService.cs" />

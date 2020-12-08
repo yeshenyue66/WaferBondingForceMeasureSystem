@@ -35,6 +35,11 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon
             stream.Close();
         }
 
+        public string[] ReadPlanName()
+        {
+            return Directory.GetFiles(new PlanBLL().PlanAddress());
+        }
+
         /// <summary>
         /// 读取方案
         /// </summary>
@@ -55,6 +60,11 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon
             return pModelList;
         }
 
+        /// <summary>
+        /// 删除方案
+        /// </summary>
+        /// <param name="Path">方案路径</param>
+        /// <param name="name">方案名</param>
         public void DeletePlanData(string Path, string name)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(Path);

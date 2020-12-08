@@ -8,18 +8,23 @@ using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 using WaferBondingForceMeasureSystem.Util.Config;
 using System.Threading;
+using WaferBondingForceMeasureSystem.ApplicationModule.EventHandler;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
     public partial class SystemSetting : Form
     {
         private static SystemSetting systemSetting;
+        private string com_LoadPort;
+        private string com_Manipulator;
         private SystemSetting()
         {
             InitializeComponent();
-            Thread thread = Thread.CurrentThread;
-            thread.Name = "1";
+            //Thread thread = Thread.CurrentThread;
+            //thread.Name = "1";
         }
+        public string Com_LoadPort { get => this.ComboBoxLoadPort.Text; set => com_LoadPort = value; }
+        public string Com_Manipulator { get => this.ComboBoxManipulator.Text; set => com_Manipulator = value; }
 
         public static SystemSetting Singleton()
         {
@@ -79,17 +84,18 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             this.Close();
         }
 
-        public delegate void MyDelegate(object sender, EventArgs e);
-        public event MyDelegate MyEvent;
-
         private void BtnLPConnection_Click(object sender, EventArgs e)
         {
+            SerialEventHandler comHandler = new SerialEventHandler();
+            comHandler.Serial += WBFMSystem.Singleton().SerialPortInfo_Update;
+            comHandler.Translation();
             ConfigSection.SetValue(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "SerialPort.config", "LoadPort", this.ComboBoxLoadPort.Text);
-            MyEvent?.Invoke(sender, e);
+            //MyEvent?.Invoke(sender, e);
             //ConfigurationManager.AppSettings["LoadPortSerialPort"] = this.ComboBoxLoadPort.Text.ToString();
         }
 
         static bool IsChanged;
+
         private void ComboBoxLoadPort_TextChanged(object sender, EventArgs e)
         {
             IsChanged = true;

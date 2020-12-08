@@ -152,7 +152,6 @@
             this.PicBoxSetPlan.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicBoxSetPlan.TabIndex = 1;
             this.PicBoxSetPlan.TabStop = false;
-            this.PicBoxSetPlan.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // LabelSetPlan
             // 
