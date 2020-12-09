@@ -35,9 +35,9 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.EventHandler
             Serial?.Invoke(this, e);
         }
 
-        public void Translation()
+        public void Translation(string com_Loadport, string com_Manipulator)
         {
-            SerialPortEventArgs e = new SerialPortEventArgs(SystemSetting.Singleton().Com_LoadPort, SystemSetting.Singleton().Com_Manipulator);
+            SerialPortEventArgs e = new SerialPortEventArgs(com_Loadport, com_Manipulator);
             SerialPortTranslate(e);
         }
     }

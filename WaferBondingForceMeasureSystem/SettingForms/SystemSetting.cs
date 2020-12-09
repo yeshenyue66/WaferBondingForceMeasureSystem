@@ -88,7 +88,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         {
             SerialEventHandler comHandler = new SerialEventHandler();
             comHandler.Serial += WBFMSystem.Singleton().SerialPortInfo_Update;
-            comHandler.Translation();
+            comHandler.Translation(Com_LoadPort, Com_Manipulator);
             ConfigSection.SetValue(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "SerialPort.config", "LoadPort", this.ComboBoxLoadPort.Text);
             //MyEvent?.Invoke(sender, e);
             //ConfigurationManager.AppSettings["LoadPortSerialPort"] = this.ComboBoxLoadPort.Text.ToString();
