@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon;
 using WaferBondingForceMeasureSystem.ApplicationModule.EventHandler;
 using WaferBondingForceMeasureSystem.Models.Plan;
@@ -15,6 +16,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private PlanManage()
         {
             InitializeComponent();
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
         }
 
         public static PlanManage Singleton()
@@ -126,6 +128,12 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             sb.Append(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
             sb.Append(new PlanBLL().PlanAddress());
             new PlanBLL().DeletePlanData(sb.ToString(), this.ComBoxPlan.Text);
+            this.ComBoxPlan.Items.Clear();
+            planModels = new PlanBLL().ReadPlanData(new PlanBLL().PlanAddress());
+            foreach (PlanModel planModel in planModels)
+            {
+                this.ComBoxPlan.Items.Add(planModel.Name);
+            }
             this.ComBoxPlan.Text = "default";
             this.TextBoxPlanDescription.Text = string.Empty;
             this.CheckBoxSite1.Checked = false;
@@ -139,6 +147,11 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             //{
             //    checkBox.Checked = false;
             //}
+        }
+
+        private void PlanManage_Activated(object sender, EventArgs e)
+        {
+            ComBoxPlan_TextChanged(sender, e);
         }
     }
 }

@@ -83,6 +83,18 @@
     <Compile Include="SettingForms\Correction.Designer.cs">
       <DependentUpon>Correction.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingForms\FormMana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForms\FormMana.Designer.cs">
+      <DependentUpon>FormMana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CusDataGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CusDataGridView.Designer.cs">
+      <DependentUpon>CusDataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\RoundPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,6 +200,9 @@
     <EmbeddedResource Include="SettingForms\DataManage.resx">
       <DependentUpon>DataManage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SettingForms\FormMana.resx">
+      <DependentUpon>FormMana.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingForms\PlanAppend.resx">
       <DependentUpon>PlanAppend.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ControlPanel.resx">
       <DependentUpon>ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CusDataGridView.resx">
+      <DependentUpon>CusDataGridView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\CustomizeTextbox.resx">
       <DependentUpon>CustomizeTextbox.cs</DependentUpon>
@@ -253,6 +271,12 @@
     <Folder Include="Models\ComProtocol\TDKB\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\DGVUp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\DGVDown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\TurnNormal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

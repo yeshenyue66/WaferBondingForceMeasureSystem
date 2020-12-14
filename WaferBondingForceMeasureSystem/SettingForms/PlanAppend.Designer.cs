@@ -375,6 +375,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             // 
             // TextBoxPlanName
             // 
+            this.TextBoxPlanName.Font = new System.Drawing.Font("宋体", 11F);
             this.TextBoxPlanName.Location = new System.Drawing.Point(60, 6);
             this.TextBoxPlanName.Multiline = true;
             this.TextBoxPlanName.Name = "TextBoxPlanName";

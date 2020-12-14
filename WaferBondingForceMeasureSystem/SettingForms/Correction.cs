@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
@@ -9,6 +9,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         public Correction()
         {
             InitializeComponent();
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelMenu, this.LabelCorrect, this);
         }
 
         private void BtnClose_Click(object sender, System.EventArgs e)

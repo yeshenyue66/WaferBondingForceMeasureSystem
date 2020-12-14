@@ -102,7 +102,7 @@
             // PicBoxClose
             // 
             this.PicBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("PicBoxClose.Image")));
-            this.PicBoxClose.Location = new System.Drawing.Point(751, 3);
+            this.PicBoxClose.Location = new System.Drawing.Point(764, 3);
             this.PicBoxClose.Name = "PicBoxClose";
             this.PicBoxClose.Size = new System.Drawing.Size(33, 32);
             this.PicBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -582,6 +582,7 @@
             this.Name = "PlanManage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PlanManage";
+            this.Activated += new System.EventHandler(this.PlanManage_Activated);
             this.Load += new System.EventHandler(this.PlanManage_Load);
             this.PanelTopic.ResumeLayout(false);
             this.PanelTopic.PerformLayout();

@@ -30,7 +30,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private void InitializeComponent()
         {
             this.PanelMenu = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
+            this.LabelCorrect = new System.Windows.Forms.Label();
             this.PanelBody = new System.Windows.Forms.Panel();
             this.PanelManipulator = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -111,22 +111,22 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             // PanelMenu
             // 
             this.PanelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(210)))), ((int)(((byte)(217)))));
-            this.PanelMenu.Controls.Add(this.label17);
+            this.PanelMenu.Controls.Add(this.LabelCorrect);
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
             this.PanelMenu.Size = new System.Drawing.Size(978, 34);
             this.PanelMenu.TabIndex = 0;
             // 
-            // label17
+            // LabelCorrect
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("宋体", 13F);
-            this.label17.Location = new System.Drawing.Point(3, 9);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(44, 18);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "清错";
+            this.LabelCorrect.AutoSize = true;
+            this.LabelCorrect.Font = new System.Drawing.Font("宋体", 13F);
+            this.LabelCorrect.Location = new System.Drawing.Point(3, 9);
+            this.LabelCorrect.Name = "LabelCorrect";
+            this.LabelCorrect.Size = new System.Drawing.Size(44, 18);
+            this.LabelCorrect.TabIndex = 1;
+            this.LabelCorrect.Text = "清错";
             // 
             // PanelBody
             // 
@@ -992,7 +992,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private System.Windows.Forms.Button BtnWaferFixCancel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label LabelCorrect;
         private System.Windows.Forms.Button BtnCorrectFin;
         private System.Windows.Forms.Button BtnClose;
     }

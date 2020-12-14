@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 
 namespace WaferBondingForceMeasureSystem.SettingForms
 {
@@ -9,6 +10,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private CalibrationSetting()
         {
             InitializeComponent();
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
         }
 
         public static CalibrationSetting Singleton()

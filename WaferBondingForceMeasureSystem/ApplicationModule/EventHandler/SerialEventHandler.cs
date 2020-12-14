@@ -18,6 +18,9 @@ namespace WaferBondingForceMeasureSystem.ApplicationModule.EventHandler
         public delegate void SerialPortEventHandler(object sender, SerialPortEventArgs e);
         public event SerialPortEventHandler Serial;
 
+        /// <summary>
+        /// 表示获取串口事件的数据
+        /// </summary>
         public class SerialPortEventArgs : EventArgs
         {
             public readonly string Com_Loadport;

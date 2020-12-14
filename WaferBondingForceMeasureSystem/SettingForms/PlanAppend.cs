@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.PlanConmmon;
 using WaferBondingForceMeasureSystem.ApplicationModule.EventHandler;
 using WaferBondingForceMeasureSystem.Models.Plan;
@@ -18,6 +19,7 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         public PlanAppend()
         {
             InitializeComponent();
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
         }
 
         private void PlanAppend_Load(object sender, EventArgs e)
@@ -56,15 +58,17 @@ namespace WaferBondingForceMeasureSystem.SettingForms
                 IsSetSite7 = this.CheckBoxSite7.Checked
             };
 
+            StringBuilder info_delete = new StringBuilder();
+            info_delete.Append(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
+            info_delete.Append(new PlanBLL().PlanAddress());
             StringBuilder sb = new StringBuilder();
             sb.Append(new PlanBLL().PlanAddress());
             sb.Append(this.TextBoxPlanName.Text.ToString());
             sb.Append(".txt");
-            //if (Array.IndexOf<string>(new PlanBLL().ReadPlanName(), this.TextBoxPlanName.Text) != -1)
-            //{
-            //    new PlanBLL().DeletePlanData(new PlanBLL().PlanAddress(), this.TextBoxPlanName.Text);
-            //    new PlanBLL().SavePlanData(sb.ToString(), planModel);
-            //}              
+            if (Array.IndexOf(new PlanBLL().ReadPlanName(), sb) == -1)
+            {
+                new PlanBLL().DeletePlanData(info_delete.ToString(), this.TextBoxPlanName.Text);
+            }
             new PlanBLL().SavePlanData(sb.ToString(), planModel);
 
             PlanEventHandler planHandle = new PlanEventHandler();

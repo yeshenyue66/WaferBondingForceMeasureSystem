@@ -57,6 +57,7 @@ namespace WaferBondingForceMeasureSystem
             this.BtnWaferSelection = new System.Windows.Forms.Button();
             this.BtnBoxOpen = new System.Windows.Forms.Button();
             this.PanelSetting = new System.Windows.Forms.Panel();
+            this.LabelCurrentOperation = new System.Windows.Forms.Label();
             this.LabelKnifePlanSelected = new System.Windows.Forms.Label();
             this.CheckBoxAutoPhoto = new System.Windows.Forms.CheckBox();
             this.LabelSerial = new System.Windows.Forms.Label();
@@ -87,7 +88,6 @@ namespace WaferBondingForceMeasureSystem
             this.PanelAlgorithmSetting = new System.Windows.Forms.Panel();
             this.LabelAlgorithmSetting = new System.Windows.Forms.Label();
             this.PicBoxAlgorithmSetting = new System.Windows.Forms.PictureBox();
-            this.LabelCurrentOperation = new System.Windows.Forms.Label();
             this.PanelTopic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxMin)).BeginInit();
@@ -442,6 +442,16 @@ namespace WaferBondingForceMeasureSystem
             this.PanelSetting.Size = new System.Drawing.Size(327, 119);
             this.PanelSetting.TabIndex = 4;
             // 
+            // LabelCurrentOperation
+            // 
+            this.LabelCurrentOperation.AutoSize = true;
+            this.LabelCurrentOperation.Font = new System.Drawing.Font("宋体", 12F);
+            this.LabelCurrentOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.LabelCurrentOperation.Location = new System.Drawing.Point(95, 4);
+            this.LabelCurrentOperation.Name = "LabelCurrentOperation";
+            this.LabelCurrentOperation.Size = new System.Drawing.Size(0, 16);
+            this.LabelCurrentOperation.TabIndex = 7;
+            // 
             // LabelKnifePlanSelected
             // 
             this.LabelKnifePlanSelected.AutoSize = true;
@@ -774,16 +784,6 @@ namespace WaferBondingForceMeasureSystem
             this.PicBoxAlgorithmSetting.TabStop = false;
             this.PicBoxAlgorithmSetting.Click += new System.EventHandler(this.PicBoxAlgorithmSetting_Click);
             // 
-            // LabelCurrentOperation
-            // 
-            this.LabelCurrentOperation.AutoSize = true;
-            this.LabelCurrentOperation.Font = new System.Drawing.Font("宋体", 12F);
-            this.LabelCurrentOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.LabelCurrentOperation.Location = new System.Drawing.Point(95, 4);
-            this.LabelCurrentOperation.Name = "LabelCurrentOperation";
-            this.LabelCurrentOperation.Size = new System.Drawing.Size(0, 16);
-            this.LabelCurrentOperation.TabIndex = 7;
-            // 
             // WBFMSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -796,6 +796,7 @@ namespace WaferBondingForceMeasureSystem
             this.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WBFMSystem";
+            this.Activated += new System.EventHandler(this.WBFMSystem_Activated);
             this.Load += new System.EventHandler(this.WBFMSystem_Load);
             this.Move += new System.EventHandler(this.WBFMSystem_Move);
             this.Resize += new System.EventHandler(this.WBFMSystem_Resize);

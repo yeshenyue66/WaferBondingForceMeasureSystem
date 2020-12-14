@@ -49,7 +49,6 @@ namespace WaferBondingForceMeasureSystem
         {
             InitializeComponent();
             UIBLL.CustomizeMove(this.PanelTopic, this.LabelTopic, this);
-            
         }
 
         public void SerialPortInfo_Update(object sender, SerialEventHandler.SerialPortEventArgs e)
@@ -329,6 +328,11 @@ namespace WaferBondingForceMeasureSystem
         {
             byte[] Message = ComFormatPackage.ConstructCommandInfo(EVTCommandNames.PODOF);
             lPSerialPort.Write(Message, 0, Message.Length);
+        }
+
+        private void WBFMSystem_Activated(object sender, EventArgs e)
+        {
+            UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
         }
     }
 }
