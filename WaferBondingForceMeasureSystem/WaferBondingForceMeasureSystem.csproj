@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationModule\Common\DeviceInfo\DeviceInfo.cs" />
     <Compile Include="ApplicationModule\Common\FormCommon\UIBLL.cs" />
     <Compile Include="ApplicationModule\Common\FormCommon\IUIBLL.cs" />
     <Compile Include="ApplicationModule\Common\PlanConmmon\PlanEntity.cs" />

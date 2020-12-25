@@ -61,12 +61,6 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             panelIndivData.Height = new CusDataGridView().Height + panelGoods.Height;
             panelIndivData.Controls.Add(new CusDataGridView { Dock = DockStyle.Top });
 
-            //this.PanelData.Controls.Add();
-            
-            //ControlHelper.CusControlAppend(this.PanelData, panelGoods).Controls.Add(panelIndivData);
-
-            //Panel[] panels = new Panel[] { panelGoods, panelIndivData };
-            //this.PanelData.Controls.AddRange(panels);
             this.PanelData.Controls.Add(panelIndivData);
             this.PanelData.Controls.Add(panelGoods);
 

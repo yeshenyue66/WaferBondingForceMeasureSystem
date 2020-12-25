@@ -72,6 +72,7 @@ namespace WaferBondingForceMeasureSystem
             this.panel2 = new System.Windows.Forms.Panel();
             this.LabelErrorLog = new System.Windows.Forms.Label();
             this.PanelBottom = new System.Windows.Forms.Panel();
+            this.LabelConnectInfo = new System.Windows.Forms.Label();
             this.PanelMenu = new System.Windows.Forms.Panel();
             this.PanelCalibrationSetting = new System.Windows.Forms.Panel();
             this.LabelCalibrationSetting = new System.Windows.Forms.Label();
@@ -88,6 +89,7 @@ namespace WaferBondingForceMeasureSystem
             this.PanelAlgorithmSetting = new System.Windows.Forms.Panel();
             this.LabelAlgorithmSetting = new System.Windows.Forms.Label();
             this.PicBoxAlgorithmSetting = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.PanelTopic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxMin)).BeginInit();
@@ -109,6 +111,7 @@ namespace WaferBondingForceMeasureSystem
             this.panel1.SuspendLayout();
             this.PanelLog.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.PanelBottom.SuspendLayout();
             this.PanelMenu.SuspendLayout();
             this.PanelCalibrationSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxCalibration)).BeginInit();
@@ -594,14 +597,25 @@ namespace WaferBondingForceMeasureSystem
             // 
             // PanelBottom
             // 
+            this.PanelBottom.Controls.Add(this.LabelConnectInfo);
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanelBottom.Location = new System.Drawing.Point(0, 432);
             this.PanelBottom.Name = "PanelBottom";
             this.PanelBottom.Size = new System.Drawing.Size(895, 19);
             this.PanelBottom.TabIndex = 3;
             // 
+            // LabelConnectInfo
+            // 
+            this.LabelConnectInfo.AutoSize = true;
+            this.LabelConnectInfo.Location = new System.Drawing.Point(3, 3);
+            this.LabelConnectInfo.Name = "LabelConnectInfo";
+            this.LabelConnectInfo.Size = new System.Drawing.Size(41, 12);
+            this.LabelConnectInfo.TabIndex = 0;
+            this.LabelConnectInfo.Text = "label2";
+            // 
             // PanelMenu
             // 
+            this.PanelMenu.Controls.Add(this.button1);
             this.PanelMenu.Controls.Add(this.PanelCalibrationSetting);
             this.PanelMenu.Controls.Add(this.PanePlanManage);
             this.PanelMenu.Controls.Add(this.PanelDataManage);
@@ -784,6 +798,16 @@ namespace WaferBondingForceMeasureSystem
             this.PicBoxAlgorithmSetting.TabStop = false;
             this.PicBoxAlgorithmSetting.Click += new System.EventHandler(this.PicBoxAlgorithmSetting_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(612, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // WBFMSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -826,6 +850,8 @@ namespace WaferBondingForceMeasureSystem
             this.PanelLog.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.PanelBottom.ResumeLayout(false);
+            this.PanelBottom.PerformLayout();
             this.PanelMenu.ResumeLayout(false);
             this.PanelCalibrationSetting.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxCalibration)).EndInit();
@@ -900,5 +926,7 @@ namespace WaferBondingForceMeasureSystem
         private System.Windows.Forms.PictureBox PicBoxScaling;
         private System.Windows.Forms.PictureBox PicBoxClose;
         private System.Windows.Forms.Label LabelCurrentOperation;
+        private System.Windows.Forms.Label LabelConnectInfo;
+        private System.Windows.Forms.Button button1;
     }
 }

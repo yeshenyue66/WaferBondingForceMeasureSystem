@@ -20,6 +20,20 @@ namespace WaferBondingForceMeasureSystem.SettingForms
         private SystemSetting()
         {
             InitializeComponent();
+
+            SPBLL sPBLL = new SPBLL();
+            if (sPBLL.GetSerialPorts().Count > 1)
+            {
+                this.ComboBoxLoadPort.Items.AddRange(sPBLL.GetSerialPorts().ToArray());
+                this.ComboBoxLoadPort.SelectedIndex = 0;
+                this.ComboBoxManipulator.Items.AddRange(sPBLL.GetSerialPorts().ToArray());
+                this.ComboBoxManipulator.SelectedIndex = 1;
+            }
+            else
+            {
+                this.ComboBoxLoadPort.Text = string.Empty;
+                this.ComboBoxManipulator.Text = string.Empty;
+            }
         }
         public string Com_LoadPort { get => this.ComboBoxLoadPort.Text; set => com_LoadPort = value; }
         public string Com_Manipulator { get => this.ComboBoxManipulator.Text; set => com_Manipulator = value; }
@@ -40,19 +54,19 @@ namespace WaferBondingForceMeasureSystem.SettingForms
             //{
             try
             {
-                SPBLL sPBLL = new SPBLL();
-                if (sPBLL.GetSerialPorts().Count > 1)
-                {
-                    this.ComboBoxLoadPort.Items.AddRange(sPBLL.GetSerialPorts().ToArray());
-                    this.ComboBoxLoadPort.SelectedIndex = 0;
-                    this.ComboBoxManipulator.Items.AddRange(sPBLL.GetSerialPorts().ToArray());
-                    this.ComboBoxManipulator.SelectedIndex = 1;
-                }
-                else
-                {
-                    this.ComboBoxLoadPort.Text = string.Empty;
-                    this.ComboBoxManipulator.Text = string.Empty;
-                }
+                //SPBLL sPBLL = new SPBLL();
+                //if (sPBLL.GetSerialPorts().Count > 1)
+                //{
+                //    this.ComboBoxLoadPort.Items.AddRange(sPBLL.GetSerialPorts().ToArray());
+                //    this.ComboBoxLoadPort.SelectedIndex = 0;
+                //    this.ComboBoxManipulator.Items.AddRange(sPBLL.GetSerialPorts().ToArray());
+                //    this.ComboBoxManipulator.SelectedIndex = 1;
+                //}
+                //else
+                //{
+                //    this.ComboBoxLoadPort.Text = string.Empty;
+                //    this.ComboBoxManipulator.Text = string.Empty;
+                //}
             }
             catch
             {

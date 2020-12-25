@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO.Ports;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+using WaferBondingForceMeasureSystem.ApplicationModule.Common.DeviceInfo;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.FormCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.Common.SerialPortCommon;
 using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
@@ -16,6 +22,7 @@ namespace WaferBondingForceMeasureSystem
     public partial class WBFMSystem : Form
     {
         private static WBFMSystem wbfmSystem;
+        Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         public static WBFMSystem Singleton()
         {
@@ -49,13 +56,64 @@ namespace WaferBondingForceMeasureSystem
         {
             InitializeComponent();
             UIBLL.CustomizeMove(this.PanelTopic, this.LabelTopic, this);
+
+            try
+            {
+                socket.Connect("192.168.2.34", 3340);
+                if (socket.Connected)
+                {
+                    this.LabelConnectInfo.Text = "连接到内网主机";
+                    const int BUFFER_SIZE = 1024;
+                    byte[] readBuff = new byte[BUFFER_SIZE];
+                    IAsyncResult count = socket.BeginReceive(readBuff, 0, readBuff.Length, SocketFlags.None, new AsyncCallback(LabelUpdate), readBuff);
+                    string res = Encoding.UTF8.GetString(readBuff);
+                }
+            }
+            catch
+            {
+                this.LabelConnectInfo.Text = "未连接到内网";
+                //IPAddress iPAddress = IPAddress.Parse("127.0.0.1");
+                //IPEndPoint endPoint = new IPEndPoint(iPAddress, 3389);
+                //socket.BeginConnect(endPoint, new AsyncCallback(ConnectCallback1), null);
+            }
+        }
+        public static ManualResetEvent allDone = new ManualResetEvent(false);
+
+        private void ConnectCallback1(IAsyncResult ar)
+        {
+            allDone.Set();
+            //socket = (Socket)ar.AsyncState;
+            this.Invoke(new EventHandler(delegate
+            {
+                LabelConnectInfo.Text += "ReConnecting";
+            }));
+            socket.EndConnect(ar);
+        }
+        delegate void LUEventHandler(string str);
+
+        private void LabelUpdate(IAsyncResult ar)
+        {
+            byte[] readBuff = (byte[])ar.AsyncState;
+            this.Invoke(new EventHandler(delegate
+            {
+                LabelConnectInfo.Text += Encoding.UTF8.GetString(readBuff);
+            }));
+            try
+            {
+                socket.EndReceive(ar);
+            }
+            catch
+            {
+                this.Invoke(new EventHandler(delegate
+                {
+                    LabelConnectInfo.Text = "未连接到内网";
+                }));
+            }
         }
 
         public void SerialPortInfo_Update(object sender, SerialEventHandler.SerialPortEventArgs e)
         {
-            //string thread = Thread.CurrentThread.Name;
             lPSerialPort.Close();
-            //lPSerialPort.PortName = SPBLL.LPSerialPortName();
             lPSerialPort.PortName = e.Com_Loadport;
             lPSerialPort.Open();
             //lPSerialPort.WriteBufferSize = 1024;
@@ -71,18 +129,17 @@ namespace WaferBondingForceMeasureSystem
 
         private void LPSerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //this.TextBoxErrorLog.Text = "12314";
-
             byte[] Message = ComFormatPackage.ConstructCommandInfo(SETCommandNames.LON07);
             lPSerialPort.Write(Message, 0, Message.Length);
-
         }
 
         private void LPSerialPort_PinChanged(object sender, SerialPinChangedEventArgs e)
         {
-            LogMessage logInfo = new LogMessage();
-            logInfo.OperationTime = DateTime.Now;
-            logInfo.ExceptionInfo = "串口信号异常";
+            LogMessage logInfo = new LogMessage
+            {
+                OperationTime = DateTime.Now,
+                ExceptionInfo = "串口信号异常"
+            };
             this.TextBoxErrorLog.Text += new LogFormat().ErrorFormat(logInfo);
         }
 
@@ -107,6 +164,24 @@ namespace WaferBondingForceMeasureSystem
 
         private void WBFMSystem_Load(object sender, EventArgs e)
         {
+            if (this.LabelConnectInfo.Text == "未连接到内网") 
+            {
+                IPAddress iPAddress = IPAddress.Parse("127.0.0.1");
+                IPEndPoint endPoint = new IPEndPoint(iPAddress, 3389);
+                socket.Connect(endPoint);
+                //socket.BeginConnect(endPoint, new AsyncCallback(ConnectCallback1), null);
+                //socket.BeginConnect(endPoint, new AsyncCallback((ar) =>
+                //{
+                //    this.Invoke(new EventHandler(delegate
+                //    {
+                //        LabelConnectInfo.Text += "ReConnecting..";
+                //    }));
+                //}), null);
+            }
+
+            byte[] _deviceName = Encoding.UTF8.GetBytes(DeviceInfo.DeviceName());
+            socket.Send(_deviceName, 0, _deviceName.Length, SocketFlags.None);
+
             UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
             try
             {
@@ -333,6 +408,12 @@ namespace WaferBondingForceMeasureSystem
         private void WBFMSystem_Activated(object sender, EventArgs e)
         {
             UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        { 
+            byte[] _deviceName = Encoding.UTF8.GetBytes(DeviceInfo.DeviceName());
+            socket.Send(_deviceName, 0, _deviceName.Length, SocketFlags.None);
         }
     }
 }
