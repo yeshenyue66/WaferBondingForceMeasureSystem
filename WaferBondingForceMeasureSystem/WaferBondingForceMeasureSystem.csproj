@@ -78,6 +78,7 @@
     <Compile Include="Models\ComProtocol\ComFormat.cs" />
     <Compile Include="Models\ComProtocol\TDKA\ComFormat.cs" />
     <Compile Include="Models\ComProtocol\TDKA\ComFormatTDKA.cs" />
+    <Compile Include="Models\IntranetProtocol\IntranetTransInfoModel.cs" />
     <Compile Include="SettingForms\Correction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +184,7 @@
     <Compile Include="Util\DataType\TypeTranslate.cs" />
     <Compile Include="Util\Enum\EnumAttribute.cs" />
     <Compile Include="Util\String\Str.cs" />
+    <Compile Include="Util\Struct\StructConvert.cs" />
     <Compile Include="WBFMSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,6 +271,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ApplicationModule\IntranetProtocol\" />
     <Folder Include="Models\ComProtocol\TDKB\" />
   </ItemGroup>
   <ItemGroup>

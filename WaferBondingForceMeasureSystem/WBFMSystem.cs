@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,8 +15,10 @@ using WaferBondingForceMeasureSystem.ApplicationModule.ComProtocol;
 using WaferBondingForceMeasureSystem.ApplicationModule.EventHandler;
 using WaferBondingForceMeasureSystem.ApplicationModule.Log;
 using WaferBondingForceMeasureSystem.Models.Control;
+using WaferBondingForceMeasureSystem.Models.IntranetProtocol;
 using WaferBondingForceMeasureSystem.SettingForms;
 using WaferBondingForceMeasureSystem.UserControls;
+using WaferBondingForceMeasureSystem.Util.Struct;
 
 namespace WaferBondingForceMeasureSystem
 {
@@ -59,13 +62,14 @@ namespace WaferBondingForceMeasureSystem
 
             try
             {
-                socket.Connect("192.168.2.34", 3340);
+                //socket.Connect("192.168.2.34", 3340);
+                socket.Connect("127.0.0.1", 3340);
                 if (socket.Connected)
                 {
                     this.LabelConnectInfo.Text = "连接到内网主机";
                     const int BUFFER_SIZE = 1024;
                     byte[] readBuff = new byte[BUFFER_SIZE];
-                    IAsyncResult count = socket.BeginReceive(readBuff, 0, readBuff.Length, SocketFlags.None, new AsyncCallback(LabelUpdate), readBuff);
+                    IAsyncResult count = socket.BeginReceive(readBuff, 0, readBuff.Length, SocketFlags.None, new AsyncCallback(LabelConnectInfo_Update), readBuff);
                     string res = Encoding.UTF8.GetString(readBuff);
                 }
             }
@@ -91,7 +95,7 @@ namespace WaferBondingForceMeasureSystem
         }
         delegate void LUEventHandler(string str);
 
-        private void LabelUpdate(IAsyncResult ar)
+        private void LabelConnectInfo_Update(IAsyncResult ar)
         {
             byte[] readBuff = (byte[])ar.AsyncState;
             this.Invoke(new EventHandler(delegate
@@ -164,23 +168,23 @@ namespace WaferBondingForceMeasureSystem
 
         private void WBFMSystem_Load(object sender, EventArgs e)
         {
-            if (this.LabelConnectInfo.Text == "未连接到内网") 
-            {
-                IPAddress iPAddress = IPAddress.Parse("127.0.0.1");
-                IPEndPoint endPoint = new IPEndPoint(iPAddress, 3389);
-                socket.Connect(endPoint);
-                //socket.BeginConnect(endPoint, new AsyncCallback(ConnectCallback1), null);
-                //socket.BeginConnect(endPoint, new AsyncCallback((ar) =>
-                //{
-                //    this.Invoke(new EventHandler(delegate
-                //    {
-                //        LabelConnectInfo.Text += "ReConnecting..";
-                //    }));
-                //}), null);
-            }
+            //if (this.LabelConnectInfo.Text == "未连接到内网") 
+            //{
+            //    IPAddress iPAddress = IPAddress.Parse("127.0.0.1");
+            //    IPEndPoint endPoint = new IPEndPoint(iPAddress, 3340);
+            //    socket.Connect(endPoint);
+            //    //socket.BeginConnect(endPoint, new AsyncCallback(ConnectCallback1), null);
+            //    //socket.BeginConnect(endPoint, new AsyncCallback((ar) =>
+            //    //{
+            //    //    this.Invoke(new EventHandler(delegate
+            //    //    {
+            //    //        LabelConnectInfo.Text += "ReConnecting..";
+            //    //    }));
+            //    //}), null);
+            //}
 
-            byte[] _deviceName = Encoding.UTF8.GetBytes(DeviceInfo.DeviceName());
-            socket.Send(_deviceName, 0, _deviceName.Length, SocketFlags.None);
+            //byte[] _deviceName = Encoding.UTF8.GetBytes(DeviceInfo.DeviceName());
+            //socket.Send(_deviceName, 0, _deviceName.Length, SocketFlags.None);
 
             UIBLL.CustomizeMove<Panel, Label>(this.PanelTopic, this.LabelTopic, this);
             try
@@ -403,6 +407,7 @@ namespace WaferBondingForceMeasureSystem
         {
             byte[] Message = ComFormatPackage.ConstructCommandInfo(EVTCommandNames.PODOF);
             lPSerialPort.Write(Message, 0, Message.Length);
+
         }
 
         private void WBFMSystem_Activated(object sender, EventArgs e)
@@ -412,8 +417,45 @@ namespace WaferBondingForceMeasureSystem
 
         private void button1_Click(object sender, EventArgs e)
         { 
-            byte[] _deviceName = Encoding.UTF8.GetBytes(DeviceInfo.DeviceName());
-            socket.Send(_deviceName, 0, _deviceName.Length, SocketFlags.None);
+            //byte[] _deviceName = Encoding.UTF8.GetBytes(DeviceInfo.GetDeviceName());
+            ////List<ArraySegment<byte>> ad = new List<ArraySegment<byte>>();
+            ////ArraySegment<byte> item = Encoding.UTF8.GetBytes(DeviceInfo.GetDeviceName());
+            ////ad.Add(_deviceName);
+
+            //IntranetTransInfoModel localDeviceInfoModel = new IntranetTransInfoModel();
+            ////localDeviceInfoModel.Value = DeviceInfo.GetDeviceName();
+            //string localIP;
+            //using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            //{
+            //    socket.Connect("8.8.8.8", 65530);
+            //    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+            //    localIP = endPoint.Address.ToString();
+            //}
+            ////localDeviceInfoModel.Value = localIP;
+            //localDeviceInfoModel.Tag = new byte[] { 0x01 };
+            ////localDeviceInfoModel.Length = Convert.ToByte(localDeviceInfoModel.Value.Length);
+            //localDeviceInfoModel.LocalIPv4 = localIP;
+            ////localDeviceInfoModel.LocalTransPort = 4567;
+            //localDeviceInfoModel.CurrentUserName = "2344";
+            //byte[] Message = StructConvert.StructToBytes(localDeviceInfoModel);
+
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            MemoryStream memoryStream = new MemoryStream();
+            ABC aBC = new ABC();
+            aBC.CurrentUserName = "name";
+            aBC.LocalTransPort = 1234;
+            binaryFormatter.Serialize(memoryStream, aBC);
+            byte[] abc = memoryStream.ToArray();
+
+            socket.Send(abc);
+            memoryStream.Close();
+            //socket.Send(_deviceName, 0, _deviceName.Length, SocketFlags.None);
         }
+    }
+    [Serializable]
+    class ABC
+    {
+        public string CurrentUserName;
+        public int LocalTransPort;
     }
 }
